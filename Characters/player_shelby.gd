@@ -12,6 +12,7 @@ signal player_firing_signal
 @export var particle = preload("res://particle.tscn")
 
 @onready var animation_tree = $AnimationTree
+@onready var animation_player = $AnimationPlayer
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var dash = $Dash
 
@@ -32,6 +33,12 @@ func _ready():
 	update_animation_parameters(starting_direction)
 
 func _physics_process(delta):
+	animation_tree.advance(delta * 0.3)
+	fire()
+	projectile_process(delta)
+			
+		
+func _process(delta):
 	if enemy != null:
 		enemy_pos = enemy.position
 		enemy_global_pos = enemy.global_position
@@ -49,30 +56,20 @@ func _physics_process(delta):
 		var mouse_pos = get_global_mouse_position()
 		facing_direction = (mouse_pos - global_position).normalized()
 		movement_direction = Vector2.ZERO
-		
 	if Input.is_action_pressed("interact"):
 		movement_direction = Vector2.ZERO
-
-	update_animation_parameters(facing_direction)
-	
-	##Update velocity with dash speed when spacebar is pressed
-	if Input.is_action_just_pressed("dash") && dash.can_dash && !dash.is_dashing():
-		dash.start_dash(dash_duration)
-	var speed = dash_speed if dash.is_dashing() else move_speed
-	velocity = movement_direction.normalized() * speed * delta
-
-	pick_new_state()
-	fire()
+		
+	pick_new_state()	
 	move_and_slide()
+	update_animation_parameters(facing_direction)
+	_dash(movement_direction, delta)
 
 func update_animation_parameters(move_input : Vector2):
 	if(move_input != Vector2.ZERO):
 		animation_tree.set("parameters/Walk/blend_position", move_input)
 		animation_tree.set("parameters/Idle/blend_position", move_input)
 		animation_tree.set("parameters/Collect/blend_position", move_input)
-		
-	
-		
+			
 func pick_new_state():
 	if(velocity != Vector2.ZERO):
 		state_machine.travel("Walk")
@@ -84,16 +81,21 @@ func pick_new_state():
 		animation_tree["parameters/conditions/swing"] = true	
 	else:
 		animation_tree["parameters/conditions/swing"] = false	
-
-		
+	
 func fire():
 	if Input.is_action_just_pressed("follow"):
 		particle_instance = particle.instantiate()
 		particle_instance.position = position
 		get_tree().get_root().add_child(particle_instance)
 		emit_signal("player_firing_signal")
-
-func _process(delta):
+		
+func _dash(direction, delta):
+	if Input.is_action_just_pressed("dash") && dash.can_dash && !dash.is_dashing():
+		dash.start_dash(dash_duration)
+	var speed = dash_speed if dash.is_dashing() else move_speed
+	velocity = direction.normalized() * speed * delta
+		
+func projectile_process(delta):
 	var shot_direction = Vector2.ZERO;
 	var mouse_pos = get_global_mouse_position().x
 	var player_pos = get_global_transform().origin.x
@@ -128,6 +130,9 @@ func _process(delta):
 			shot_direction = closest_enemy.global_position - particle_instance.position
 			shot_direction = shot_direction.normalized()		
 		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))
+
+		
+	
 			
 			
 			

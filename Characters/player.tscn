@@ -385,8 +385,8 @@ size = Vector2(8, 8)
 [node name="Player_Shelby" type="CharacterBody2D" groups=["player"]]
 safe_margin = 0.001
 script = ExtResource("1_s0nvd")
-move_speed = 3000.0
-dash_speed = 15000.0
+move_speed = 6000.0
+dash_speed = 30000.0
 dash_duration = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -12,3 +12,4 @@ res://Objects/Pickups/item_pickup.tscn
 res://Objects/Resources/Type/Resource_Node_Rock.tscn
 res://Characters/player.tscn
 res://Objects/Pickups/rock.tscn
+res://Characters/player_shelby.gd
