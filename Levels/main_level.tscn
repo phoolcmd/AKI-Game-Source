@@ -822,7 +822,7 @@ script = ExtResource("1_d8ffh")
 [node name="Player_Shelby" parent="." instance=ExtResource("1_56tw2")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(279, 217)
+position = Vector2(289, 239)
 
 [node name="Camera2D" type="Camera2D" parent="Player_Shelby"]
 position = Vector2(9, 1)
@@ -969,6 +969,18 @@ position = Vector2(384, 268)
 
 [node name="mushroom" parent="pickups" instance=ExtResource("15_y1rg4")]
 position = Vector2(167, 167)
+
+[node name="mushroom2" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(187, 204)
+
+[node name="mushroom3" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(224, 170)
+
+[node name="mushroom4" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(238, 231)
+
+[node name="mushroom5" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(220, 208)
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 
