@@ -14,3 +14,9 @@ In addition, combat mechanics are also being fleshed out to provide engaging enc
 
 As Astral Kitten Island grows and evolves, it seeks to provide an unforgettable mix of exploration, puzzle-solving, and role-playing elements with its unique blend of magical and feline-themed charm. Stay tuned for exciting updates and milestones in the journey of its development!
 
+# Running the Game
+To run Astral Kitten Island, follow these steps:
+
+1. Clone this repository to your local machine or download the source code.
+2. Navigate to the demo folder in the repository or the downloaded files.
+3. Double-click AKI_demo.exe to run the game.
