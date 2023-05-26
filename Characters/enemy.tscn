@@ -1,0 +1,212 @@
+[gd_scene load_steps=19 format=3 uid="uid://clvrwcgns5hgv"]
+
+[ext_resource type="Script" path="res://Characters/enemy.gd" id="1_7puu4"]
+[ext_resource type="Shader" path="res://Characters/enemy.gdshader" id="1_scirc"]
+[ext_resource type="Texture2D" uid="uid://mpgjnpx72yob" path="res://Art/Characters/ghost_sprite.png" id="2_75kvw"]
+[ext_resource type="Texture2D" uid="uid://d208duvnux6rl" path="res://Art/Characters/shadow.png" id="4_p7nj6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2dsl"]
+shader = ExtResource("1_scirc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j3v3"]
+size = Vector2(12, 24)
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_k3iva"]
+
+[sub_resource type="Animation" id="Animation_ronf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2bkmf"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_dgo52"]
+resource_name = "walk_down"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_e5rks"]
+resource_name = "walk_left"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_yrdg6"]
+resource_name = "walk_right"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 7]
+}
+
+[sub_resource type="Animation" id="Animation_qmcc6"]
+resource_name = "walk_up"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sn3qb"]
+_data = {
+"RESET": SubResource("Animation_ronf1"),
+"idle": SubResource("Animation_2bkmf"),
+"walk_down": SubResource("Animation_dgo52"),
+"walk_left": SubResource("Animation_e5rks"),
+"walk_right": SubResource("Animation_yrdg6"),
+"walk_up": SubResource("Animation_qmcc6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g1shl"]
+radius = 37.0135
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krbab"]
+radius = 106.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2i58"]
+radius = 165.003
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34tlk"]
+size = Vector2(12, 24)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+material = SubResource("ShaderMaterial_g2dsl")
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_7puu4")
+particle_speed = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_75kvw")
+hframes = 3
+vframes = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0.443137)
+position = Vector2(0, -4)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_p7nj6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_0j3v3")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationRootNode_k3iva")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sn3qb")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_sn3qb")
+}
+
+[node name="stop_zone" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_zone"]
+shape = SubResource("CircleShape2D_g1shl")
+
+[node name="prox_zone" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="prox_zone"]
+shape = SubResource("CircleShape2D_krbab")
+
+[node name="sight_zone" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight_zone"]
+shape = SubResource("CircleShape2D_a2i58")
+debug_color = Color(0.988235, 0, 0.301961, 0.419608)
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_34tlk")
+
+[connection signal="body_entered" from="stop_zone" to="." method="_on_stop_zone_body_entered"]
+[connection signal="body_exited" from="stop_zone" to="." method="_on_stop_zone_body_exited"]
+[connection signal="body_entered" from="prox_zone" to="." method="_on_prox_zone_body_entered"]
+[connection signal="body_exited" from="prox_zone" to="." method="_on_prox_zone_body_exited"]
+[connection signal="body_entered" from="sight_zone" to="." method="_on_sight_zone_body_entered"]
+[connection signal="body_exited" from="sight_zone" to="." method="_on_sight_zone_body_exited"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

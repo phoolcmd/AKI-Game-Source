@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh106av1ba5qo"]
+
+[ext_resource type="Texture2D" uid="uid://d36wuapypmyaw" path="res://Art/Tilesets/ground tiles/rocks.png" id="1_wj1a6"]
+[ext_resource type="PackedScene" uid="uid://cww5vbtr6hkpl" path="res://item_pickup.tscn" id="2_nr67c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wea1l"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hg2n"]
+radius = 31.0161
+
+[node name="rock" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 4
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wj1a6")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = -1.56248
+shape = SubResource("CapsuleShape2D_wea1l")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_3hg2n")
+
+[node name="item_pickup" parent="." instance=ExtResource("2_nr67c")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="item_pickup" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="Area2D" to="item_pickup" method="_on_area_2d_body_exited"]

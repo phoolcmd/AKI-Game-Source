@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8uvqktsnpbg3"]
+
+[ext_resource type="Script" path="res://enemy_particle.gd" id="1_ovsrg"]
+[ext_resource type="Texture2D" uid="uid://6vuw5dk143wx" path="res://Art/Characters/enemy_particle_sprite.png" id="2_w3uwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0ue3"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_28l6i"]
+radius = 2.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qy5to"]
+
+[sub_resource type="Curve" id="Curve_ssxee"]
+max_value = 2.0
+_data = [Vector2(0, 1.96364), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.69091, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_g5clv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_r0oy0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.521978, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="enemy_particle" type="RigidBody2D"]
+z_index = 1
+y_sort_enabled = true
+center_of_mass_mode = 1
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_ovsrg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w0ue3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w3uwe")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_28l6i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_qy5to")
+amount = 50
+speed_scale = 2.0
+explosiveness = 0.03
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_ssxee")
+color = Color(1, 0.243137, 0.0352941, 1)
+color_ramp = SubResource("Gradient_g5clv")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_qy5to")
+amount = 50
+lifetime = 2.0
+speed_scale = 3.0
+explosiveness = 0.03
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_ssxee")
+color = Color(1, 0.780392, 0.0352941, 1)
+color_ramp = SubResource("Gradient_g5clv")
+hue_variation_min = 0.13
+hue_variation_max = 1.0
+
+[node name="particle_explode" type="CPUParticles2D" parent="."]
+modulate = Color(0.960784, 0.152941, 0.152941, 1)
+amount = 20
+lifetime = 0.3
+speed_scale = 0.2
+explosiveness = 0.46
+randomness = 0.4
+lifetime_randomness = 0.04
+emission_shape = 1
+emission_sphere_radius = 9.59
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.4
+initial_velocity_max = 222.41
+scale_amount_curve = SubResource("Curve_r0oy0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

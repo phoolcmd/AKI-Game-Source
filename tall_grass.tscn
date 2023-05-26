@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhbm61m24gy3m"]
+
+[ext_resource type="Texture2D" uid="uid://qp87yltp5jwl" path="res://Art/Tilesets/ground tiles/grass_foliage.png" id="1_73st2"]
+[ext_resource type="Script" path="res://tall_grass.gd" id="1_fc30j"]
+[ext_resource type="Shader" path="res://Shaders/wind_shader.gdshader" id="2_xc7o0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wxi1"]
+shader = ExtResource("2_xc7o0")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.066
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 2.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = 0.272
+shader_parameter/offset = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cp4n"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_tepc0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_phpul"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_4ictj"]
+resource_name = "stepped"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dali1"]
+_data = {
+"RESET": SubResource("Animation_tepc0"),
+"idle": SubResource("Animation_phpul"),
+"stepped": SubResource("Animation_4ictj")
+}
+
+[node name="tall_grass" type="Node2D"]
+script = ExtResource("1_fc30j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5wxi1")
+texture = ExtResource("1_73st2")
+centered = false
+hframes = 2
+vframes = 3
+frame = 4
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(8, 7)
+shape = SubResource("RectangleShape2D_7cp4n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dali1")
+}
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://kevugwmwha46"]
+
+[ext_resource type="Script" path="res://particle.gd" id="1_khud2"]
+[ext_resource type="Texture2D" uid="uid://biuritsdoehus" path="res://Art/Tilesets/ground tiles/particle_sprite.png" id="1_qiypm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wnv06"]
+radius = 2.23607
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5d38"]
+radius = 2.23607
+
+[sub_resource type="Curve" id="Curve_507gi"]
+max_value = 2.0
+_data = [Vector2(0, 1.6), 0.0, 0.0, 0, 0, Vector2(0.648437, 0), -0.238694, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ggp1e"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_c1s5i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.521978, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="particle" type="RigidBody2D" groups=["player_projectile"]]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 2
+center_of_mass_mode = 1
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_khud2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wnv06")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.478431, 1, 1, 1)
+texture = ExtResource("1_qiypm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_q5d38")
+
+[node name="trails" type="CPUParticles2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+amount = 100
+lifetime = 2.0
+speed_scale = 2.0
+explosiveness = 0.03
+emission_shape = 1
+emission_sphere_radius = 7.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_507gi")
+color = Color(0.0156863, 0.854902, 1, 1)
+color_ramp = SubResource("Gradient_ggp1e")
+
+[node name="trails2" type="CPUParticles2D" parent="."]
+amount = 100
+lifetime = 3.0
+speed_scale = 2.0
+explosiveness = 0.03
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_507gi")
+color = Color(0.670588, 0.972549, 1, 1)
+color_ramp = SubResource("Gradient_ggp1e")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="particle_explode" type="CPUParticles2D" parent="." groups=["player_projectile"]]
+modulate = Color(0.152941, 0.929412, 0.960784, 1)
+emitting = false
+amount = 40
+lifetime = 0.3
+one_shot = true
+speed_scale = 0.2
+explosiveness = 0.46
+randomness = 0.4
+lifetime_randomness = 0.04
+emission_shape = 1
+emission_sphere_radius = 9.59
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 40.4
+initial_velocity_max = 222.41
+scale_amount_curve = SubResource("Curve_c1s5i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
