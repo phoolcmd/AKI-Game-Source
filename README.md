@@ -18,7 +18,7 @@ As Astral Kitten Island grows and evolves, it seeks to provide an unforgettable 
 To run Astral Kitten Island, follow these steps:
 
 1. Clone this repository to your local machine or download the source code.
-2. Navigate to the demo folder in the repository or the downloaded files.
+2. Navigate to the Demo folder.
 3. Double-click AKI_demo.exe to run the game.
 
 Please remember this is a work in progress and anything you experience now is subject to change in the future.
