@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cubb0sal8cqvt"]
+[gd_scene load_steps=35 format=3 uid="uid://cubb0sal8cqvt"]
 
 [ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://p6ltwciiyve6" path="res://Art/Tilesets/ground tiles/grass_dirt_spritesheet.png" id="11_ifbsm"]
 [ext_resource type="PackedScene" uid="uid://clvrwcgns5hgv" path="res://Characters/enemy.tscn" id="12_1g7w5"]
 [ext_resource type="Texture2D" uid="uid://cg5vxlxf6phsd" path="res://Art/Tilesets/ground tiles/grass_pink_texture.png" id="12_pxudh"]
-[ext_resource type="PackedScene" uid="uid://dvcnfo8l8y5dq" path="res://Objects/Resources/mushroom.tscn" id="14_tqcpf"]
+[ext_resource type="PackedScene" uid="uid://bmjlqknhq7cwp" path="res://Objects/Pickups/rock.tscn" id="15_smkhw"]
+[ext_resource type="PackedScene" uid="uid://dvcnfo8l8y5dq" path="res://Objects/Pickups/mushroom.tscn" id="15_y1rg4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ylj82"]
 shader = ExtResource("3_c4whj")
@@ -954,6 +955,21 @@ position = Vector2(-53, -2)
 
 [node name="pickups" type="CanvasGroup" parent="."]
 
+[node name="rock" parent="pickups" instance=ExtResource("15_smkhw")]
+position = Vector2(322, 229)
+
+[node name="rock2" parent="pickups" instance=ExtResource("15_smkhw")]
+position = Vector2(337, 244)
+
+[node name="rock3" parent="pickups" instance=ExtResource("15_smkhw")]
+position = Vector2(372, 251)
+
+[node name="rock4" parent="pickups" instance=ExtResource("15_smkhw")]
+position = Vector2(384, 268)
+
+[node name="mushroom" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(167, 167)
+
 [node name="Bounds" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
@@ -976,8 +992,5 @@ shape = SubResource("RectangleShape2D_icgmi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rlh73")
-
-[node name="mushroom" parent="." instance=ExtResource("14_tqcpf")]
-position = Vector2(211, 198)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

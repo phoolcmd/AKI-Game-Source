@@ -49,7 +49,9 @@ func _physics_process(delta):
 		var mouse_pos = get_global_mouse_position()
 		facing_direction = (mouse_pos - global_position).normalized()
 		movement_direction = Vector2.ZERO
-
+		
+	if Input.is_action_pressed("interact"):
+		movement_direction = Vector2.ZERO
 
 	update_animation_parameters(facing_direction)
 	
@@ -67,8 +69,10 @@ func update_animation_parameters(move_input : Vector2):
 	if(move_input != Vector2.ZERO):
 		animation_tree.set("parameters/Walk/blend_position", move_input)
 		animation_tree.set("parameters/Idle/blend_position", move_input)
+		animation_tree.set("parameters/Collect/blend_position", move_input)
 		
-
+	
+		
 func pick_new_state():
 	if(velocity != Vector2.ZERO):
 		state_machine.travel("Walk")
@@ -76,6 +80,11 @@ func pick_new_state():
 	else:
 		emit_signal("player_stopped_signal")
 		state_machine.travel("Idle")
+	if(Input.is_action_just_pressed("interact")):
+		animation_tree["parameters/conditions/swing"] = true	
+	else:
+		animation_tree["parameters/conditions/swing"] = false	
+
 		
 func fire():
 	if Input.is_action_just_pressed("follow"):

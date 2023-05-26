@@ -11,7 +11,7 @@ var picking_up = false
 
 var velocity = Vector2.ZERO
 var direction = Vector2.ZERO
-var acceleration = 50
+var acceleration = 50 
 
 func _ready():
 	pass
@@ -36,8 +36,9 @@ func _physics_process(delta):
 	if in_range:
 		if Input.is_action_just_pressed("interact"):
 			picking_up = true
-
-	if picking_up:
+			$Delay.start()
+	
+	if picking_up and $Delay.is_stopped():
 		sprite.frame = 2
 		player_global_pos = player.global_position
 		direction = (player_global_pos - rigid_body.position).normalized()
