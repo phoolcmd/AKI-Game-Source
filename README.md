@@ -6,7 +6,10 @@ In the vision for this game, players will engage in foraging for resources, vita
 The heart of Astral Kitten Island lies in a noble mission: rescuing adorable astral kittens dispersed across the island. Each rescued kitten is anticipated to enrich the gameplay by providing unique bonuses and enhancements, contributing to the player's progression.
 
 The game will feature a sprawling, open-world 2D environment filled with diverse biomes, secret routes, and concealed treasures. With the planned mechanics, exploration will be rewarded, curiosity piqued, and every discovery will bring players one step closer to unraveling the island's secrets.
+
+
 ![image](https://github.com/phoolcmd/AKI-Game-Source/assets/121768237/53881f01-22af-4b06-891b-c672e967d57d)
+
 
 # Current Developments
 The game is currently in the early stages of development, and many features are being implemented. Currently, the main focus is on developing an intuitive inventory system to manage resources and spells. This system will play a vital role in managing resources collected from foraging and tracking the player's progress in spell upgrades.
