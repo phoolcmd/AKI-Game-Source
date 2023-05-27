@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://coi6x4aoasx2l"]
+
+[ext_resource type="Script" path="res://Items/equippable_item.gd" id="1_g3f56"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6dn5q"]
+
+[resource]
+script = ExtResource("1_g3f56")
+texture = SubResource("CanvasTexture_6dn5q")
+display_name = "Test Item"

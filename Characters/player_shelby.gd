@@ -19,9 +19,11 @@ signal player_firing_signal
 @onready var enemy = get_node("/root/Main/Enemy")
 @onready var enemy_pos = enemy.position
 @onready var enemy_global_pos = enemy.global_position
-
+@onready var equipped_item = $Equip/Area2D/CollisionShape2D
+@onready var equipped_item_pos = equipped_item.global_position
 var canDash = true
 var dashing
+
 
 
 var particle_instance = null
@@ -33,6 +35,9 @@ func _ready():
 	update_animation_parameters(starting_direction)
 
 func _physics_process(delta):
+	if enemy != null:
+		enemy_global_pos = enemy.global_position
+		
 	animation_tree.advance(delta * 0.3)
 	fire()
 	projectile_process(delta)
@@ -53,6 +58,7 @@ func _process(delta):
 
 	## Update facing_direction based on the mouse position when left mouse button is held down.
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and particle_instance != null:
+		equipped_item_pos = equipped_item.global_position
 		var mouse_pos = get_global_mouse_position()
 		facing_direction = (mouse_pos - global_position).normalized()
 		movement_direction = Vector2.ZERO
@@ -69,31 +75,40 @@ func update_animation_parameters(move_input : Vector2):
 		animation_tree.set("parameters/Walk/blend_position", move_input)
 		animation_tree.set("parameters/Idle/blend_position", move_input)
 		animation_tree.set("parameters/Collect/blend_position", move_input)
+		animation_tree.set("parameters/Wand Attack/blend_position", move_input)
 			
 func pick_new_state():
 	if(velocity != Vector2.ZERO):
 		state_machine.travel("Walk")
 		emit_signal("player_moving_signal")
+		
+	elif(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		animation_tree["parameters/conditions/attack"] = true
+		
 	else:
 		emit_signal("player_stopped_signal")
 		state_machine.travel("Idle")
+		animation_tree["parameters/conditions/attack"] = false
+		
 	if(Input.is_action_just_pressed("interact")):
-		animation_tree["parameters/conditions/swing"] = true	
+		animation_tree["parameters/conditions/swing"] = true
 	else:
-		animation_tree["parameters/conditions/swing"] = false	
+		animation_tree["parameters/conditions/swing"] = false
 	
 func fire():
 	if Input.is_action_just_pressed("follow"):
 		particle_instance = particle.instantiate()
-		particle_instance.position = position
+		particle_instance.position = equipped_item_pos
 		get_tree().get_root().add_child(particle_instance)
 		emit_signal("player_firing_signal")
+		
 		
 func _dash(direction, delta):
 	if Input.is_action_just_pressed("dash") && dash.can_dash && !dash.is_dashing():
 		dash.start_dash(dash_duration)
 	var speed = dash_speed if dash.is_dashing() else move_speed
 	velocity = direction.normalized() * speed * delta
+	equipped_item_pos = equipped_item.global_position
 		
 func projectile_process(delta):
 	var shot_direction = Vector2.ZERO;
@@ -105,7 +120,7 @@ func projectile_process(delta):
 	if particle_instance != null:
 		#Follow mouse cursor when left click held
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			particle_instance.position = particle_instance.position.lerp(get_global_mouse_position(), delta * 10.0)
+			particle_instance.position = particle_instance.position.lerp(get_global_mouse_position(), delta * 7.0)
 		#When mouse released
 		elif Input.is_action_just_released("follow"):
 			#shoot to the left if mouse cursor to the left of character

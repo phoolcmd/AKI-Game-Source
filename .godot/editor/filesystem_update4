@@ -1,8 +1,6 @@
-res://Objects/Pickups/item_pickup.gd
-res://Objects/Pickups/mushroom.tscn
+res://particle.tscn
 res://Characters/enemy.gd
 res://enemy.gd
-res://particle.tscn
 res://Characters/cat.tscn
 res://enemy_particle.tscn
 res://Dash.tscn
@@ -12,4 +10,9 @@ res://Objects/Pickups/item_pickup.tscn
 res://Objects/Resources/Type/Resource_Node_Rock.tscn
 res://Characters/player.tscn
 res://Objects/Pickups/rock.tscn
+res://Objects/Pickups/mushroom.tscn
+res://Characters/Equip.gd
+res://Objects/Pickups/resourcenode.gd
+res://Items/equippable_item.gd
+res://Items/test_item.tres
 res://Characters/player_shelby.gd
