@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmjlqknhq7cwp"]
+[gd_scene load_steps=7 format=3 uid="uid://bmjlqknhq7cwp"]
 
 [ext_resource type="Texture2D" uid="uid://d36wuapypmyaw" path="res://Art/Tilesets/ground tiles/rocks.png" id="1_jk05j"]
-[ext_resource type="Script" path="res://Objects/Pickups/resourcenode.gd" id="1_vjlp8"]
 [ext_resource type="PackedScene" uid="uid://cxbwbpkef1ta5" path="res://Objects/Pickups/item_pickup.tscn" id="2_cec56"]
+[ext_resource type="Resource" uid="uid://com5jbq6i367q" path="res://Items/Resources/resource_rock.tres" id="2_in1of"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wea1l"]
 radius = 3.0
@@ -11,13 +11,16 @@ height = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hg2n"]
 radius = 10.4403
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvusd"]
+radius = 4.0
+
 [node name="rock" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 4
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_vjlp8")
+lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jk05j")
@@ -34,10 +37,19 @@ shape = SubResource("CapsuleShape2D_wea1l")
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_3hg2n")
 
-[node name="item_pickup" parent="." instance=ExtResource("2_cec56")]
+[node name="Pickup_zone" type="Area2D" parent="."]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_zone"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_pvusd")
+
+[node name="item_pickup" parent="." instance=ExtResource("2_cec56")]
+resource_type = ExtResource("2_in1of")
+
+[connection signal="body_entered" from="." to="item_pickup" method="_on_rock_body_entered"]
+[connection signal="body_shape_entered" from="." to="item_pickup" method="_on_rock_body_shape_entered"]
+[connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="item_pickup" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_exited" from="Area2D" to="item_pickup" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Pickup_zone" to="item_pickup" method="_on_pickup_zone_body_entered"]

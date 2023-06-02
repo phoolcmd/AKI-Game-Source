@@ -4,8 +4,10 @@ extends Node2D
 @onready var player = get_node("/root/Main/Player_Shelby")
 @onready var player_pos = player.position
 @onready var player_global_pos = player.global_position
-
 @onready var sprite = rigid_body.get_node("Sprite2D")
+
+@export var resource_type : Resource
+
 var in_range = false
 var picking_up = false
 
@@ -14,7 +16,7 @@ var direction = Vector2.ZERO
 var acceleration = 50 
 
 func _ready():
-	pass
+	connect("body_entered", _on_pickup_zone_body_entered)
 
 func _on_area_2d_body_entered(body):
 	if body == player:
@@ -44,6 +46,13 @@ func _physics_process(delta):
 		direction = (player_global_pos - rigid_body.position).normalized()
 		velocity = velocity.move_toward(direction * 80, acceleration * delta)
 		rigid_body.move_and_collide(velocity)
+		
 
-		if player_global_pos.distance_to(rigid_body.global_position) < 10:
-			rigid_body.queue_free()
+
+
+func _on_pickup_zone_body_entered(body):
+	var inventory = body.find_child("Inventory")
+	if(inventory and picking_up):
+		inventory.add_resources(resource_type, 1)
+		print("added to inventory")
+		rigid_body.queue_free()

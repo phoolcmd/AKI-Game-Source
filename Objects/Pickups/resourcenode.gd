@@ -1,10 +1,7 @@
 extends RigidBody2D
 
-class_name ResourceNode
-
-@export var starting_resources : int = 1
-
-var current_resources : int
+@export var resource_type : Resource
 
 func _ready():
-	current_resources = starting_resources
+	connect("body_entered", _on_body_entered)
+

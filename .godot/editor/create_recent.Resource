@@ -1,1 +1,3 @@
+ResourceItem
+Resource
 EquippableItem

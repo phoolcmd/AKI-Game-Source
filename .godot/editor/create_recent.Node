@@ -1,6 +1,8 @@
-Timer
 CollisionShape2D
 Area2D
+RigidBody2D
+Node
+Timer
 Sprite2D
 Node2D
 StaticBody2D
@@ -12,7 +14,6 @@ WorldEnvironment
 PointLight2D
 Tree
 CPUParticles2D
-RigidBody2D
 CollisionPolygon2D
 Camera2D
 RayCast2D

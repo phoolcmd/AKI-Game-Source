@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceItem" load_steps=3 format=3 uid="uid://b1ape5psfucoq"]
+
+[ext_resource type="Script" path="res://Items/Resources/resource_item.gd" id="1_p2iwk"]
+[ext_resource type="Texture2D" uid="uid://cbmorfqq1et5p" path="res://Art/Items/resource_mushroom.png" id="2_ut6io"]
+
+[resource]
+script = ExtResource("1_p2iwk")
+display_name = "Mushroom"
+texture = ExtResource("2_ut6io")

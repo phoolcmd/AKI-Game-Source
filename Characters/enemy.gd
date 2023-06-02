@@ -63,7 +63,7 @@ func _on_prox_zone_body_entered(body):
 
 func _on_sight_zone_body_exited(body):
 	if body == player:
-		print("exited sight - no longer pursuing")
+		#print("exited sight - no longer pursuing")
 		chase_player = false
 		$FireTimer.stop()
 	
