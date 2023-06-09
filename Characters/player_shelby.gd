@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 signal player_moving_signal
 signal player_stopped_signal
 signal player_firing_signal

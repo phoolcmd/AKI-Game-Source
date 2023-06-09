@@ -1,3 +1,13 @@
+TextureRect
+Panel
+GridContainer
+Container
+HFlowContainer
+FlowContainer
+CanvasLayer
+MarginContainer
+Label
+HBoxContainer
 CollisionShape2D
 Area2D
 RigidBody2D
@@ -20,6 +30,3 @@ RayCast2D
 AnimationPlayer
 AnimationTree
 CharacterBody2D
-ShapeCast2D
-TileMap
-RemoteTransform2D

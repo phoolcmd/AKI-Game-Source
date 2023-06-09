@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://rb728f2u675c"]
+
+[ext_resource type="Texture2D" uid="uid://c1u0bdipyj8yu" path="res://Art/UI/stamina_bar.png" id="1_t6dmd"]
+
+[node name="Stamina Bar" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_t6dmd")
+stretch_mode = 2

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqs8vtp4n1bqu"]
+
+[ext_resource type="Texture2D" uid="uid://c7ech41p5dy53" path="res://Art/UI/mana_bar.png" id="1_66mxq"]
+
+[node name="Mana Bar" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_66mxq")
+stretch_mode = 2

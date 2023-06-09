@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbmorfqq1et5p" path="res://Art/Items/resource_mushroom.png" id="2_ut6io"]
 
 [resource]
+resource_name = "Mushroom"
 script = ExtResource("1_p2iwk")
 display_name = "Mushroom"
 texture = ExtResource("2_ut6io")

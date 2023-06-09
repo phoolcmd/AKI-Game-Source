@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csbybu2hv62of" path="res://Art/Items/resource_rock.png" id="2_4mqoh"]
 
 [resource]
+resource_name = "Rock"
 script = ExtResource("1_qcewk")
 display_name = "Rock"
 texture = ExtResource("2_4mqoh")
