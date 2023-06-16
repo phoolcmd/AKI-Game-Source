@@ -25,3 +25,4 @@ To run Astral Kitten Island, follow these steps:
 3. Double-click AKI_demo.exe to run the game.
 
 Please remember this is a work in progress and anything you experience now is subject to change in the future.
+The 'game' in its current state is very barebones and is meant to serve as a demo of where I'm at so far.
