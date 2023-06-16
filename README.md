@@ -7,7 +7,7 @@ The heart of Astral Kitten Island lies in a noble mission: rescuing adorable ast
 
 The game will feature a sprawling, open-world 2D environment filled with diverse biomes, secret routes, and concealed treasures. With the planned mechanics, exploration will be rewarded, curiosity piqued, and every discovery will bring players one step closer to unraveling the island's secrets.
 
-![image](https://github.com/phoolcmd/AKI-Game-Source/assets/121768237/198fe6ed-cff9-4620-9c67-9e67e122405e)
+![image](https://github.com/phoolcmd/AKI-Game-Source/assets/121768237/c91ec680-eb13-4713-95b0-5121819fc31c)
 
 
 # Current Developments
