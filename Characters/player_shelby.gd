@@ -25,7 +25,7 @@ signal player_firing_signal
 @onready var equipped_item_pos = equipped_item.global_position
 var canDash = true
 var dashing
-
+var inside_inv = false
 
 
 var particle_instance = null
@@ -64,8 +64,11 @@ func _process(delta):
 		var mouse_pos = get_global_mouse_position()
 		facing_direction = (mouse_pos - global_position).normalized()
 		movement_direction = Vector2.ZERO
+		
 	if Input.is_action_pressed("interact"):
 		movement_direction = Vector2.ZERO
+	if inside_inv:
+		print("inside inventory")
 		
 	pick_new_state()	
 	move_and_slide()
@@ -98,7 +101,7 @@ func pick_new_state():
 		animation_tree["parameters/conditions/swing"] = false
 	
 func fire():
-	if Input.is_action_just_pressed("follow"):
+	if Input.is_action_just_pressed("follow") and !inside_inv:
 		particle_instance = particle.instantiate()
 		particle_instance.position = equipped_item_pos
 		get_tree().get_root().add_child(particle_instance)
@@ -147,7 +150,18 @@ func projectile_process(delta):
 			shot_direction = closest_enemy.global_position - particle_instance.position
 			shot_direction = shot_direction.normalized()		
 		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))
+		
+func _gui_input(event):
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		var mouse_pos = get_global_mouse_position()
+		var inventoryNode = get_node("/root/Main/CanvasLayer/Inventory")
 
+		var rect = inventoryNode.get_global_rect()
+		if rect.has_point(mouse_pos):
+			inside_inv = true
+			
+		else:
+			inside_inv = false
 		
 	
 			

@@ -1,4 +1,4 @@
-res://UI/stamina_bar.tscn
+res://Levels/main_level.tscn
 res://Characters/enemy.gd
 res://Objects/Pickups/item_pickup.gd
 res://Objects/Pickups/resourcenode.gd
@@ -6,3 +6,17 @@ res://enemy.gd
 res://Items/test_item.tres
 res://Items/Resources/resource_rock.tres
 res://Items/Resources/resource_mushroom.tres
+res://UI/hotbar_item_display.tscn
+res://UI/hotbar.tscn
+res://UI/hotbar_inventory_test.tscn
+res://UI/health_bar.tscn
+res://UI/mana_bar.tscn
+res://UI/stamina_bar.tscn
+res://inventory.tscn
+res://UI/inventory.tscn
+res://UI/Slot.gd
+res://Objects/Pickups/mushroom.tscn
+res://UI/hotbar.gd
+res://UI/inventory.gd
+res://Characters/player.tscn
+res://Characters/player_shelby.gd

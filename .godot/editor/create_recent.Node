@@ -1,6 +1,7 @@
-TextureRect
-Panel
+CenterContainer
 GridContainer
+Panel
+TextureRect
 Container
 HFlowContainer
 FlowContainer
