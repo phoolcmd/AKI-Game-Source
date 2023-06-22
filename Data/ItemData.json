@@ -1,0 +1,13 @@
+{
+  "Mushroom": {
+    "ItemCategory": "Consumable",
+    "StackSize": 99,
+    "AddHealth": 5,
+    "Description": "A mushroom for a quick snack and crafting"
+  },
+  "Rock": {
+    "ItemCategory": "Resource",
+    "StackSize": 99,
+    "Description": "A sturdy rock for crafting tools"
+  }
+}

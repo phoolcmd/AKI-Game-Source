@@ -151,17 +151,6 @@ func projectile_process(delta):
 			shot_direction = shot_direction.normalized()		
 		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))
 		
-func _gui_input(event):
-	if event is InputEventMouseMotion or event is InputEventMouseButton:
-		var mouse_pos = get_global_mouse_position()
-		var inventoryNode = get_node("/root/Main/CanvasLayer/Inventory")
-
-		var rect = inventoryNode.get_global_rect()
-		if rect.has_point(mouse_pos):
-			inside_inv = true
-			
-		else:
-			inside_inv = false
 		
 	
 			

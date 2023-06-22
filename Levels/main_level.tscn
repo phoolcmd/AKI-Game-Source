@@ -1,11 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://cubb0sal8cqvt"]
+[gd_scene load_steps=39 format=3 uid="uid://cubb0sal8cqvt"]
 
 [ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
-[ext_resource type="PackedScene" uid="uid://rj504b4j6jow" path="res://UI/hotbar.tscn" id="2_b4ndu"]
 [ext_resource type="Shader" path="res://Levels/vignette.gdshader" id="3_c4whj"]
-[ext_resource type="PackedScene" uid="uid://bfrwujfrf551l" path="res://UI/hotbar_inventory_test.tscn" id="3_kjskv"]
 [ext_resource type="Script" path="res://Levels/ColorRect.gd" id="4_t314p"]
 [ext_resource type="PackedScene" uid="uid://chxb8sbr2qafr" path="res://UI/health_bar.tscn" id="4_xoyen"]
 [ext_resource type="PackedScene" uid="uid://bqs8vtp4n1bqu" path="res://UI/mana_bar.tscn" id="5_5h4in"]
@@ -828,32 +826,20 @@ metadata/_edit_horizontal_guides_ = []
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("2_35184")]
-position = Vector2(430, 269)
-
-[node name="Hotbar2" parent="CanvasLayer" instance=ExtResource("3_kjskv")]
-position = Vector2(192, 304)
-scale = Vector2(1.8798, 1.8798)
-
 [node name="Health Bar" parent="CanvasLayer" instance=ExtResource("4_xoyen")]
 position = Vector2(540, 285)
-scale = Vector2(1.954, 1.954)
+scale = Vector2(1.5, 1.5)
 
 [node name="Mana Bar" parent="CanvasLayer" instance=ExtResource("5_5h4in")]
 position = Vector2(566, 285)
-scale = Vector2(1.954, 1.954)
+scale = Vector2(1.5, 1.5)
 
 [node name="Stamina Bar" parent="CanvasLayer" instance=ExtResource("6_e027x")]
-position = Vector2(592, 261)
-scale = Vector2(1.954, 1.954)
+position = Vector2(593, 266)
+scale = Vector2(1.5, 1.5)
 
-[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("2_b4ndu")]
-top_level = true
-z_as_relative = false
-offset_left = 205.0
-offset_top = 310.0
-offset_right = 326.0
-offset_bottom = 450.0
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("2_35184")]
+position = Vector2(104, 222)
 
 [node name="Player_Shelby" parent="." instance=ExtResource("1_56tw2")]
 z_index = 1

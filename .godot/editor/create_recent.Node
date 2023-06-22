@@ -1,13 +1,13 @@
+Label
+TextureRect
 CenterContainer
 GridContainer
 Panel
-TextureRect
 Container
 HFlowContainer
 FlowContainer
 CanvasLayer
 MarginContainer
-Label
 HBoxContainer
 CollisionShape2D
 Area2D
@@ -30,4 +30,3 @@ Camera2D
 RayCast2D
 AnimationPlayer
 AnimationTree
-CharacterBody2D
