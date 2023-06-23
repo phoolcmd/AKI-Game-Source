@@ -6,6 +6,7 @@ var default_style: StyleBoxTexture = null
 var ItemClass = preload("res://Items/item.tscn")
 var centerContainer : CenterContainer
 var item = null
+var slot_index = null
 
 func _ready():
 	mouse_filter = Control.MOUSE_FILTER_PASS
@@ -16,10 +17,12 @@ func _ready():
 	self.add_child(centerContainer)
 
 		
-	if randi() % 2 == 0:
-		item = ItemClass.instantiate()
-		#item.get_node("Sprite2D").frame = 2 # change the item sprite to the no shadow version
-		centerContainer.add_child(item)
+#	if randi() % 2 == 0:
+#		item = ItemClass.instantiate()
+#		#item.get_node("Sprite2D").frame = 2 # change the item sprite to the no shadow version
+#		centerContainer.add_child(item)
+		
+		
 	refresh_style()
 func refresh_style():
 	if item == null:
@@ -48,3 +51,14 @@ func putIntoSlot(new_item):
 
 	# Update the slot's appearance
 	refresh_style()
+
+func initialize_item(item_name, item_quantity):
+	if item == null:
+		item = ItemClass.instantiate()
+		centerContainer.add_child(item)
+		item.set_item(item_name, item_quantity)
+	else:
+		item.set_item(item_name, item_quantity)
+		
+	refresh_style()
+		

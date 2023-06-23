@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://cubb0sal8cqvt"]
+[gd_scene load_steps=40 format=3 uid="uid://cubb0sal8cqvt"]
 
 [ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
+[ext_resource type="Script" path="res://Levels/UserInterface.gd" id="2_rvxh7"]
 [ext_resource type="Shader" path="res://Levels/vignette.gdshader" id="3_c4whj"]
 [ext_resource type="Script" path="res://Levels/ColorRect.gd" id="4_t314p"]
 [ext_resource type="PackedScene" uid="uid://chxb8sbr2qafr" path="res://UI/health_bar.tscn" id="4_xoyen"]
@@ -783,7 +784,7 @@ texture = ExtResource("9_1sfye")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_rlfoi"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "grass"
 terrain_set_0/terrain_0/color = Color(0.384314, 0.0705882, 0.964706, 1)
@@ -824,22 +825,46 @@ y_sort_enabled = true
 script = ExtResource("1_d8ffh")
 metadata/_edit_horizontal_guides_ = []
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UserInterface" type="CanvasLayer" parent="."]
+script = ExtResource("2_rvxh7")
 
-[node name="Health Bar" parent="CanvasLayer" instance=ExtResource("4_xoyen")]
+[node name="Health Bar" parent="UserInterface" instance=ExtResource("4_xoyen")]
 position = Vector2(540, 285)
 scale = Vector2(1.5, 1.5)
 
-[node name="Mana Bar" parent="CanvasLayer" instance=ExtResource("5_5h4in")]
+[node name="Mana Bar" parent="UserInterface" instance=ExtResource("5_5h4in")]
 position = Vector2(566, 285)
 scale = Vector2(1.5, 1.5)
 
-[node name="Stamina Bar" parent="CanvasLayer" instance=ExtResource("6_e027x")]
+[node name="Stamina Bar" parent="UserInterface" instance=ExtResource("6_e027x")]
 position = Vector2(593, 266)
 scale = Vector2(1.5, 1.5)
 
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("2_35184")]
+[node name="Inventory" parent="UserInterface" instance=ExtResource("2_35184")]
+visible = false
 position = Vector2(104, 222)
+
+[node name="pickups" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+
+[node name="mushroom" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(211, 200)
+
+[node name="mushroom2" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(209, 176)
+
+[node name="mushroom3" parent="pickups" instance=ExtResource("15_y1rg4")]
+position = Vector2(233, 188)
+
+[node name="rock" parent="pickups" instance=ExtResource("15_smkhw")]
+z_index = 1
+position = Vector2(258, 253)
+
+[node name="rock2" parent="pickups" instance=ExtResource("15_smkhw")]
+position = Vector2(323, 235)
+
+[node name="rock3" parent="pickups" instance=ExtResource("15_smkhw")]
+position = Vector2(315, 274)
 
 [node name="Player_Shelby" parent="." instance=ExtResource("1_56tw2")]
 z_index = 1
@@ -975,9 +1000,6 @@ position = Vector2(405, 88)
 y_sort_enabled = true
 position = Vector2(-53, -2)
 
-[node name="pickups" type="CanvasGroup" parent="."]
-y_sort_enabled = true
-
 [node name="Bounds" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
@@ -1000,23 +1022,5 @@ shape = SubResource("RectangleShape2D_icgmi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rlh73")
-
-[node name="mushroom" parent="." instance=ExtResource("15_y1rg4")]
-position = Vector2(211, 200)
-
-[node name="mushroom2" parent="." instance=ExtResource("15_y1rg4")]
-position = Vector2(209, 176)
-
-[node name="mushroom3" parent="." instance=ExtResource("15_y1rg4")]
-position = Vector2(233, 188)
-
-[node name="rock" parent="." instance=ExtResource("15_smkhw")]
-position = Vector2(258, 253)
-
-[node name="rock2" parent="." instance=ExtResource("15_smkhw")]
-position = Vector2(323, 235)
-
-[node name="rock3" parent="." instance=ExtResource("15_smkhw")]
-position = Vector2(315, 274)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

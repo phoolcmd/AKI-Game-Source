@@ -9,13 +9,16 @@ extends Node2D
 
 var in_range = false
 var picking_up = false
+var item_name
 
 var velocity = Vector2.ZERO
 var direction = Vector2.ZERO
 var acceleration = 50 
 
 func _ready():
-	pass
+	var regex = RegEx.new()
+	regex.compile("\\d+")
+	item_name = regex.sub(rigid_body.name, "", false)
 
 func _on_area_2d_body_entered(body):
 	if body == player:
@@ -44,10 +47,12 @@ func _physics_process(delta):
 		player_global_pos = player.global_position
 		direction = (player_global_pos - rigid_body.position).normalized()
 		velocity = velocity.move_toward(direction * 80, acceleration * delta)
+		
 		rigid_body.move_and_collide(velocity)
 		
 
 
 func _on_pickup_zone_body_entered(body):
 	if picking_up:
+		PlayerInventory.add_item(item_name, 1) # Add item to inventory
 		rigid_body.queue_free()

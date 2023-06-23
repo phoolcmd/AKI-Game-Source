@@ -890,6 +890,7 @@ graph_offset = Vector2(-461, -65)
 size = Vector2(34, 34)
 
 [node name="Player_Shelby" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
 safe_margin = 0.001
 script = ExtResource("1_s0nvd")
 move_speed = 6000.0

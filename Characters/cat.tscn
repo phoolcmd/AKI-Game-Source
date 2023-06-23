@@ -114,7 +114,6 @@ _data = {
 size = Vector2(11, 4.5)
 
 [node name="cat" type="CharacterBody2D" groups=["npc"]]
-collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_vndrq")
 

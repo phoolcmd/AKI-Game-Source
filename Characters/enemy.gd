@@ -102,3 +102,7 @@ func update_animation():
 		current_animation = "idle"
 
 	$AnimationPlayer.play(current_animation)
+
+
+func _on_sight_zone_body_entered(body):
+	pass # Replace with function body.

@@ -16,7 +16,7 @@ func _on_body_entered(body):
 		
 	
 func _ready():
-	var start_color = particle_trail.color
+	#var start_color = particle_trail.color
 	var final_color = Color(100/255.0, 0, 255/255.0)
 	particle_explode.restart()
 	trail_tween.tween_property(particle_trail, "color", final_color, 3)
@@ -34,11 +34,9 @@ func _on_timer_timeout():
 	queue_free()
 
 
-func _process(delta):
-
-
+#func _process(delta):
 	#tween.tween_property(particle_trail,"color",final_color, 3)
-	
-	if Input.is_action_just_released("follow"):
-		$Timer.start()
+	#if Input.is_action_just_released("follow"):
+		#$Timer.start()
+	#pass
 

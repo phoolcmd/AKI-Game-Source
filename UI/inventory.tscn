@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://blk2aqso183ml"]
+[gd_scene load_steps=7 format=3 uid="uid://blk2aqso183ml"]
 
 [ext_resource type="Script" path="res://UI/inventory.gd" id="1_l6nak"]
 [ext_resource type="Texture2D" uid="uid://lqufgtfi3mkq" path="res://Art/UI/inventory_panel.png" id="1_ygi2g"]
@@ -8,6 +8,9 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itfk1"]
 content_margin_left = 16.0
 texture = ExtResource("2_unlhv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmgu2"]
+size = Vector2(78.6667, 70)
 
 [node name="Inventory" type="Node2D"]
 scale = Vector2(1.5, 1.5)
@@ -81,3 +84,11 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_itfk1")
 script = ExtResource("3_mo55t")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(39.3333, 35)
+shape = SubResource("RectangleShape2D_qmgu2")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

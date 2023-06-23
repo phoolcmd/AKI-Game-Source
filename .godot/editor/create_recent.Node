@@ -1,3 +1,5 @@
+Area2D
+CollisionShape2D
 Label
 TextureRect
 CenterContainer
@@ -9,8 +11,6 @@ FlowContainer
 CanvasLayer
 MarginContainer
 HBoxContainer
-CollisionShape2D
-Area2D
 RigidBody2D
 Node
 Timer

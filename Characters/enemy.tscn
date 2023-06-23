@@ -137,8 +137,8 @@ size = Vector2(12, 24)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 material = SubResource("ShaderMaterial_g2dsl")
-collision_layer = 2
-collision_mask = 2
+collision_layer = 24
+collision_mask = 18
 script = ExtResource("1_7puu4")
 particle_speed = 4
 
@@ -196,8 +196,8 @@ wait_time = 4.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false
-collision_layer = 6
-collision_mask = 6
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_34tlk")

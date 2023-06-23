@@ -26,6 +26,7 @@ point_count = 2
 [node name="enemy_particle" type="RigidBody2D"]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 32
 center_of_mass_mode = 1
 gravity_scale = 0.0
 max_contacts_reported = 1
