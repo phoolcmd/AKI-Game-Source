@@ -1,9 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://cubb0sal8cqvt"]
+[gd_scene load_steps=41 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
+[ext_resource type="Script" path="res://UI/UserInterface.gd" id="2_136i6"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
-[ext_resource type="Script" path="res://Levels/UserInterface.gd" id="2_rvxh7"]
 [ext_resource type="Shader" path="res://Levels/vignette.gdshader" id="3_c4whj"]
 [ext_resource type="Script" path="res://Levels/ColorRect.gd" id="4_t314p"]
 [ext_resource type="PackedScene" uid="uid://chxb8sbr2qafr" path="res://UI/health_bar.tscn" id="4_xoyen"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://n3fro2fnv2aq" path="res://Art/Tilesets/ground tiles/trees-spritesheet.png" id="7_eueap"]
 [ext_resource type="Texture2D" uid="uid://djq40u0e1sd0n" path="res://Art/Tilesets/ground tiles/grass_texture.png" id="7_l674v"]
 [ext_resource type="PackedScene" uid="uid://cbjypyj0wnf3m" path="res://Characters/cat.tscn" id="7_m1bsj"]
+[ext_resource type="PackedScene" uid="uid://ds8rm3mrrtolh" path="res://UI/Hotbar.tscn" id="7_wat0t"]
 [ext_resource type="Texture2D" uid="uid://0vtmeb5g5oli" path="res://Art/Tilesets/ground tiles/dirt_sprite_temp.png" id="9_1sfye"]
 [ext_resource type="Shader" path="res://Shaders/wind_shader.gdshader" id="10_xsffb"]
 [ext_resource type="Texture2D" uid="uid://p6ltwciiyve6" path="res://Art/Tilesets/ground tiles/grass_dirt_spritesheet.png" id="11_ifbsm"]
@@ -826,7 +827,7 @@ script = ExtResource("1_d8ffh")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
-script = ExtResource("2_rvxh7")
+script = ExtResource("2_136i6")
 
 [node name="Health Bar" parent="UserInterface" instance=ExtResource("4_xoyen")]
 position = Vector2(540, 285)
@@ -842,7 +843,10 @@ scale = Vector2(1.5, 1.5)
 
 [node name="Inventory" parent="UserInterface" instance=ExtResource("2_35184")]
 visible = false
-position = Vector2(104, 222)
+position = Vector2(30, 235)
+
+[node name="Hotbar" parent="UserInterface" instance=ExtResource("7_wat0t")]
+position = Vector2(213, 307)
 
 [node name="pickups" type="CanvasGroup" parent="."]
 y_sort_enabled = true

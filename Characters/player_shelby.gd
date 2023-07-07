@@ -11,6 +11,7 @@ signal player_firing_signal
 @export var dash_duration: float  = 0.1
 @export var starting_direction : Vector2 = Vector2(0,1)
 @export var particle_speed = 500
+@export var shield_force = 1000.0
 @export var particle = preload("res://particle.tscn")
 
 @onready var animation_tree = $AnimationTree
@@ -43,6 +44,7 @@ func _physics_process(delta):
 	animation_tree.advance(delta * 0.3)
 	fire()
 	projectile_process(delta)
+	shield_process(delta)
 			
 		
 func _process(delta):
@@ -116,7 +118,7 @@ func _dash(direction, delta):
 	equipped_item_pos = equipped_item.global_position
 		
 func projectile_process(delta):
-	var shot_direction = Vector2.ZERO;
+	var shot_direction = Vector2.ZERO
 	var mouse_pos = get_global_mouse_position().x
 	var player_pos = get_global_transform().origin.x
 	var closest_enemy = null
@@ -140,20 +142,39 @@ func projectile_process(delta):
 			#Iterate through enemies and target the nearest one
 			for enemy in enemies:
 				var distance_to_enemy = particle_instance.position.distance_to(enemy.global_position)
-				print(distance_to_enemy)
+				# print(distance_to_enemy)
 				if distance_to_enemy < 100:	
 					if closest_enemy == null or distance_to_enemy < closest_distance:
 						closest_enemy = enemy
 						closest_distance = distance_to_enemy
 		#if enemy found apply impulse in direction of closest enemy
-		if closest_enemy != null:
-			shot_direction = closest_enemy.global_position - particle_instance.position
-			shot_direction = shot_direction.normalized()		
+					if closest_enemy != null:
+						shot_direction = closest_enemy.global_position - particle_instance.position
+						shot_direction = shot_direction.normalized()		
 		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))
 		
+func shield_process(delta):
+	var player_pos = position
+	var direction = Vector2.ZERO
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	var closest_enemy = null
+	var closest_distance = 0
+	#iterate through enemries
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		for enemy in enemies:
+			var distance_to_enemy = player_pos.distance_to(enemy_global_pos)
+			print(distance_to_enemy)
+			if distance_to_enemy < 50:
+				if closest_enemy == null or distance_to_enemy < closest_distance:
+					closest_enemy = enemy
+					closest_distance = distance_to_enemy
+					
+				if closest_enemy != null:
+					print("push")
+					#Apply impulse to enemy positon in direction from player
+					direction = closest_enemy.global_position - player_pos
+					direction = direction.normalized()
+					var velocity = direction * shield_force
+					closest_enemy.move_and_collide(velocity)
+					
 		
-	
-			
-			
-			
-	

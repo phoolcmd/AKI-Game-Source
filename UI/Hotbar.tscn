@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds8rm3mrrtolh"]
+
+[ext_resource type="Script" path="res://UI/Hotbar.gd" id="1_7e2gt"]
+[ext_resource type="Texture2D" uid="uid://c2gvjvwtruich" path="res://Art/UI/hotbar_bg.png" id="1_j3yxq"]
+[ext_resource type="Texture2D" uid="uid://0dtxi0emrxql" path="res://Art/UI/hotbar_slot.png" id="2_lip3f"]
+[ext_resource type="Script" path="res://UI/Slot.gd" id="3_8fq0n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5a6gt"]
+texture = ExtResource("2_lip3f")
+
+[node name="Hotbar" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+skew = -0.0174533
+script = ExtResource("1_7e2gt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 1.33333
+offset_right = 226.0
+offset_bottom = 41.3333
+texture = ExtResource("1_j3yxq")
+expand_mode = 3
+stretch_mode = 2
+
+[node name="HotbarSlots" type="GridContainer" parent="."]
+offset_left = 8.0
+offset_top = 4.66667
+offset_right = 108.0
+offset_bottom = 16.6667
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 0
+columns = 6
+
+[node name="HotbarSlot1" type="Panel" parent="HotbarSlots"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
+script = ExtResource("3_8fq0n")
+
+[node name="HotbarSlot2" type="Panel" parent="HotbarSlots"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
+script = ExtResource("3_8fq0n")
+
+[node name="HotbarSlot3" type="Panel" parent="HotbarSlots"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
+script = ExtResource("3_8fq0n")
+
+[node name="HotbarSlot4" type="Panel" parent="HotbarSlots"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
+script = ExtResource("3_8fq0n")
+
+[node name="HotbarSlot5" type="Panel" parent="HotbarSlots"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
+script = ExtResource("3_8fq0n")
+
+[node name="HotbarSlot6" type="Panel" parent="HotbarSlots"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
+script = ExtResource("3_8fq0n")
