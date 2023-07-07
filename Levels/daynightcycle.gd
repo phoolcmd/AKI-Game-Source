@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time += delta * INGAME_TO_REAL_MINUTE_DURATION * INGAME_SPEED
-	var value = (sin(time - 0.75 * PI) + 1.0) / 2.0
+	var value = (sin(time - 0.7 * PI) + 1.0) / 2.0
 	self.color = gradient.gradient.sample(value)
 	_recalculate_time()
 	

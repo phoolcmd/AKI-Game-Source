@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://biuritsdoehus" path="res://Art/Tilesets/ground tiles/particle_sprite.png" id="1_qiypm"]
 
 [sub_resource type="Gradient" id="Gradient_f7h40"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.385027)
-colors = PackedColorArray(0.572988, 0.572988, 0.572988, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.344605, 0.615137)
+colors = PackedColorArray(0.766619, 0.76662, 0.766619, 1, 0.226707, 0.226707, 0.226707, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a04bw"]
 gradient = SubResource("Gradient_f7h40")
@@ -46,8 +45,9 @@ script = ExtResource("1_khud2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0, 1, 1, 0.584314)
-energy = 0.2
+energy = 0.5
 texture = SubResource("GradientTexture2D_a04bw")
+texture_scale = 0.7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wnv06")

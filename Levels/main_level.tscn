@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=54 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Shader" path="res://Shaders/wind_shader.gdshader" id="10_xsffb"]
 [ext_resource type="Texture2D" uid="uid://p6ltwciiyve6" path="res://Art/Tilesets/ground tiles/grass_dirt_spritesheet.png" id="11_ifbsm"]
 [ext_resource type="PackedScene" uid="uid://clvrwcgns5hgv" path="res://Characters/enemy.tscn" id="12_1g7w5"]
+[ext_resource type="Texture2D" uid="uid://c02gyft61gr4l" path="res://Art/UI/daynight_gradient.tres" id="12_fea1l"]
 [ext_resource type="Texture2D" uid="uid://cg5vxlxf6phsd" path="res://Art/Tilesets/ground tiles/grass_pink_texture.png" id="12_pxudh"]
 [ext_resource type="Shader" path="res://Levels/water.gdshader" id="13_inpnq"]
 [ext_resource type="Texture2D" uid="uid://cubixwhr7km58" path="res://icon.svg" id="14_4g1le"]
@@ -34,14 +35,6 @@ shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/MULTIPLIER = 0.56
 shader_parameter/SCALE = 1.0
 shader_parameter/SOFTNESS = 1.0
-
-[sub_resource type="Gradient" id="Gradient_5npgr"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.00502513, 0.316583, 0.728643)
-colors = PackedColorArray(0.156863, 0.109804, 0.654902, 1, 0.462, 0.4004, 0.77, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_m17nl"]
-gradient = SubResource("Gradient_5npgr")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mygke"]
 texture = ExtResource("6_qjvk2")
@@ -992,35 +985,42 @@ y_sort_enabled = true
 script = ExtResource("1_d8ffh")
 metadata/_edit_horizontal_guides_ = []
 
-[node name="UserInterface" type="CanvasLayer" parent="."]
+[node name="Light" type="Node2D" parent="."]
+z_index = 1
+
+[node name="Level" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="UserInterface" type="CanvasLayer" parent="Level"]
 script = ExtResource("2_136i6")
 
-[node name="DayNightCycleUI" parent="UserInterface" instance=ExtResource("10_bsw5w")]
-offset_left = 53.1594
-offset_top = 31.3507
-offset_right = 53.1594
-offset_bottom = 31.3507
+[node name="DayNightCycleUI" parent="Level/UserInterface" instance=ExtResource("10_bsw5w")]
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 11.0
+offset_bottom = 9.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Health Bar" parent="UserInterface" instance=ExtResource("4_xoyen")]
+[node name="Health Bar" parent="Level/UserInterface" instance=ExtResource("4_xoyen")]
 position = Vector2(540, 285)
 scale = Vector2(1.5, 1.5)
 
-[node name="Mana Bar" parent="UserInterface" instance=ExtResource("5_5h4in")]
+[node name="Mana Bar" parent="Level/UserInterface" instance=ExtResource("5_5h4in")]
 position = Vector2(566, 285)
 scale = Vector2(1.5, 1.5)
 
-[node name="Stamina Bar" parent="UserInterface" instance=ExtResource("6_e027x")]
+[node name="Stamina Bar" parent="Level/UserInterface" instance=ExtResource("6_e027x")]
 position = Vector2(593, 266)
 scale = Vector2(1.5, 1.5)
 
-[node name="Inventory" parent="UserInterface" instance=ExtResource("2_35184")]
+[node name="Inventory" parent="Level/UserInterface" instance=ExtResource("2_35184")]
 visible = false
 position = Vector2(30, 235)
 
-[node name="Hotbar" parent="UserInterface" instance=ExtResource("7_wat0t")]
+[node name="Hotbar" parent="Level/UserInterface" instance=ExtResource("7_wat0t")]
 position = Vector2(213, 307)
 
-[node name="ColorRect" type="ColorRect" parent="UserInterface"]
+[node name="ColorRect" type="ColorRect" parent="Level/UserInterface"]
 visible = false
 z_index = 4096
 z_as_relative = false
@@ -1031,41 +1031,34 @@ offset_right = 716.0
 offset_bottom = 488.0
 script = ExtResource("4_t314p")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="Level"]
 color = Color(0.329412, 0.356863, 0.745098, 1)
 script = ExtResource("10_vhikg")
-gradient = SubResource("GradientTexture2D_m17nl")
-INGAME_SPEED = 50.0
-INITIAL_HOUR = 2
+gradient = ExtResource("12_fea1l")
+INGAME_SPEED = 10.0
+INITIAL_HOUR = 4
 
-[node name="pickups" type="CanvasGroup" parent="."]
+[node name="pickups" type="CanvasGroup" parent="Level"]
 y_sort_enabled = true
 
-[node name="mushroom" parent="pickups" instance=ExtResource("15_y1rg4")]
+[node name="mushroom" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
 position = Vector2(211, 200)
 
-[node name="mushroom2" parent="pickups" instance=ExtResource("15_y1rg4")]
+[node name="mushroom2" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
 position = Vector2(209, 176)
 
-[node name="mushroom3" parent="pickups" instance=ExtResource("15_y1rg4")]
+[node name="mushroom3" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
 position = Vector2(233, 188)
 
-[node name="rock" parent="pickups" instance=ExtResource("15_smkhw")]
-z_index = 1
+[node name="rock" parent="Level/pickups" instance=ExtResource("15_smkhw")]
 position = Vector2(258, 253)
 
-[node name="rock2" parent="pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(323, 235)
-
-[node name="rock3" parent="pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(315, 274)
-
-[node name="Player_Shelby" parent="." instance=ExtResource("1_56tw2")]
+[node name="Player_Shelby" parent="Level" instance=ExtResource("1_56tw2")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(289, 239)
 
-[node name="Camera2D" type="Camera2D" parent="Player_Shelby"]
+[node name="Camera2D" type="Camera2D" parent="Level/Player_Shelby"]
 position = Vector2(9, 1)
 ignore_rotation = false
 limit_left = -432
@@ -1076,7 +1069,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 editor_draw_limits = true
 
-[node name="TileMap" type="TileMap" parent="." groups=["Walls"]]
+[node name="TileMap" type="TileMap" parent="Level" groups=["Walls"]]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_rlfoi")
 format = 2
@@ -1160,14 +1153,14 @@ layer_11/y_sort_origin = -21
 layer_11/z_index = 1
 layer_11/tile_data = PackedInt32Array(-720916, 1, 1, -655380, 1, 2, -589844, 1, 3, -786451, 65537, 0, -720915, 65537, 1, -655379, 65537, 2, -589843, 65537, 3, -393235, 65537, 6, -327699, 65537, 7, -786450, 131073, 0, -720914, 131073, 1, -655378, 131073, 2, -589842, 131073, 3, -524306, 131073, 4, -458770, 131073, 5, -393234, 131073, 6, -327698, 131073, 7, -786449, 196609, 0, -720913, 196609, 1, -655377, 196609, 2, -589841, 196609, 3, -524305, 196609, 4, -458769, 196609, 5, -393233, 196609, 6, -327697, 196609, 7, -786448, 262145, 0, -720912, 262145, 1, -655376, 262145, 2, -589840, 262145, 3, -458768, 262145, 5, -393232, 262145, 6, -327696, 262145, 7, -786447, 327681, 0, -720911, 327681, 1, -655375, 327681, 2, -589839, 327681, 3, -393231, 327681, 6, -327695, 327681, 7, -786446, 393217, 0, -720910, 393217, 1, -655374, 393217, 2, -589838, 393217, 3, -720907, 1, 1, -655371, 1, 2, -589835, 1, 3, -786442, 65537, 0, -720906, 65537, 1, -655370, 65537, 2, -589834, 65537, 3, -393226, 65537, 6, -327690, 65537, 7, -786441, 131073, 0, -720905, 131073, 1, -655369, 131073, 2, -589833, 131073, 3, -524297, 131073, 4, -458761, 131073, 5, -393225, 131073, 6, -327689, 131073, 7, -786440, 196609, 0, -720904, 196609, 1, -655368, 196609, 2, -589832, 196609, 3, -524296, 196609, 4, -458760, 196609, 5, -393224, 196609, 6, -327688, 196609, 7, -786439, 262145, 0, -720903, 262145, 1, -655367, 262145, 2, -589831, 262145, 3, -458759, 262145, 5, -393223, 262145, 6, -327687, 262145, 7, -786438, 327681, 0, -720902, 327681, 1, -655366, 327681, 2, -589830, 327681, 3, -393222, 327681, 6, -327686, 327681, 7, -786437, 393217, 0, -720901, 393217, 1, -655365, 393217, 2, -589829, 393217, 3, -786430, 1, 1, -720894, 1, 2, -655358, 1, 3, -851965, 65537, 0, -786429, 65537, 1, -720893, 65537, 2, -655357, 65537, 3, -458749, 65537, 6, -393213, 65537, 7, -851964, 131073, 0, -786428, 131073, 1, -720892, 131073, 2, -655356, 131073, 3, -589820, 131073, 4, -524284, 131073, 5, -458748, 131073, 6, -393212, 131073, 7, -851963, 196609, 0, -786427, 196609, 1, -720891, 196609, 2, -655355, 196609, 3, -589819, 196609, 4, -524283, 196609, 5, -458747, 196609, 6, -393211, 196609, 7, -851962, 262145, 0, -786426, 262145, 1, -720890, 262145, 2, -655354, 262145, 3, -524282, 262145, 5, -458746, 262145, 6, -393210, 262145, 7, -851961, 327681, 0, -786425, 327681, 1, -720889, 327681, 2, -655353, 327681, 3, -458745, 327681, 6, -393209, 327681, 7, -851960, 393217, 0, -786424, 393217, 1, -720888, 393217, 2, -655352, 393217, 3, -786422, 1, 1, -720886, 1, 2, -655350, 1, 3, -851957, 65537, 0, -786421, 65537, 1, -720885, 65537, 2, -655349, 65537, 3, -458741, 65537, 6, -393205, 65537, 7, -851956, 131073, 0, -786420, 131073, 1, -720884, 131073, 2, -655348, 131073, 3, -589812, 131073, 4, -524276, 131073, 5, -458740, 131073, 6, -393204, 131073, 7, -851955, 196609, 0, -786419, 196609, 1, -720883, 196609, 2, -655347, 196609, 3, -589811, 196609, 4, -524275, 196609, 5, -458739, 196609, 6, -393203, 196609, 7, -851954, 262145, 0, -786418, 262145, 1, -720882, 262145, 2, -655346, 262145, 3, -524274, 262145, 5, -458738, 262145, 6, -393202, 262145, 7, -851953, 327681, 0, -786417, 327681, 1, -720881, 327681, 2, -655345, 327681, 3, -458737, 327681, 6, -393201, 327681, 7, -851952, 393217, 0, -786416, 393217, 1, -720880, 393217, 2, -655344, 393217, 3, -786414, 1, 1, -720878, 1, 2, -655342, 1, 3, -851949, 65537, 0, -786413, 65537, 1, -720877, 65537, 2, -655341, 65537, 3, -458733, 65537, 6, -393197, 65537, 7, -851948, 131073, 0, -786412, 131073, 1, -720876, 131073, 2, -655340, 131073, 3, -589804, 131073, 4, -524268, 131073, 5, -458732, 131073, 6, -393196, 131073, 7, -851947, 196609, 0, -786411, 196609, 1, -720875, 196609, 2, -655339, 196609, 3, -589803, 196609, 4, -524267, 196609, 5, -458731, 196609, 6, -393195, 196609, 7, -851946, 262145, 0, -786410, 262145, 1, -720874, 262145, 2, -655338, 262145, 3, -524266, 262145, 5, -458730, 262145, 6, -393194, 262145, 7, -851945, 327681, 0, -786409, 327681, 1, -720873, 327681, 2, -655337, 327681, 3, -458729, 327681, 6, -393193, 327681, 7, -851944, 393217, 0, -786408, 393217, 1, -720872, 393217, 2, -655336, 393217, 3, -786407, 1, 1, -720871, 1, 2, -655335, 1, 3, -851942, 65537, 0, -786406, 65537, 1, -720870, 65537, 2, -655334, 65537, 3, -458726, 65537, 6, -393190, 65537, 7, -851941, 131073, 0, -786405, 131073, 1, -720869, 131073, 2, -655333, 131073, 3, -589797, 131073, 4, -524261, 131073, 5, -458725, 131073, 6, -393189, 131073, 7, -851940, 196609, 0, -786404, 196609, 1, -720868, 196609, 2, -655332, 196609, 3, -589796, 196609, 4, -524260, 196609, 5, -458724, 196609, 6, -393188, 196609, 7, -851939, 262145, 0, -786403, 262145, 1, -720867, 262145, 2, -655331, 262145, 3, -524259, 262145, 5, -458723, 262145, 6, -393187, 262145, 7, -851938, 327681, 0, -786402, 327681, 1, -720866, 327681, 2, -655330, 327681, 3, -458722, 327681, 6, -393186, 327681, 7, -851937, 393217, 0, -786401, 393217, 1, -720865, 393217, 2, -655329, 393217, 3, -786400, 1, 1, -720864, 1, 2, -655328, 1, 3, -851935, 65537, 0, -786399, 65537, 1, -720863, 65537, 2, -655327, 65537, 3, -458719, 65537, 6, -393183, 65537, 7, -851934, 131073, 0, -786398, 131073, 1, -720862, 131073, 2, -655326, 131073, 3, -589790, 131073, 4, -524254, 131073, 5, -458718, 131073, 6, -393182, 131073, 7, -851933, 196609, 0, -786397, 196609, 1, -720861, 196609, 2, -655325, 196609, 3, -589789, 196609, 4, -524253, 196609, 5, -458717, 196609, 6, -393181, 196609, 7, -851932, 262145, 0, -786396, 262145, 1, -720860, 262145, 2, -655324, 262145, 3, -524252, 262145, 5, -458716, 262145, 6, -393180, 262145, 7, -851931, 327681, 0, -786395, 1, 1, -720859, 1, 2, -655323, 1, 3, -458715, 327681, 6, -393179, 327681, 7, -851930, 65537, 0, -786394, 65537, 1, -720858, 65537, 2, -655322, 65537, 3, -458714, 65537, 6, -393178, 65537, 7, -851929, 131073, 0, -786393, 131073, 1, -720857, 131073, 2, -655321, 131073, 3, -589785, 131073, 4, -524249, 131073, 5, -458713, 131073, 6, -393177, 131073, 7, -851928, 196609, 0, -786392, 196609, 1, -720856, 196609, 2, -655320, 196609, 3, -589784, 196609, 4, -524248, 196609, 5, -458712, 196609, 6, -393176, 196609, 7, -851927, 262145, 0, -786391, 262145, 1, -720855, 262145, 2, -655319, 262145, 3, -524247, 262145, 5, -458711, 262145, 6, -393175, 262145, 7, -851926, 327681, 0, -786390, 327681, 1, -720854, 327681, 2, -655318, 327681, 3, -458710, 327681, 6, -393174, 327681, 7, -851925, 393217, 0, -786389, 393217, 1, -720853, 393217, 2, -655317, 393217, 3, -524239, 1, 1, -458703, 1, 2, -393167, 1, 3, -589774, 65537, 0, -524238, 65537, 1, -458702, 65537, 2, -393166, 65537, 3, -196558, 65537, 6, -131022, 65537, 7, -589773, 131073, 0, -524237, 131073, 1, -458701, 131073, 2, -393165, 131073, 3, -327629, 131073, 4, -262093, 131073, 5, -196557, 131073, 6, -131021, 131073, 7, -589772, 196609, 0, -524236, 196609, 1, -458700, 196609, 2, -393164, 196609, 3, -327628, 196609, 4, -262092, 196609, 5, -196556, 196609, 6, -131020, 196609, 7, -589771, 262145, 0, -524235, 262145, 1, -458699, 262145, 2, -393163, 262145, 3, -262091, 262145, 5, -196555, 262145, 6, -131019, 262145, 7, -589770, 327681, 0, -524234, 327681, 1, -458698, 327681, 2, -393162, 327681, 3, -196554, 327681, 6, -131018, 327681, 7, -589769, 393217, 0, -524233, 393217, 1, -458697, 393217, 2, -393161, 393217, 3)
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="Level"]
 z_index = -1
 material = SubResource("ShaderMaterial_qnsee")
 position = Vector2(337, 120.25)
 scale = Vector2(1.10937, 0.777344)
 texture = ExtResource("14_4g1le")
 
-[node name="TileMap2" type="TileMap" parent="."]
+[node name="TileMap2" type="TileMap" parent="Level"]
 z_index = -1
 tile_set = SubResource("TileSet_852ki")
 format = 2
@@ -1181,47 +1174,40 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(458769, 262146, 0, 589847, 262146, 0, 589843, 262146, 0, 458776, 262146, 0)
 
-[node name="PlayArea" type="Camera2D" parent="."]
+[node name="PlayArea" type="Camera2D" parent="Level"]
 position = Vector2(265, 239)
 position_smoothing_speed = 6.0
 
-[node name="cat" parent="." instance=ExtResource("7_m1bsj")]
+[node name="cat" parent="Level" instance=ExtResource("7_m1bsj")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(287, 181)
 
-[node name="Enemy" parent="." instance=ExtResource("12_1g7w5")]
+[node name="Enemy" parent="Level" instance=ExtResource("12_1g7w5")]
 z_index = 1
 position = Vector2(-139, -241)
 
-[node name="Bounds" type="StaticBody2D" parent="."]
+[node name="Bounds" type="StaticBody2D" parent="Level"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Bounds"]
 position = Vector2(216.5, -140)
 shape = SubResource("RectangleShape2D_cqnnm")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Bounds"]
 position = Vector2(-447.04, 241.513)
 rotation = -1.57221
 shape = SubResource("RectangleShape2D_5hoks")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level/Bounds"]
 position = Vector2(234.5, 613)
 shape = SubResource("RectangleShape2D_fxupu")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Bounds"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level/Bounds"]
 position = Vector2(884.517, 223.104)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_icgmi")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
 environment = SubResource("Environment_rlh73")
-
-[node name="Light" type="Node2D" parent="."]
-show_behind_parent = true
-clip_children = 1
-light_mask = 2
-visibility_layer = 2
-z_index = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]

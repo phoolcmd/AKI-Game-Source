@@ -19,7 +19,7 @@ signal player_firing_signal
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var dash = $Dash
 
-@onready var enemy = get_node("/root/Main/Enemy")
+@onready var enemy = get_node("/root/Main/Level/Enemy")
 @onready var enemy_pos = enemy.position
 @onready var enemy_global_pos = enemy.global_position
 @onready var equipped_item = $Equip/Area2D/CollisionShape2D

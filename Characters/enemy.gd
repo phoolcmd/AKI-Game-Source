@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var player = get_node("/root/Main/Player_Shelby")
+@onready var player = get_node("/root/Main/Level/Player_Shelby")
 @onready var player_pos = player.position
 @onready var player_global_pos = player.global_position
 

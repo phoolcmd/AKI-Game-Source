@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var rigid_body = get_parent()
-@onready var player = get_node("/root/Main/Player_Shelby")
+@onready var player = get_node("/root/Main/Level/Player_Shelby")
 @onready var player_pos = player.position
 @onready var player_global_pos = player.global_position
 @onready var sprite = rigid_body.get_node("Sprite2D")

@@ -1,6 +1,6 @@
 extends ColorRect
 
-@onready var camera = get_node("/root/Main/Player_Shelby/Camera2D")
+@onready var camera = get_node("/root/Main/Level/Player_Shelby/Camera2D")
 
 func _process(delta):
 	#print(camera.get_screen_center_position()) 
