@@ -1,9 +1,10 @@
+Node2D
+PointLight2D
 TextureRect
 Label
 CenterContainer
 CanvasModulate
 TileMap
-Node2D
 Panel
 GridContainer
 CollisionShape2D
@@ -24,7 +25,6 @@ Line2D
 CanvasGroup
 ColorRect
 WorldEnvironment
-PointLight2D
 Tree
 CPUParticles2D
 CollisionPolygon2D

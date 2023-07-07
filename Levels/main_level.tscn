@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=55 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cbjypyj0wnf3m" path="res://Characters/cat.tscn" id="7_m1bsj"]
 [ext_resource type="PackedScene" uid="uid://ds8rm3mrrtolh" path="res://UI/Hotbar.tscn" id="7_wat0t"]
 [ext_resource type="Texture2D" uid="uid://0vtmeb5g5oli" path="res://Art/Tilesets/ground tiles/dirt_sprite_temp.png" id="9_1sfye"]
+[ext_resource type="PackedScene" uid="uid://bvqd6dvhsh7sx" path="res://UI/daynightcycle_ui.tscn" id="10_bsw5w"]
 [ext_resource type="Script" path="res://Levels/daynightcycle.gd" id="10_vhikg"]
 [ext_resource type="Shader" path="res://Shaders/wind_shader.gdshader" id="10_xsffb"]
 [ext_resource type="Texture2D" uid="uid://p6ltwciiyve6" path="res://Art/Tilesets/ground tiles/grass_dirt_spritesheet.png" id="11_ifbsm"]
@@ -36,8 +37,8 @@ shader_parameter/SOFTNESS = 1.0
 
 [sub_resource type="Gradient" id="Gradient_5npgr"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.515924, 1)
-colors = PackedColorArray(0.117027, 0.164953, 0.527406, 1, 0.462, 0.4004, 0.77, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.00502513, 0.316583, 0.728643)
+colors = PackedColorArray(0.156863, 0.109804, 0.654902, 1, 0.462, 0.4004, 0.77, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m17nl"]
 gradient = SubResource("Gradient_5npgr")
@@ -994,6 +995,12 @@ metadata/_edit_horizontal_guides_ = []
 [node name="UserInterface" type="CanvasLayer" parent="."]
 script = ExtResource("2_136i6")
 
+[node name="DayNightCycleUI" parent="UserInterface" instance=ExtResource("10_bsw5w")]
+offset_left = 53.1594
+offset_top = 31.3507
+offset_right = 53.1594
+offset_bottom = 31.3507
+
 [node name="Health Bar" parent="UserInterface" instance=ExtResource("4_xoyen")]
 position = Vector2(540, 285)
 scale = Vector2(1.5, 1.5)
@@ -1028,6 +1035,8 @@ script = ExtResource("4_t314p")
 color = Color(0.329412, 0.356863, 0.745098, 1)
 script = ExtResource("10_vhikg")
 gradient = SubResource("GradientTexture2D_m17nl")
+INGAME_SPEED = 50.0
+INITIAL_HOUR = 2
 
 [node name="pickups" type="CanvasGroup" parent="."]
 y_sort_enabled = true
@@ -1207,5 +1216,12 @@ shape = SubResource("RectangleShape2D_icgmi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rlh73")
+
+[node name="Light" type="Node2D" parent="."]
+show_behind_parent = true
+clip_children = 1
+light_mask = 2
+visibility_layer = 2
+z_index = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]

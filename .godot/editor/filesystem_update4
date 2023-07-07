@@ -14,3 +14,6 @@ res://Levels/daynightcycle.gd
 res://Levels/main_level.gd
 res://UI/day_night_cycle.tscn
 res://UI/daynightcycle_ui.gd
+res://UI/daynightcycle_ui.tscn
+res://UI/UserInterface.gd
+res://particle.tscn
