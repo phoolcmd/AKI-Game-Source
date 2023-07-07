@@ -6,8 +6,8 @@ signal player_moving_signal
 signal player_stopped_signal
 signal player_firing_signal
 
-@export var move_speed : float = 5000.0
-@export var dash_speed : float = 10000.0
+@export var move_speed : float = 50.0
+@export var dash_speed : float = 250.0
 @export var dash_duration: float  = 0.1
 @export var starting_direction : Vector2 = Vector2(0,1)
 @export var particle_speed = 500
@@ -40,26 +40,22 @@ func _ready():
 func _physics_process(delta):
 	if enemy != null:
 		enemy_global_pos = enemy.global_position
-		
 	animation_tree.advance(delta * 0.3)
+	get_input()
+	move_and_slide()
 	fire()
 	projectile_process(delta)
 	shield_process(delta)
 			
-		
-func _process(delta):
-	if enemy != null:
-		enemy_pos = enemy.position
-		enemy_global_pos = enemy.global_position
-	
+func get_input():
 	var movement_direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
-	)
-	
-	##facing direction is equal to the movement_directions unless the mouse button is clicked
+	).normalized() 
 	var facing_direction = movement_direction
-
+	velocity = facing_direction * move_speed
+		
+	##facing direction is equal to the movement_directions unless the mouse button is clicked
 	## Update facing_direction based on the mouse position when left mouse button is held down.
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and particle_instance != null:
 		equipped_item_pos = equipped_item.global_position
@@ -69,13 +65,14 @@ func _process(delta):
 		
 	if Input.is_action_pressed("interact"):
 		movement_direction = Vector2.ZERO
-	if inside_inv:
-		print("inside inventory")
-		
-	pick_new_state()	
-	move_and_slide()
 	update_animation_parameters(facing_direction)
-	_dash(movement_direction, delta)
+	_dash(movement_direction)
+	
+func _process(delta):
+	if inside_inv:
+		print("inside inventory")	
+	pick_new_state()	
+
 
 func update_animation_parameters(move_input : Vector2):
 	if(move_input != Vector2.ZERO):
@@ -110,11 +107,11 @@ func fire():
 		emit_signal("player_firing_signal")
 		
 		
-func _dash(direction, delta):
+func _dash(direction):
 	if Input.is_action_just_pressed("dash") && dash.can_dash && !dash.is_dashing():
 		dash.start_dash(dash_duration)
 	var speed = dash_speed if dash.is_dashing() else move_speed
-	velocity = direction.normalized() * speed * delta
+	velocity = direction.normalized() * speed 
 	equipped_item_pos = equipped_item.global_position
 		
 func projectile_process(delta):

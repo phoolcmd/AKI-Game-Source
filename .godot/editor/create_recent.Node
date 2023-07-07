@@ -1,10 +1,13 @@
-Panel
-GridContainer
 TextureRect
-CollisionShape2D
-Area2D
 Label
 CenterContainer
+CanvasModulate
+TileMap
+Node2D
+Panel
+GridContainer
+CollisionShape2D
+Area2D
 Container
 HFlowContainer
 FlowContainer
@@ -15,7 +18,6 @@ RigidBody2D
 Node
 Timer
 Sprite2D
-Node2D
 StaticBody2D
 Bone2D
 Line2D
@@ -28,5 +30,3 @@ CPUParticles2D
 CollisionPolygon2D
 Camera2D
 RayCast2D
-AnimationPlayer
-AnimationTree

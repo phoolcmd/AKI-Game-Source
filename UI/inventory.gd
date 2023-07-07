@@ -66,7 +66,6 @@ func left_click_empty_slot(slot):
 	find_parent("UserInterface").holding_item = null
 	
 func left_click_different_item(event: InputEvent, slot: SlotClass):
-	print(PlayerInventory.inventory)
 	PlayerInventory.remove_item(slot)
 	PlayerInventory.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot)
 	var temp_item = slot.item

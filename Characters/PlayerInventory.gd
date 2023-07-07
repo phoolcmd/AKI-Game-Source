@@ -54,20 +54,36 @@ func update_slot_visual(slot_index, item_name, new_quantity):
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass, is_hotbar: bool = false):
 	if is_hotbar:
 		hotbar[slot.slot_index] = [item.item_name, item.item_quantity]
+		print("----------HOTBAR----------")
+		print("********Item Added to Empty Slot********")
+		print(hotbar)
 	else:
 		inventory[slot.slot_index] = [item.item_name, item.item_quantity]
-	
+		print("----------INVENTORY----------")
+		print("********Item Added to Empty Slot********")
+		print(inventory)
 func remove_item(slot: SlotClass, is_hotbar: bool = false):
 	if is_hotbar:
 		hotbar.erase(slot.slot_index)
+		print("----------HOTBAR----------")
+		print("********Item REMOVED from Slot********")
+		print("is_hotbar = " + str(is_hotbar))
+		print(hotbar)
 	else:
 		inventory.erase(slot.slot_index)
-		
+		print("----------INVENTORY----------")
+		print("********Item REMOVED from Slot********")
+		print("is_hotbar = " + str(is_hotbar))
+		print(inventory)
 func add_item_quantity(slot: SlotClass, quantity_to_add: int, is_hotbar: bool = false):
 	if is_hotbar:
 		hotbar[slot.slot_index][1] += quantity_to_add
+		print("----------HOTBAR----------")
+		print("********Item ADDED Quantity********")
+		print(hotbar)
 	else:
-		print(inventory)
+		print("----------INVENTORY----------")
+		print("********Item ADDED Quantity********")
 		print(hotbar)
 		inventory[slot.slot_index][1] += quantity_to_add
 
