@@ -2,8 +2,12 @@ extends Panel
 
 var default_tex = preload("res://Art/UI/hotbar_slot.png")
 var selected_tex = preload("res://Art/UI/hotbar_slot_selected.png")
+var selected_empty_tex = preload("res://Art/UI/hotbar_slot_selected_empty.png")
+var filled_tex = preload("res://Art/UI/hotbar_slot_filled.png")
 var default_style: StyleBoxTexture = null
 var selected_style: StyleBoxTexture = null
+var selected_empty_style: StyleBoxTexture = null
+var filled_style :  StyleBoxTexture = null
 
 var ItemClass = preload("res://Items/item.tscn")
 var item = null
@@ -18,8 +22,12 @@ enum SlotType {
 func _ready():
 	default_style = StyleBoxTexture.new()
 	selected_style = StyleBoxTexture.new()
+	selected_empty_style = StyleBoxTexture.new()
+	filled_style = StyleBoxTexture.new()
 	default_style.texture = default_tex
 	selected_style.texture = selected_tex
+	selected_empty_style.texture = selected_tex
+	filled_style.texture = filled_tex
 
 	#PlayerInventory.active_item_updated.connect(Callable(self,"refresh_style"))
 
@@ -27,15 +35,22 @@ func _ready():
 
 func refresh_style():
 	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
-		selected_style.texture = selected_tex
-		set('theme_override_styles/panel', selected_style)
-		print("change my damn style")
+		if item == null:
+			selected_empty_style.texture = selected_empty_tex
+			set('theme_override_styles/panel', selected_empty_style)
+			print("change my damn style")
+		else:
+			selected_style.texture = selected_tex
+			set('theme_override_styles/panel', selected_style)
+			print("change my damn style")
+		
 	elif item == null:
 		default_style.texture = default_tex
 		set('theme_override_styles/panel', default_style)
+		
 	else:
-		default_style.texture = default_tex
-		set('theme_override_styles/panel', default_style) 
+		filled_style.texture = filled_tex
+		set('theme_override_styles/panel', filled_style) 
 
 func pickFromSlot():
 	if item != null:

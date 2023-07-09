@@ -1,8 +1,10 @@
-TextureRect
-PointLight2D
 CollisionShape2D
+StaticBody2D
 Area2D
 RigidBody2D
+CollisionPolygon2D
+TextureRect
+PointLight2D
 Node2D
 Label
 CenterContainer
@@ -19,7 +21,6 @@ HBoxContainer
 Node
 Timer
 Sprite2D
-StaticBody2D
 Bone2D
 Line2D
 CanvasGroup
@@ -27,6 +28,5 @@ ColorRect
 WorldEnvironment
 Tree
 CPUParticles2D
-CollisionPolygon2D
 Camera2D
 RayCast2D

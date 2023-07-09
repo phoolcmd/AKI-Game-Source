@@ -14,9 +14,10 @@ skew = -0.0174533
 script = ExtResource("1_7e2gt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_top = 1.33333
-offset_right = 226.0
-offset_bottom = 41.3333
+offset_left = -1.91854
+offset_top = -4.66738
+offset_right = 224.081
+offset_bottom = 35.3326
 texture = ExtResource("1_j3yxq")
 expand_mode = 3
 stretch_mode = 2

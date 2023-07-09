@@ -5,19 +5,16 @@ signal active_item_updated
 const SlotClass = preload("res://UI/Slot.gd")
 const ItemClass = preload("res://Items/Item.gd")
 
-const NUM_INVENTORY_SLOTS = 12
+const NUM_INVENTORY_SLOTS = 9
 const NUM_HOTBAR_SLOTS = 6
 var inventory = {
-	0: ["mushroom", 98],
-	1: ["rock", 11],
-	2: ["rock", 13],
-	3: ["mushroom", 18]
+	0: ["mushroom", 97],
+	1: ["rock", 11]
 }
 
 var hotbar = {
 	0: ["mushroom", 2],
-	1: ["rock", 9],
-	2: ["rock", 8]
+	1: ["rock", 88]
 }
 
 var active_item_slot = 0

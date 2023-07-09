@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgby37y2f3x0i"]
+
+[ext_resource type="Shader" path="res://Levels/water.gdshader" id="1_ehp6a"]
+[ext_resource type="Texture2D" uid="uid://dl346ea0kirs4" path="res://Shaders/water_noise.tres" id="2_fuyip"]
+[ext_resource type="Texture2D" uid="uid://cubixwhr7km58" path="res://icon.svg" id="3_umbe1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w73hb"]
+seed = 10
+frequency = 0.031
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ycvye"]
+noise = SubResource("FastNoiseLite_w73hb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnsee"]
+shader = ExtResource("1_ehp6a")
+shader_parameter/scroll1 = Vector2(0.02, 0.02)
+shader_parameter/scroll2 = Vector2(-0.03, -0.04)
+shader_parameter/distortion_strength = -0.015
+shader_parameter/tone_color = Color(0.701961, 0.960784, 0.952941, 1)
+shader_parameter/top_color = Color(1, 1, 1, 1)
+shader_parameter/light_start = 0.504
+shader_parameter/light_end = 0.761
+shader_parameter/noise1 = SubResource("NoiseTexture2D_ycvye")
+shader_parameter/noise2 = ExtResource("2_fuyip")
+
+[node name="Water" type="Sprite2D"]
+z_index = -1
+material = SubResource("ShaderMaterial_qnsee")
+position = Vector2(337, 120.25)
+scale = Vector2(1.10937, 0.777344)
+texture = ExtResource("3_umbe1")

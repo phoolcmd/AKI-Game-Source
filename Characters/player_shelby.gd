@@ -59,7 +59,7 @@ func get_input():
 		
 	##facing direction is equal to the movement_directions unless the mouse button is clicked
 	## Update facing_direction based on the mouse position when left mouse button is held down.
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and particle_instance != null:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and particle_instance != null:
 		equipped_item_pos = equipped_item.global_position
 		var mouse_pos = get_global_mouse_position()
 		facing_direction = (mouse_pos - global_position).normalized()
@@ -88,7 +88,7 @@ func pick_new_state():
 		state_machine.travel("Walk")
 		emit_signal("player_moving_signal")
 		
-	elif(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+	elif(Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
 		animation_tree["parameters/conditions/attack"] = true
 		
 	else:
@@ -126,7 +126,7 @@ func projectile_process(delta):
 	#If there is a particle present
 	if particle_instance != null:
 		#Follow mouse cursor when left click held
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 			particle_instance.position = particle_instance.position.lerp(get_global_mouse_position(), delta * 7.0)
 		#When mouse released
 		elif Input.is_action_just_released("follow"):
