@@ -15,8 +15,9 @@ size = Vector2(78.6667, 70)
 script = ExtResource("1_l6nak")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+offset_top = -5.0
 offset_right = 78.0
-offset_bottom = 70.0
+offset_bottom = 65.0
 texture = ExtResource("1_ygi2g")
 expand_mode = 3
 stretch_mode = 2

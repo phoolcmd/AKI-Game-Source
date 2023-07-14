@@ -10,14 +10,13 @@ texture = ExtResource("2_lip3f")
 
 [node name="Hotbar" type="Node2D"]
 scale = Vector2(1.5, 1.5)
-skew = -0.0174533
 script = ExtResource("1_7e2gt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -1.91854
-offset_top = -4.66738
-offset_right = 224.081
-offset_bottom = 35.3326
+offset_left = -2.0
+offset_top = -4.0
+offset_right = -2.0
+offset_bottom = -4.0
 texture = ExtResource("1_j3yxq")
 expand_mode = 3
 stretch_mode = 2

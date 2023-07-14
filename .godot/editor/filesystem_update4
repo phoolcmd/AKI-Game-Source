@@ -1,4 +1,4 @@
-res://Levels/main_level.tscn
+res://UI/inventory.tscn
 res://Characters/enemy.gd
 res://Levels/daynightcycle.gd
 res://Objects/Pickups/item_pickup.gd
@@ -6,8 +6,8 @@ res://UI/UserInterface.gd
 res://Items/test_item.tres
 res://Art/UI/daynight_gradient.tres
 res://Shaders/water_noise.tres
-res://UI/inventory.tscn
 res://Items/item.tscn
+res://Levels/main_level.tscn
 res://UI/Hotbar.tscn
 res://Objects/Pickups/item_pickup.tscn
 res://Characters/player.tscn
@@ -16,5 +16,4 @@ res://particle.tscn
 res://Objects/Pickups/rock.tscn
 res://Characters/firefly.tscn
 res://Materials/water.tscn
-res://UI/Slot.gd
-res://Characters/PlayerInventory.gd
+res://Objects/Pickups/mushroom.tscn

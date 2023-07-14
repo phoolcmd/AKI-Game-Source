@@ -13,8 +13,8 @@ var inventory = {
 }
 
 var hotbar = {
-	0: ["mushroom", 2],
-	1: ["rock", 88]
+
+
 }
 
 var active_item_slot = 0
@@ -22,27 +22,27 @@ func _ready():
 	print(inventory)
 	
 func add_item(item_name, item_quantity):
-	for item in inventory:
-		if inventory[item][0] == item_name:
+	for item in hotbar:
+		if hotbar[item][0] == item_name:
 			var stack_size = int(JsonData.item_data[item_name]["StackSize"])
-			var able_to_add = stack_size - inventory[item][1]
+			var able_to_add = stack_size - hotbar[item][1]
 			if able_to_add >= item_quantity:
-				inventory[item][1] += item_quantity
-				update_slot_visual(item, inventory[item][0], inventory[item][1])
+				hotbar[item][1] += item_quantity
+				update_slot_visual(item, hotbar[item][0], hotbar[item][1])
 				return
 			else:
-				inventory[item][1] += able_to_add
-				update_slot_visual(item, inventory[item][0], inventory[item][1])
+				hotbar[item][1] += able_to_add
+				update_slot_visual(item, hotbar[item][0], hotbar[item][1])
 				item_quantity = item_quantity - able_to_add
 
 			
-	for i in range(NUM_INVENTORY_SLOTS):
-		if inventory.has(i) == false:
-			inventory[i] = [item_name, item_quantity]
-			update_slot_visual(i, inventory[i][0], inventory[i][1])
+	for i in range(NUM_HOTBAR_SLOTS):
+		if hotbar.has(i) == false:
+			hotbar[i] = [item_name, item_quantity]
+			update_slot_visual(i, hotbar[i][0], hotbar[i][1])
 			return
 func update_slot_visual(slot_index, item_name, new_quantity):
-	var slot = get_tree().root.get_node("/root/Main/Level/UserInterface/Inventory/GridContainer/Slot" + str(slot_index + 1))
+	var slot = get_tree().root.get_node("/root/Main/Level/UserInterface/Hotbar/HotbarSlots/HotbarSlot" + str(slot_index + 1))
 	if slot.item != null:
 		slot.item.set_item(item_name, new_quantity)
 	else:
