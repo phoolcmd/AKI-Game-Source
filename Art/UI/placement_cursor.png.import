@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5twu4lbmh24v"
-path="res://.godot/imported/wand_purple.png-84ad9f4f3e3a6bcc1c48b0137dc0a6e7.ctex"
+uid="uid://ch2ysxtsho73u"
+path="res://.godot/imported/placement_cursor.png-c7dae74f8ec9450b356b8cd7dd943254.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/wand_purple.png"
-dest_files=["res://.godot/imported/wand_purple.png-84ad9f4f3e3a6bcc1c48b0137dc0a6e7.ctex"]
+source_file="res://Art/UI/placement_cursor.png"
+dest_files=["res://.godot/imported/placement_cursor.png-c7dae74f8ec9450b356b8cd7dd943254.ctex"]
 
 [params]
 

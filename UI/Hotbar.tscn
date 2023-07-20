@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds8rm3mrrtolh"]
+[gd_scene load_steps=8 format=3 uid="uid://ds8rm3mrrtolh"]
 
 [ext_resource type="Script" path="res://UI/Hotbar.gd" id="1_7e2gt"]
 [ext_resource type="Texture2D" uid="uid://c2gvjvwtruich" path="res://Art/UI/hotbar_bg.png" id="1_j3yxq"]
 [ext_resource type="Texture2D" uid="uid://0dtxi0emrxql" path="res://Art/UI/hotbar_slot.png" id="2_lip3f"]
 [ext_resource type="Script" path="res://UI/Slot.gd" id="3_8fq0n"]
+[ext_resource type="FontFile" uid="uid://dtekaf2mlaovp" path="res://Fonts/dogicapixel.ttf" id="5_bdvp3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5a6gt"]
 texture = ExtResource("2_lip3f")
+
+[sub_resource type="FontVariation" id="FontVariation_f52g8"]
+base_font = ExtResource("5_bdvp3")
 
 [node name="Hotbar" type="Node2D"]
 scale = Vector2(1.5, 1.5)
@@ -65,3 +69,18 @@ custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
+
+[node name="ActiveItemLabel" type="Label" parent="."]
+offset_left = 26.0
+offset_top = -2.66667
+offset_right = 172.0
+offset_bottom = 23.3333
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(1, 0.921569, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "Sample Text"
+horizontal_alignment = 2

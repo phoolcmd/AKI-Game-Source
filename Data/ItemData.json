@@ -1,13 +1,24 @@
 {
-  "mushroom": {
-	"ItemCategory": "Consumable",
-	"StackSize": 99,
-	"AddHealth": 5,
-	"Description": "A mushroom for a quick snack and crafting"
+ 	"mushroom": {
+		"ItemCategory": "Consumable",
+		"StackSize": 99,
+		"AddHealth": 5,
+		"Description": "A mushroom for a quick snack and crafting"
   },
-  "rock": {
-	"ItemCategory": "Resource",
-	"StackSize": 99,
-	"Description": "A sturdy rock for crafting tools"
-  }
+ 	"rock": {
+		"ItemCategory": "Resource",
+		"StackSize": 99,
+		"Description": "A sturdy rock for crafting tools"
+  },
+ 	"carrot seed": {
+		"ItemCategory": "Seed",
+		"StackSize": 10,
+		"Description": "A thin and pointy carrot seed"
+  },
+ 	"wand blue": {
+		"ItemCategory": "Seed",
+		"StackSize": 1,
+		"Description": "A thin and pointy carrot seed"
+  },
+
 }

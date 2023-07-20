@@ -30,8 +30,7 @@ func decrease_item_quantity(amount_to_remove):
 func set_item(nm, qt):
 	item_name = nm.to_lower()
 	item_quantity = qt
-	$TextureRect.texture = load("res://Art/Items/resource_" + item_name + ".png")
-	
+	$TextureRect.texture = load("res://Art/Items/item_" + item_name + ".png")
 	var stack_size = int(JsonData.item_data[item_name]["StackSize"])
 	if stack_size == 1:
 		$Label.visible = false

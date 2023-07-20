@@ -1,6 +1,6 @@
-[gd_scene load_steps=52 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=53 format=3 uid="uid://hsfktv61dcg1"]
 
-[ext_resource type="PackedScene" uid="uid://cvaccl84taixu" path="res://Characters/player.tscn" id="1_56tw2"]
+[ext_resource type="PackedScene" uid="uid://cwvmd7266ai1m" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
 [ext_resource type="Script" path="res://UI/UserInterface.gd" id="2_136i6"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
@@ -22,12 +22,13 @@
 [ext_resource type="PackedScene" uid="uid://clvrwcgns5hgv" path="res://Characters/enemy.tscn" id="12_1g7w5"]
 [ext_resource type="Texture2D" uid="uid://c02gyft61gr4l" path="res://Art/UI/daynight_gradient.tres" id="12_fea1l"]
 [ext_resource type="Texture2D" uid="uid://cg5vxlxf6phsd" path="res://Art/Tilesets/ground tiles/grass_pink_texture.png" id="12_pxudh"]
-[ext_resource type="PackedScene" uid="uid://bmjlqknhq7cwp" path="res://Objects/Pickups/rock.tscn" id="15_smkhw"]
-[ext_resource type="PackedScene" uid="uid://dvcnfo8l8y5dq" path="res://Objects/Pickups/mushroom.tscn" id="15_y1rg4"]
+[ext_resource type="PackedScene" uid="uid://c0tnke2jv1edu" path="res://Objects/Pickups/rock.tscn" id="15_smkhw"]
+[ext_resource type="PackedScene" uid="uid://chpiuotnaqf58" path="res://Objects/Pickups/mushroom.tscn" id="15_y1rg4"]
 [ext_resource type="PackedScene" uid="uid://cgby37y2f3x0i" path="res://Materials/water.tscn" id="23_8m8r7"]
 [ext_resource type="Texture2D" uid="uid://bkee1a2qvf7mm" path="res://Art/Characters/bunny.png" id="26_wtjf5"]
 [ext_resource type="Texture2D" uid="uid://dn0b5388uncq6" path="res://Art/Characters/red_panda.png" id="27_fp02b"]
 [ext_resource type="Texture2D" uid="uid://clojkilhehdec" path="res://Art/Characters/turtle.png" id="28_qs4oi"]
+[ext_resource type="PackedScene" uid="uid://dutu5nceoqfma" path="res://Objects/Pickups/carrot_seed.tscn" id="29_y1nab"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ylj82"]
 shader = ExtResource("3_c4whj")
@@ -1021,8 +1022,8 @@ environment = SubResource("Environment_rlh73")
 color = Color(0.329412, 0.356863, 0.745098, 1)
 script = ExtResource("10_vhikg")
 gradient = ExtResource("12_fea1l")
-INGAME_SPEED = 200.0
-INITIAL_HOUR = 6
+INGAME_SPEED = 5.0
+INITIAL_HOUR = 8
 
 [node name="pickups" type="CanvasGroup" parent="Level"]
 y_sort_enabled = true
@@ -1129,6 +1130,9 @@ position = Vector2(642, 34)
 [node name="rock10" parent="Level/pickups" instance=ExtResource("15_smkhw")]
 position = Vector2(740, 99)
 
+[node name="carrot seed" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(151, 173)
+
 [node name="Bunny" type="Sprite2D" parent="Level"]
 position = Vector2(208, 104)
 texture = ExtResource("26_wtjf5")
@@ -1167,7 +1171,7 @@ position = Vector2(-139, -241)
 [node name="Player_Shelby" parent="Level" instance=ExtResource("1_56tw2")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(289, 239)
+position = Vector2(294, 238)
 
 [node name="Camera2D" type="Camera2D" parent="Level/Player_Shelby"]
 position = Vector2(9, 1)

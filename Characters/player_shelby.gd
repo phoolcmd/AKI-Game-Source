@@ -9,10 +9,14 @@ signal player_firing_signal
 @export var move_speed : float = 50.0
 @export var dash_speed : float = 250.0
 @export var dash_duration: float  = 0.1
+@export var dig_radius : float = 100
 @export var starting_direction : Vector2 = Vector2(0,1)
 @export var particle_speed = 500
 @export var shield_force = 1000.0
+
 @export var particle = preload("res://particle.tscn")
+@export var hole = preload("res://Objects/Farming/hole.tscn")
+@export var cursor = preload("res://UI/placement_cursor.tscn")
 
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
@@ -22,22 +26,33 @@ signal player_firing_signal
 @onready var enemy = get_node("/root/Main/Level/Enemy")
 @onready var enemy_pos = enemy.position
 @onready var enemy_global_pos = enemy.global_position
+@onready var equiped_item_name : String = ""
 @onready var equipped_item = $Equip/Area2D/CollisionShape2D
 @onready var equipped_item_pos = equipped_item.global_position
+@onready var equipped_item_tex = $Equip
 
 @onready var light = get_node("/root/Main/Light")
+@onready var ui = get_node("/root/Main/Level/UserInterface")
+
+@onready var dig_timer = $DigTimer
 var canDash = true
 var dashing
 var inside_inv = false
 
 
 var particle_instance = null
+var cursor_instance = null
 var enemy_position = Vector2.ZERO
-
+var target_pos = Vector2.ZERO
+var hole_to_remove = null
+var hole_radius = 10
+var placeable : bool = true
 
 
 func _ready():
 	update_animation_parameters(starting_direction)
+	cursor_instance = cursor.instantiate()
+	add_child(cursor_instance)
 
 func _physics_process(delta):
 	if enemy != null:
@@ -48,6 +63,12 @@ func _physics_process(delta):
 	fire()
 	projectile_process(delta)
 	shield_process(delta)
+	
+	if equiped_item_name == "wand blue":
+		cursor_instance.visible = true
+		dig_process(delta)
+	else:
+		cursor_instance.visible = false
 			
 func get_input():
 	var movement_direction = Vector2(
@@ -70,10 +91,13 @@ func get_input():
 	update_animation_parameters(facing_direction)
 	_dash(movement_direction)
 	
+	
 func _process(delta):
-	if inside_inv:
-		print("inside inventory")	
-	pick_new_state()	
+	pick_new_state()
+	#if equiped item is the blue want change the texture of the wand 
+	if equiped_item_name == "wand blue":
+		var new_texture = load("res://Art/Items/item_wand blue.png")
+		equipped_item_tex.texture = new_texture
 
 
 func update_animation_parameters(move_input : Vector2):
@@ -82,7 +106,7 @@ func update_animation_parameters(move_input : Vector2):
 		animation_tree.set("parameters/Idle/blend_position", move_input)
 		animation_tree.set("parameters/Collect/blend_position", move_input)
 		animation_tree.set("parameters/Wand Attack/blend_position", move_input)
-			
+				
 func pick_new_state():
 	if(velocity != Vector2.ZERO):
 		state_machine.travel("Walk")
@@ -117,6 +141,91 @@ func _dash(direction):
 	velocity = direction.normalized() * speed 
 	equipped_item_pos = equipped_item.global_position
 		
+func dig_process(delta):
+	var player_pos = position
+	var mouse_distance = get_global_mouse_position().distance_to(player_pos)
+	var dig_pos = get_global_mouse_position()	
+	var closest_hole = null
+	var closest_distance = 0
+	placeable = true
+
+	
+	cursor_instance.global_position = dig_pos
+	cursor_instance.get_node("Sprite2D").frame = 1
+	#Check if cursor is in valid zone to place hole
+	if mouse_distance < dig_radius:
+		cursor_instance.get_node("Sprite2D").frame = 0
+		# Make the cursor invisible if digging has begun
+		if is_position_overlapping_hole(dig_pos):
+			cursor_instance.get_node("Sprite2D").frame = 1
+			placeable = false
+		else:
+			
+			if !dig_timer.is_stopped():
+				cursor_instance.visible = false
+			# Save target location when player left clicks
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and dig_timer.is_stopped():
+				target_pos = dig_pos
+			
+		move_to_target(delta)
+			
+		var holes = get_tree().get_nodes_in_group("holes")
+		# Find the closest hole
+		for hole in holes: 
+			var distance_to_hole = dig_pos.distance_to(hole.global_position)
+			if distance_to_hole < 10:
+				if closest_hole == null or distance_to_hole < closest_distance:
+					closest_hole = hole
+					closest_distance = distance_to_hole
+		#Apply outline shader to nearest hole
+		for hole in holes:
+			if hole == closest_hole:
+				hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 1.0)
+				print(hole)
+				#Remove hole if player right clicks
+				if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+					hole_to_remove = closest_hole
+					target_pos = hole.position
+					
+			else:
+				hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 0.0)
+
+	
+func move_to_target(delta):
+	# If a target position has been set
+	if target_pos != Vector2.ZERO and placeable:
+		cursor_instance.visible = false
+		# Calculate direction to target
+		var dir_to_target = (target_pos - global_position).normalized()
+		# Move towards target
+		velocity = dir_to_target * move_speed
+		update_animation_parameters(dir_to_target)
+		move_and_slide()
+		# If player is close enough to target
+		if (global_position + Vector2(0, 16)).distance_to(target_pos) < 18:
+			if hole_to_remove != null:
+				#Remove the hole
+				hole_to_remove.queue_free()
+				hole_to_remove = null
+				#Reset target_pos
+				target_pos = Vector2.ZERO
+			else:
+				# Instantiate hole
+				var hole_instance = hole.instantiate()
+				hole_instance.position = target_pos
+				hole_instance.get_node("Sprite2D").material = hole_instance.get_node("Sprite2D").material.duplicate()
+				get_tree().get_root().add_child(hole_instance)
+				hole_instance.get_node("CPUParticles2D").emitting = true
+				dig_timer.start()
+				# Reset target position
+				target_pos = Vector2.ZERO
+				
+func is_position_overlapping_hole(pos):
+	var holes = get_tree().get_nodes_in_group("holes")
+	for hole in holes:
+		if pos.distance_to(hole.position) < hole_radius:
+			return true
+		return false				
 func projectile_process(delta):
 	var shot_direction = Vector2.ZERO
 	var mouse_pos = get_global_mouse_position().x
@@ -151,8 +260,7 @@ func projectile_process(delta):
 					if closest_enemy != null:
 						shot_direction = closest_enemy.global_position - particle_instance.position
 						shot_direction = shot_direction.normalized()		
-		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))
-		
+		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))		
 func shield_process(delta):
 	var player_pos = position
 	var direction = Vector2.ZERO
@@ -163,18 +271,19 @@ func shield_process(delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		for enemy in enemies:
 			var distance_to_enemy = player_pos.distance_to(enemy_global_pos)
-			print(distance_to_enemy)
 			if distance_to_enemy < 50:
 				if closest_enemy == null or distance_to_enemy < closest_distance:
 					closest_enemy = enemy
 					closest_distance = distance_to_enemy
 					
 				if closest_enemy != null:
-					print("push")
 					#Apply impulse to enemy positon in direction from player
 					direction = closest_enemy.global_position - player_pos
 					direction = direction.normalized()
 					var velocity = direction * shield_force
 					closest_enemy.move_and_collide(velocity)
-					
+func _exit_tree():
+	cursor_instance.queue_free()					
 		
+
+

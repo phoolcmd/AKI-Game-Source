@@ -3,7 +3,6 @@ res://Characters/enemy.gd
 res://Levels/daynightcycle.gd
 res://Objects/Pickups/item_pickup.gd
 res://UI/UserInterface.gd
-res://Items/test_item.tres
 res://Art/UI/daynight_gradient.tres
 res://Shaders/water_noise.tres
 res://Items/item.tscn
@@ -17,3 +16,14 @@ res://Objects/Pickups/rock.tscn
 res://Characters/firefly.tscn
 res://Materials/water.tscn
 res://Objects/Pickups/mushroom.tscn
+res://Objects/Pickups/carrot_seed.tscn
+res://Characters/enemy.tscn
+res://Objects/Farming/hole.tscn
+res://UI/Hotbar.gd
+res://Characters/player_shelby.gd
+res://UI/Slot.gd
+res://Items/Item.gd
+res://Data/ItemData.json
+res://UI/placement_cursor.tscn
+res://Objects/Farming/highlight_item.gdshader
+res://enemy_particle.tscn

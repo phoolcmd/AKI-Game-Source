@@ -1,20 +1,37 @@
 extends Node2D
 
+class_name Hotbar
+
 const SlotClass = preload("res://UI/Slot.gd")
 @onready var hotbar = $HotbarSlots
+@onready var active_item_label = $ActiveItemLabel
 @onready var slots = hotbar.get_children()
+@onready var player : Player = get_tree().get_first_node_in_group("player")
 func _ready():
+
+	PlayerInventory.active_item_updated.connect(Callable(self, "update_active_item_label"))
 	for i in range(slots.size()):
-		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
 		PlayerInventory.active_item_updated.connect(Callable(slots[i], "refresh_style"))
+		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.HOTBAR
 	initialize_inventory()
+	update_active_item_label()
+
+func update_active_item_label():
+	if slots[PlayerInventory.active_item_slot].item != null:
+		active_item_label.text = slots[PlayerInventory.active_item_slot].item.item_name
+		player.equiped_item_name = active_item_label.text
+	else:
+		active_item_label.text = ""
+		player.equiped_item_name = ""
 	
 func initialize_inventory():
 	for i in range(slots.size()):
 		if PlayerInventory.hotbar.has(i):
 			slots[i].initialize_item(PlayerInventory.hotbar[i][0], PlayerInventory.hotbar[i][1])
+			update_active_item_label()
+			
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	if event is InputEventMouseButton:
@@ -29,6 +46,7 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 						left_click_same_item(slot)
 			elif slot.item:
 				left_click_not_holding(slot)
+			update_active_item_label()
 				
 func left_click_empty_slot(slot):
 	PlayerInventory.add_item_to_empty_slot(find_parent("UserInterface").holding_item, slot, true)

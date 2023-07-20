@@ -1,3 +1,6 @@
+res://UI
+res://Objects/Farming
+res://Objects/Pickups
 res://Materials
 C:/Users/sentinel/Desktop/Godot Projects/My First Game/Demo
 res://Characters
@@ -5,10 +8,8 @@ res://Art/UI
 res://Levels
 res://Shaders
 res://Fonts
-res://UI
 res://Data
 res://
 res://Items
-res://Objects/Pickups
 res://Art/Tilesets/ground tiles
 C:/Users/sentinel/Desktop/Godot Projects/My First Game

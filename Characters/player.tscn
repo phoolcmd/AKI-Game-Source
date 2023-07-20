@@ -1,12 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://cvaccl84taixu"]
+[gd_scene load_steps=56 format=3 uid="uid://cwvmd7266ai1m"]
 
 [ext_resource type="Script" path="res://Characters/player_shelby.gd" id="1_s0nvd"]
 [ext_resource type="Texture2D" uid="uid://d242c3cw02jbn" path="res://Art/Characters/player_spritesheet.png" id="2_ag4lq"]
 [ext_resource type="Texture2D" uid="uid://d208duvnux6rl" path="res://Art/Characters/shadow.png" id="3_vf5ov"]
 [ext_resource type="PackedScene" uid="uid://djvnb1jshw1gm" path="res://Dash.tscn" id="4_1w7e7"]
-[ext_resource type="Texture2D" uid="uid://c5twu4lbmh24v" path="res://Art/Items/wand_purple.png" id="5_j41va"]
-[ext_resource type="Script" path="res://Characters/Equip.gd" id="5_koeom"]
-[ext_resource type="Resource" uid="uid://coi6x4aoasx2l" path="res://Items/test_item.tres" id="7_mqcdk"]
+[ext_resource type="Texture2D" uid="uid://c5twu4lbmh24v" path="res://Art/Items/item_wand purple.png" id="5_v46km"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t78u4"]
 radius = 5.0
@@ -941,14 +939,15 @@ z_index = -1
 position = Vector2(-4, 22)
 rotation = -2.4679
 scale = Vector2(-1, 1)
-texture = ExtResource("5_j41va")
-script = ExtResource("5_koeom")
-equipped_item = ExtResource("7_mqcdk")
+texture = ExtResource("5_v46km")
 
-[node name="Area2D" type="Area2D" parent="Equip"]
+[node name="Area2D" type="Area2D" parent="Equip" groups=["player"]]
 position = Vector2(1.125, -1.375)
 scale = Vector2(0.125, 0.125)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Equip/Area2D"]
 position = Vector2(24, -22)
 shape = SubResource("RectangleShape2D_sbt2i")
+
+[node name="DigTimer" type="Timer" parent="."]
+one_shot = true

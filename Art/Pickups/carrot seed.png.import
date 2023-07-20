@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://busg2bsh3pfq0"
-path="res://.godot/imported/mushrooms.png-892f7d20f3dc32ebe35dc98fb9411c63.ctex"
+uid="uid://bydco1fg38hyq"
+path="res://.godot/imported/carrot seed.png-7f386bb45c29e9a03b243f0f8f1b8306.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Tilesets/ground tiles/mushrooms.png"
-dest_files=["res://.godot/imported/mushrooms.png-892f7d20f3dc32ebe35dc98fb9411c63.ctex"]
+source_file="res://Art/Pickups/carrot seed.png"
+dest_files=["res://.godot/imported/carrot seed.png-7f386bb45c29e9a03b243f0f8f1b8306.ctex"]
 
 [params]
 

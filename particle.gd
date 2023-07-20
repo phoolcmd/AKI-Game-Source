@@ -27,7 +27,7 @@ func _ready():
 	orb_tween.play()
 	$Timer.start()
 	emit_signal("particle_created", light)
-	print(light.energy)
+	#print(light.energy)
 
 	
 func _on_timer_timeout():

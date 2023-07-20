@@ -1,4 +1,5 @@
 extends Node2D
+class_name Inventory
 
 ## Script responsible for handling the inventory system.
 ##

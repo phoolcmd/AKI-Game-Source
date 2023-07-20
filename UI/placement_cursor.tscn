@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://r23op5wfnjpa"]
+
+[ext_resource type="Texture2D" uid="uid://ch2ysxtsho73u" path="res://Art/UI/placement_cursor.png" id="1_wq3me"]
+
+[node name="PlacementCursor" type="Control"]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wq3me")
+hframes = 2

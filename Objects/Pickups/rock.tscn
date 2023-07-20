@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmjlqknhq7cwp"]
+[gd_scene load_steps=6 format=3 uid="uid://c0tnke2jv1edu"]
 
-[ext_resource type="Texture2D" uid="uid://d36wuapypmyaw" path="res://Art/Tilesets/ground tiles/rocks.png" id="1_jk05j"]
+[ext_resource type="Texture2D" uid="uid://d36wuapypmyaw" path="res://Art/Pickups/rocks.png" id="1_w6qh8"]
 [ext_resource type="PackedScene" uid="uid://cxbwbpkef1ta5" path="res://Objects/Pickups/item_pickup.tscn" id="2_cec56"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wea1l"]
@@ -24,7 +24,7 @@ contact_monitor = true
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_jk05j")
+texture = ExtResource("1_w6qh8")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

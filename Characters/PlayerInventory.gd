@@ -13,7 +13,7 @@ var inventory = {
 }
 
 var hotbar = {
-
+0: ["wand blue", 1],
 
 }
 

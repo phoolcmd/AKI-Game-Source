@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://swp8frhkmxh1"]
+
+[ext_resource type="Texture2D" uid="uid://b83jdvuc00w2p" path="res://Art/Objects/hole.png" id="1_6ovwd"]
+[ext_resource type="Script" path="res://Objects/Farming/hole.gd" id="1_c0p4r"]
+[ext_resource type="Shader" path="res://Objects/Farming/highlight_item.gdshader" id="2_h2jj1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpxyk"]
+shader = ExtResource("2_h2jj1")
+shader_parameter/rainbow = false
+shader_parameter/line_color = Color(1, 1, 0.196078, 1)
+shader_parameter/line_scale = 1.0
+shader_parameter/frequency = 0.5
+shader_parameter/light_offset = 0.5
+shader_parameter/alpha = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg3b8"]
+radius = 5.09902
+
+[sub_resource type="Gradient" id="Gradient_m61c1"]
+offsets = PackedFloat32Array(0.711679, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Hole" type="RigidBody2D" groups=["holes"]]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_c0p4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qpxyk")
+texture = ExtResource("1_6ovwd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gg3b8")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+rotation = 0.0502352
+emitting = false
+amount = 12
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = 52.05
+angular_velocity_max = 138.8
+linear_accel_min = -24.1
+linear_accel_max = 7.83
+scale_amount_min = 0.2
+scale_amount_max = 2.0
+color = Color(1, 0.698039, 1, 1)
+color_ramp = SubResource("Gradient_m61c1")

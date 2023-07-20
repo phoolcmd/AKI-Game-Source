@@ -19,6 +19,7 @@ func _ready():
 	var regex = RegEx.new()
 	regex.compile("\\d+")
 	item_name = regex.sub(rigid_body.name, "", false)
+	#print(item_name)
 
 func _on_area_2d_body_entered(body):
 	if body == player:

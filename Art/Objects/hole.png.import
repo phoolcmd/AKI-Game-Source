@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csbybu2hv62of"
-path="res://.godot/imported/resource_rock.png-f8efed744aaf792748811fb1dcfcee57.ctex"
+uid="uid://b83jdvuc00w2p"
+path="res://.godot/imported/hole.png-d9f1628ea76390a1b07a608dd0bbad96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/resource_rock.png"
-dest_files=["res://.godot/imported/resource_rock.png-f8efed744aaf792748811fb1dcfcee57.ctex"]
+source_file="res://Art/Objects/hole.png"
+dest_files=["res://.godot/imported/hole.png-d9f1628ea76390a1b07a608dd0bbad96.ctex"]
 
 [params]
 

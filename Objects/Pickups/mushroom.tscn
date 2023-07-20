@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvcnfo8l8y5dq"]
+[gd_scene load_steps=6 format=3 uid="uid://chpiuotnaqf58"]
 
-[ext_resource type="Texture2D" uid="uid://busg2bsh3pfq0" path="res://Art/Tilesets/ground tiles/mushrooms.png" id="1_odv7q"]
+[ext_resource type="Texture2D" uid="uid://busg2bsh3pfq0" path="res://Art/Pickups/mushrooms.png" id="1_pal0k"]
 [ext_resource type="PackedScene" uid="uid://cxbwbpkef1ta5" path="res://Objects/Pickups/item_pickup.tscn" id="2_d223h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wea1l"]
@@ -24,7 +24,7 @@ contact_monitor = true
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_odv7q")
+texture = ExtResource("1_pal0k")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -46,7 +46,6 @@ shape = SubResource("CircleShape2D_78uep")
 [node name="item_pickup" parent="." instance=ExtResource("2_d223h")]
 position = Vector2(-1, -1)
 
-[connection signal="body_entered" from="." to="item_pickup" method="_on_mushroom_body_entered"]
 [connection signal="body_entered" from="Area2D" to="item_pickup" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="item_pickup" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Pickup_zone" to="item_pickup" method="_on_pickup_zone_body_entered"]

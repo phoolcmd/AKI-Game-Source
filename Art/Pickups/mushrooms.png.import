@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdwadjhm53a1c"
-path="res://.godot/imported/wand_blue.png-75218a76ef5aa27afd4eb09309b4a9ab.ctex"
+uid="uid://busg2bsh3pfq0"
+path="res://.godot/imported/mushrooms.png-ea5be3290e058b4977467fc612a859c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/wand_blue.png"
-dest_files=["res://.godot/imported/wand_blue.png-75218a76ef5aa27afd4eb09309b4a9ab.ctex"]
+source_file="res://Art/Pickups/mushrooms.png"
+dest_files=["res://.godot/imported/mushrooms.png-ea5be3290e058b4977467fc612a859c0.ctex"]
 
 [params]
 
