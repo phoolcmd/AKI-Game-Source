@@ -1,6 +1,5 @@
 res://Levels/main_level.tscn
 res://Characters/enemy.gd
-res://Levels/daynightcycle.gd
 res://Objects/Pickups/item_pickup.gd
 res://UI/UserInterface.gd
 res://Art/UI/daynight_gradient.tres
@@ -12,3 +11,8 @@ res://Items/item.tscn
 res://Objects/Farming/hole.tscn
 res://enemy_particle.tscn
 res://Characters/enemy.tscn
+res://UI/Hotbar.tscn
+res://Objects/Pickups/carrot_seed.tscn
+res://Objects/Farming/carrot plant.tscn
+res://Characters/PlayerInventory.gd
+res://Characters/player_shelby.gd

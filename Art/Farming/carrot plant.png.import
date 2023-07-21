@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcdd0p2gf38ty"
-path="res://.godot/imported/hole.png-d9f1628ea76390a1b07a608dd0bbad96.ctex"
+uid="uid://cmbhps2sa4ugj"
+path="res://.godot/imported/carrot plant.png-66bac22256bce8e32611025b4e6634c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Objects/hole.png"
-dest_files=["res://.godot/imported/hole.png-d9f1628ea76390a1b07a608dd0bbad96.ctex"]
+source_file="res://Art/Farming/carrot plant.png"
+dest_files=["res://.godot/imported/carrot plant.png-66bac22256bce8e32611025b4e6634c2.ctex"]
 
 [params]
 

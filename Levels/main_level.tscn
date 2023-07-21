@@ -1131,7 +1131,40 @@ position = Vector2(642, 34)
 position = Vector2(740, 99)
 
 [node name="carrot seed" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(151, 173)
+position = Vector2(297, 205)
+
+[node name="carrot seed2" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(315, 212)
+
+[node name="carrot seed3" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(334, 208)
+
+[node name="carrot seed4" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(284, 186)
+
+[node name="carrot seed5" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(310, 185)
+
+[node name="carrot seed6" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(365, 194)
+
+[node name="carrot seed7" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(434, 242)
+
+[node name="carrot seed8" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(451, 198)
+
+[node name="carrot seed9" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(400, 224)
+
+[node name="carrot seed10" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(405, 257)
+
+[node name="carrot seed11" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(447, 283)
+
+[node name="carrot seed12" parent="Level/pickups" instance=ExtResource("29_y1nab")]
+position = Vector2(411, 283)
 
 [node name="Bunny" type="Sprite2D" parent="Level"]
 position = Vector2(208, 104)

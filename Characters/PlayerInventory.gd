@@ -1,12 +1,15 @@
 extends Node
 
 signal active_item_updated
+signal item_quantity_updated
 
 const SlotClass = preload("res://UI/Slot.gd")
 const ItemClass = preload("res://Items/Item.gd")
 
 const NUM_INVENTORY_SLOTS = 9
 const NUM_HOTBAR_SLOTS = 6
+
+@onready var player_node : Player = get_tree().get_first_node_in_group("player")
 var inventory = {
 	0: ["mushroom", 97],
 	1: ["rock", 11]
@@ -20,6 +23,8 @@ var hotbar = {
 var active_item_slot = 0
 func _ready():
 	print(inventory)
+	player_node = get_tree().get_first_node_in_group("player")
+	player_node.player_planting.connect(Callable(self,"_on_player_planting"))
 	
 func add_item(item_name, item_quantity):
 	for item in hotbar:
@@ -95,4 +100,29 @@ func active_item_scroll_up():
 func active_item_scroll_down():
 	active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOTS
 	emit_signal("active_item_updated")
+func decrease_item_quantity(slot_index, quantity=1):
+	if hotbar.has(slot_index):
+		var item = hotbar[slot_index]
+		item[1] -= quantity  # Decrease the quantity of the item
+
+		if item[1] <= 0:  # If the quantity is 0 or less
+			hotbar.erase(slot_index)  # Remove the item from the hotbar
+			emit_signal("item_quantity_updated")
+		else:
+			hotbar[slot_index] = item  # Update the item in the hotbar
+			emit_signal("item_quantity_updated")
+			
+func _on_player_planting(item_name):
+	print("Planting: ", item_name)  # Print when the function is called
+	if hotbar.has(active_item_slot) and hotbar[active_item_slot][0] == item_name:
+		decrease_item_quantity(active_item_slot, 1)
+		if hotbar.has(active_item_slot):
+			update_slot_visual(active_item_slot, hotbar[active_item_slot][0], hotbar[active_item_slot][1])
+
+
+
+
+
+	
+
 		

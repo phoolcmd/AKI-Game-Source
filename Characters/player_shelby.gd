@@ -6,11 +6,14 @@ signal player_moving_signal
 signal player_stopped_signal
 signal player_firing_signal
 signal item_equipped (item_name)
+signal item_held (item_category)
+signal player_planting(item_name)
 
 @export var move_speed : float = 50.0
 @export var dash_speed : float = 250.0
 @export var dash_duration: float  = 0.1
 @export var dig_radius : float = 100
+@export var plant_radius : float = 30
 @export var starting_direction : Vector2 = Vector2(0,1)
 @export var particle_speed = 500
 @export var shield_force = 1000.0
@@ -27,7 +30,8 @@ signal item_equipped (item_name)
 @onready var enemy = get_node("/root/Main/Level/Enemy")
 @onready var enemy_pos = enemy.position
 @onready var enemy_global_pos = enemy.global_position
-@onready var equiped_item_name : String = ""
+@onready var equipped_item_name : String = ""
+@onready var equipped_item_category : String = ""
 @onready var equipped_item = $Equip/Area2D/CollisionShape2D
 @onready var equipped_item_pos = equipped_item.global_position
 @onready var equipped_item_tex = $Equip
@@ -47,7 +51,7 @@ var enemy_position = Vector2.ZERO
 var target_pos = Vector2.ZERO
 var hole_to_remove = null
 var hole_radius = 10
-var placeable : bool = true
+var placeable = true
 
 
 func _ready():
@@ -64,11 +68,15 @@ func _physics_process(delta):
 #	fire()
 #	projectile_process(delta)
 	
-	if equiped_item_name == "wand blue":
+	if equipped_item_name == "wand blue":
 		cursor_instance.visible = true
 		dig_process(delta)
 	else:
 		cursor_instance.visible = false
+		
+	if equipped_item_category == "Seed":
+		plant_process(delta, equipped_item_name)
+		
 			
 func get_input(delta):
 	var movement_direction = Vector2(
@@ -84,15 +92,14 @@ func get_input(delta):
 	update_animation_parameters(facing_direction)
 	velocity = facing_direction.normalized() * move_speed * delta
 #	_dash(movement_direction)
-	
-	
 func _process(_delta):
 	pick_new_state()
 	#if equiped item is the blue want change the texture of the wand 
-	if equiped_item_name == "wand blue":
-		emit_signal("item_equipped", "wand blue")
-
-
+	if equipped_item_category == "Tool":
+		emit_signal("item_equipped", equipped_item_name)
+	if equipped_item_category != "Tool":
+		emit_signal("item_held", equipped_item_category)
+		emit_signal("item_equipped", equipped_item_name)
 func update_animation_parameters(move_input : Vector2):
 	if(move_input != Vector2.ZERO):
 		animation_tree.set("parameters/Walk/blend_position", move_input)
@@ -136,93 +143,122 @@ func _dash(direction):
 func dig_process(delta):
 	
 	var player_pos = position
-	var mouse_distance = get_global_mouse_position().distance_to(player_pos)
-	var dig_pos = get_global_mouse_position()	
-	var closest_hole = null
-	var closest_distance = 0
-	placeable = true
+	var dig_pos = get_global_mouse_position()
+	var mouse_distance = dig_pos.distance_to(player_pos)
 	cursor_instance.global_position = dig_pos
-	cursor_instance.get_node("Sprite2D").frame = 1
-	#Check if cursor is in valid zone to place hole
-	if mouse_distance < dig_radius:
-		cursor_instance.get_node("Sprite2D").frame = 0
-		# Make the cursor invisible if digging has begun
-
-		if !dig_timer.is_stopped():
-			cursor_instance.visible = false
-		# Save target location when player left clicks
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and dig_timer.is_stopped():
+	
+	var holes = get_tree().get_nodes_in_group("holes")
+	
+	# Determine target position before looping through holes
+	if mouse_distance < dig_radius and dig_timer.is_stopped() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var can_place_hole = true
+		for hole in holes:
+			if dig_pos.distance_to(hole.global_position) < 10:
+				can_place_hole = false
+				break
+		if can_place_hole:
 			target_pos = dig_pos
 			
-		move_to_target(delta)
-				
-		var holes = get_tree().get_nodes_in_group("holes")
-		# Find the closest hole
-		for hole in holes: 
-			var distance_to_hole = dig_pos.distance_to(hole.global_position)
-			if distance_to_hole < 10:
-				if closest_hole == null or distance_to_hole < closest_distance:
-					closest_hole = hole
-					closest_distance = distance_to_hole
-			
-		if !dig_timer.is_stopped():
-			cursor_instance.visible = false
-				
-		for hole in holes:
-			if hole == closest_hole:
-				#Apply outline shader to nearest hole
-				hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 1.0)
-				print(hole)
-				if is_position_overlapping_hole(dig_pos):
-					cursor_instance.get_node("Sprite2D").frame = 1
-				#Remove hole if player right clicks	
-				if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and dig_timer.is_stopped():
-					hole_to_remove = closest_hole
-					target_pos = closest_hole.global_position
-					cursor_instance.visible = false
-			else:
-				hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 0.0)
+	move_to_target(delta)
+	
+	# Find the closest hole
+	var closest_hole = null
+	var closest_distance = INF
+	for hole in holes: 
+		var distance_to_hole = dig_pos.distance_to(hole.global_position)
+		if distance_to_hole < 10 and (closest_hole == null or distance_to_hole < closest_distance) and mouse_distance < dig_radius:
+			closest_hole = hole
+			closest_distance = distance_to_hole
+			# Apply outline shader to nearest hole
+			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 1.0)
+		else:
+			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 0.0)
+	
+	# If closest hole exists or mouse is outside dig radius, cursor frame should be 1
+	if closest_hole != null or mouse_distance >= dig_radius:
+		cursor_instance.get_node("Sprite2D").frame = 1
 	else:
-		move_to_target(delta)
+		cursor_instance.get_node("Sprite2D").frame = 0
+	
+	# Cursor visibility depends on dig_timer status
+	cursor_instance.visible = dig_timer.is_stopped()
+	
+	#Remove hole if player right clicks on a hole and is within dig radius	
+	if closest_hole != null and mouse_distance < dig_radius and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and dig_timer.is_stopped():
+		hole_to_remove = closest_hole
+		target_pos = closest_hole.global_position
+func plant_process(delta, item_name):	
+	var player_pos = position
+	var plant_pos = get_global_mouse_position()
+	var mouse_distance = plant_pos.distance_to(player_pos)
+	var plant_target_pos = Vector2.ZERO
+	var plant_instance = null
+	cursor_instance.global_position = plant_pos
+	
+	var holes = get_tree().get_nodes_in_group("holes")
+	# Find the closest holeada
+	var closest_hole = null
+	var closest_distance = INF
+	for hole in holes: 
+		var distance_to_hole = plant_pos.distance_to(hole.global_position)
+		if distance_to_hole < 10 and (closest_hole == null or distance_to_hole < closest_distance) and mouse_distance < plant_radius:
+			closest_hole = hole
+			closest_distance = distance_to_hole
+			# Apply outline shader to nearest hole
+			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 1.0)
+		else:
+			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 0.0)
+		#Remove highlighted hole when left click
+	if closest_hole != null and mouse_distance < plant_radius and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and dig_timer.is_stopped():
+		hole_to_remove = closest_hole
+		plant_target_pos = closest_hole.global_position
+		emit_signal("player_planting", equipped_item_name)
+		var plant_name = item_name.split(" ")[0]
+		var plant_name_path = "res://Objects/Farming/" + plant_name + " plant.tscn"
+		plant_instance = load(plant_name_path)
+		plant_instance = load(plant_name_path).instantiate()
+		plant_instance.position = plant_target_pos
+		get_tree().get_root().add_child(plant_instance)
+		#Remove hole
+		hole_to_remove.queue_free()
+		#Instantiate plant
+		
+	cursor_instance.visible = false
 	
 func move_to_target(delta):
 	# If a target position has been set
-	if target_pos != Vector2.ZERO:
-		cursor_instance.visible = false
-		# Calculate direction to target
-		var dir_to_target = (target_pos - global_position).normalized()
-		# Move towards target
-		velocity = dir_to_target * move_speed * delta
-		update_animation_parameters(dir_to_target)
-		move_and_slide()
-		# If player is close enough to target
-		if (global_position + Vector2(0, 16)).distance_to(target_pos) < 18:
-			if hole_to_remove != null:
-				#Remove the hole
-				hole_to_remove.queue_free()
-				hole_to_remove = null
-				#Reset target_pos
-				target_pos = Vector2.ZERO
-				dig_timer.start()
-			else:
-				# Instantiate hole
-				var hole_instance = hole.instantiate()
-				hole_instance.position = target_pos
-				hole_instance.get_node("Sprite2D").material = hole_instance.get_node("Sprite2D").material.duplicate()
-				get_tree().get_root().add_child(hole_instance)
-				hole_instance.get_node("CPUParticles2D").emitting = true
+	if target_pos != Vector2.ZERO and dig_timer.is_stopped():
+		# Check if any movement keys are pressed
+		if Input.is_action_pressed("up") or Input.is_action_pressed("down") or Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+			# Interrupt move to target if movement key pressed
+			target_pos = Vector2.ZERO
+		else:
+			cursor_instance.visible = false
+			# Calculate direction to target
+			var dir_to_target = (target_pos - global_position).normalized()
+			# Move towards target
+			velocity = dir_to_target * move_speed * delta
+			update_animation_parameters(dir_to_target)
+			move_and_slide()
+			# If player is close enough to target
+			if (global_position + Vector2(0, 16)).distance_to(target_pos) < 18:
+				if hole_to_remove != null:
+					#Remove the hole
+					hole_to_remove.queue_free()
+					hole_to_remove = null
+				else:
+					# Instantiate hole
+					var hole_instance = hole.instantiate()
+					hole_instance.position = target_pos
+					hole_instance.get_node("Sprite2D").material = hole_instance.get_node("Sprite2D").material.duplicate()
+					get_tree().get_root().add_child(hole_instance)
+					hole_instance.get_node("CPUParticles2D").emitting = true
 				dig_timer.start()
 				# Reset target position
 				target_pos = Vector2.ZERO
-				
-func is_position_overlapping_hole(pos):
-	var holes = get_tree().get_nodes_in_group("holes")
-	for hole in holes:
-		if pos.distance_to(hole.position) < hole_radius:
-			print(true)
-			return true
-	return false				
+		
 func projectile_process(delta):
+	
 	var shot_direction = Vector2.ZERO
 	var mouse_pos = get_global_mouse_position().x
 	var player_pos = get_global_transform().origin.x
@@ -257,6 +293,11 @@ func projectile_process(delta):
 						shot_direction = closest_enemy.global_position - particle_instance.position
 						shot_direction = shot_direction.normalized()		
 		particle_instance.apply_impulse(Vector2(shot_direction * particle_speed))		
+func unequip_item():
+	equipped_item_name = ""
+	equipped_item_category = ""
+	# Any other necessary cleanup...
+
 func _exit_tree():
 	cursor_instance.queue_free()					
 		

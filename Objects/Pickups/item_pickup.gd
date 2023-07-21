@@ -33,9 +33,6 @@ func _on_area_2d_body_exited(body):
 
 func _process(_delta):
 	player_global_pos = player.global_position
-	if picking_up:
-		#emit particles
-		pass
 
 func _physics_process(delta):
 	if in_range:

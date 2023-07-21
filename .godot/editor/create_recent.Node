@@ -1,10 +1,10 @@
-CPUParticles2D
-Sprite2D
-TextureRect
-Control
 Timer
 CollisionShape2D
+Sprite2D
 RigidBody2D
+CPUParticles2D
+TextureRect
+Control
 Area2D
 Label
 StaticBody2D

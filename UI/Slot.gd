@@ -38,11 +38,9 @@ func refresh_style():
 		if item == null:
 			selected_empty_style.texture = selected_empty_tex
 			set('theme_override_styles/panel', selected_empty_style)
-			print("change my damn style")
 		else:
 			selected_style.texture = selected_tex
 			set('theme_override_styles/panel', selected_style)
-			print("change my damn style")
 		
 	elif item == null:
 		default_style.texture = default_tex
@@ -84,3 +82,5 @@ func initialize_item(item_name, item_quantity):
 		item.set_item(item_name, item_quantity)
 
 	refresh_style()
+func initialize_item_category(item_category):
+	item.set_item_category(item_category)

@@ -5,7 +5,7 @@ const MINUTES_PER_DAY = 1440
 const MINUTES_PER_HOUR = 60
 const INGAME_TO_REAL_MINUTE_DURATION = (2 * PI) / MINUTES_PER_DAY
 
-@export var gradient : GradientTexture2D
+@export var gradient : GradientTexture2D = load("res://Art/UI/daynight_gradient.tres")
 @export var INGAME_SPEED = 1.0
 @export var INITIAL_HOUR = 5:
 	set(h):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://swp8frhkmxh1"]
 
-[ext_resource type="Texture2D" uid="uid://b83jdvuc00w2p" path="res://Art/Objects/hole.png" id="1_6ovwd"]
+[ext_resource type="Texture2D" uid="uid://dcdd0p2gf38ty" path="res://Art/Objects/hole.png" id="1_6ovwd"]
 [ext_resource type="Script" path="res://Objects/Farming/hole.gd" id="1_c0p4r"]
 [ext_resource type="Shader" path="res://Objects/Farming/highlight_item.gdshader" id="2_h2jj1"]
 

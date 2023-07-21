@@ -11,7 +11,7 @@ height = 12.0
 radius = 7.28011
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqiop"]
-radius = 4.0
+radius = 6.0
 
 [node name="carrot seed" type="RigidBody2D"]
 z_index = 1
@@ -37,9 +37,10 @@ position = Vector2(-0.5, 0)
 shape = SubResource("CircleShape2D_qxxlc")
 
 [node name="Pickup_zone" type="Area2D" parent="."]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_zone"]
-position = Vector2(0, 4)
+position = Vector2(-1, 4)
 shape = SubResource("CircleShape2D_kqiop")
 
 [node name="item_pickup" parent="." instance=ExtResource("2_tnl03")]
