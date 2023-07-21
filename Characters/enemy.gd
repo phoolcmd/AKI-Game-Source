@@ -44,7 +44,7 @@ func fire():
 func _on_fire_timer_timeout():
 	fire() # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	if particle_instance != null:
 		var direction = player_global_pos - particle_instance.position
 		direction = direction.normalized()
@@ -104,5 +104,6 @@ func update_animation():
 	$AnimationPlayer.play(current_animation)
 
 
-func _on_sight_zone_body_entered(body):
+
+func _on_sight_zone_body_entered(_body):
 	pass # Replace with function body.

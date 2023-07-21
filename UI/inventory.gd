@@ -57,7 +57,7 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 ## Called whenever the player provides any input.
 ##
 ## This function continuously updates the holding item's position to follow the mouse, if there is a holding item.
-func _input(event):
+func _input(_event):
 	if find_parent("UserInterface").holding_item:
 		find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 		

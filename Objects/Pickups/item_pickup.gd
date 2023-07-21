@@ -31,7 +31,7 @@ func _on_area_2d_body_exited(body):
 		sprite.frame = 0
 		in_range = false
 
-func _process(delta):
+func _process(_delta):
 	player_global_pos = player.global_position
 	if picking_up:
 		#emit particles
@@ -53,7 +53,7 @@ func _physics_process(delta):
 		
 
 
-func _on_pickup_zone_body_entered(body):
+func _on_pickup_zone_body_entered(_body):
 	if picking_up:
 		PlayerInventory.add_item(item_name, 1) # Add item to inventory
 		rigid_body.queue_free()

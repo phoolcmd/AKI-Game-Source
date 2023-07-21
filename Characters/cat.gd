@@ -26,8 +26,8 @@ func _ready():
 func _physics_process(delta):
 	if(current_state == CAT_STATE.WALK):
 		velocity = move_direction * move_speed
-		var collision = move_and_collide(velocity * delta)
-		if collision:
+		var collide = move_and_collide(velocity * delta)
+		if collide:
 			select_new_direction()
 			
 func select_random_texture():

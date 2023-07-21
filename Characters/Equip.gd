@@ -1,7 +1,7 @@
-@tool
 extends Sprite2D
-
-@export var equipped_item : EquippableItem :
-	set(next_equipped):
-		equipped_item = next_equipped
-		self.texture = equipped_item.texture 
+	
+func _on_player_shelby_item_equipped(item_name):
+	if item_name == "wand blue":
+		var new_texture = load("res://Art/Items/item_wand blue.png")
+		texture = new_texture
+		visible = true
