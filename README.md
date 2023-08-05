@@ -11,11 +11,8 @@ The goal of my game will be to create a thriving, biodiverse haven. Players will
 
 
 # Current Developments
-The game is currently in the early stages of development, and many features are being implemented. Currently, the main focus is on developing an intuitive inventory system to manage resources and spells. This system will play a vital role in managing resources collected from foraging and tracking the player's progress in spell upgrades.
+The game is currently in the early stages of development, and many features are being implemented. Currently, the main focus is on developing a robust farming system as well a basic animal ai system.
 
-In addition, combat mechanics are also being fleshed out to provide engaging encounters and challenges. The introduction of items, from consumables to powerful artifacts, is another feature on the horizon, designed to diversify the gameplay further and provide more strategic depth.
-
-As Astral Kitten Island grows and evolves, it seeks to provide an unforgettable mix of exploration, puzzle-solving, and role-playing elements with its unique blend of magical and feline-themed charm. Stay tuned for exciting updates and milestones in the journey of its development!
 
 # Running the Game
 To run Astral Kitten Island, follow these steps:
