@@ -11,7 +11,7 @@ The goal of my game will be to create a thriving, biodiverse haven. Players will
 
 
 # Current Developments
-The game is currently in the early stages of development, and many features are being implemented. Currently, the main focus is on developing a robust farming system as well a basic animal ai system.
+The game is currently in the early stages of development, and many features are being implemented. Currently, the main focus is on developing a robust farming system as well as a basic animal ai system.
 
 
 # Running the Game
