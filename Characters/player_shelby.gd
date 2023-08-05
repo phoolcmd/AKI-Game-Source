@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
+# Signals
 signal player_moving_signal
 signal player_stopped_signal
 signal player_firing_signal
@@ -9,6 +10,7 @@ signal item_equipped (item_name)
 signal item_held (item_category)
 signal player_planting(item_name)
 
+# Exported Variables
 @export var move_speed : float = 50.0
 @export var dash_speed : float = 250.0
 @export var dash_duration: float  = 0.1
@@ -18,33 +20,38 @@ signal player_planting(item_name)
 @export var particle_speed = 500
 @export var shield_force = 1000.0
 
+# Preloaded Assets
 @export var particle = preload("res://particle.tscn")
 @export var hole = preload("res://Objects/Farming/hole.tscn")
 @export var cursor = preload("res://UI/placement_cursor.tscn")
 
+# Node References
 @onready var animation_tree = $AnimationTree
 @onready var animation_player = $AnimationPlayer
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var dash = $Dash
+@onready var trail1 = $trails
+@onready var trail2 = $trails2
 
-@onready var enemy = get_node("/root/Main/Level/Enemy")
-@onready var enemy_pos = enemy.position
-@onready var enemy_global_pos = enemy.global_position
+# Player's Equipment
 @onready var equipped_item_name : String = ""
 @onready var equipped_item_category : String = ""
 @onready var equipped_item = $Equip/Area2D/CollisionShape2D
 @onready var equipped_item_pos = equipped_item.global_position
 @onready var equipped_item_tex = $Equip
 
+# Other Node References
+@onready var enemy = get_node("/root/Main/Level/Enemy")
+@onready var enemy_pos = enemy.position
+@onready var enemy_global_pos = enemy.global_position
 @onready var light = get_node("/root/Main/Light")
 @onready var ui = get_node("/root/Main/Level/UserInterface")
-
 @onready var dig_timer = $DigTimer
+
+# Variables
 var canDash = true
 var dashing
 var inside_inv = false
-
-
 var particle_instance = null
 var cursor_instance = null
 var enemy_position = Vector2.ZERO
@@ -53,11 +60,12 @@ var hole_to_remove = null
 var hole_radius = 10
 var placeable = true
 
-
 func _ready():
+	# Initialize starting animation and cursor
 	update_animation_parameters(starting_direction)
 	cursor_instance = cursor.instantiate()
 	add_child(cursor_instance)
+
 
 func _physics_process(delta):
 	if enemy != null:
@@ -111,6 +119,8 @@ func pick_new_state():
 	if(velocity != Vector2.ZERO):
 		state_machine.travel("Walk")
 		emit_signal("player_moving_signal")
+		trail1.emitting = true
+		trail2.emitting = true
 		
 #	elif(Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)):
 #		animation_tree["parameters/conditions/attack"] = true
@@ -118,6 +128,8 @@ func pick_new_state():
 	else:
 		emit_signal("player_stopped_signal")
 		state_machine.travel("Idle")
+		trail1.emitting = false
+		trail2.emitting = false
 		
 	if(Input.is_action_just_pressed("interact")):
 		animation_tree["parameters/conditions/swing"] = true
@@ -152,15 +164,20 @@ func dig_process(delta):
 	# Determine target position before looping through holes
 	if mouse_distance < dig_radius and dig_timer.is_stopped() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var can_place_hole = true
+		#Calculate mouse distance to nearest hole
 		for hole in holes:
+			#If distance is less than 10 you cannot place a hole
 			if dig_pos.distance_to(hole.global_position) < 10:
 				can_place_hole = false
 				break
+		#Calculate mouse distance to nearest node in group named "items"
+		for group in get_groups():
+			if group == "items":
+				var node = get_node("")
 		if can_place_hole:
 			target_pos = dig_pos
 			
 	move_to_target(delta)
-	
 	# Find the closest hole
 	var closest_hole = null
 	var closest_distance = INF

@@ -1,11 +1,13 @@
-Timer
+AnimationTree
 CollisionShape2D
+Area2D
+Timer
+AnimationPlayer
+TextureRect
 Sprite2D
 RigidBody2D
 CPUParticles2D
-TextureRect
 Control
-Area2D
 Label
 StaticBody2D
 CollisionPolygon2D
@@ -29,4 +31,3 @@ CanvasGroup
 ColorRect
 WorldEnvironment
 Tree
-Camera2D

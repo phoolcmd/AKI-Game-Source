@@ -6,7 +6,7 @@ signal item_quantity_updated
 const SlotClass = preload("res://UI/Slot.gd")
 const ItemClass = preload("res://Items/Item.gd")
 
-const NUM_INVENTORY_SLOTS = 9
+const NUM_INVENTORY_SLOTS = 15
 const NUM_HOTBAR_SLOTS = 6
 
 @onready var player_node : Player = get_tree().get_first_node_in_group("player")

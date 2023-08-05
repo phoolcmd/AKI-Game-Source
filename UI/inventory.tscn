@@ -1,18 +1,387 @@
-[gd_scene load_steps=7 format=3 uid="uid://blk2aqso183ml"]
+[gd_scene load_steps=25 format=3 uid="uid://blk2aqso183ml"]
 
 [ext_resource type="Script" path="res://UI/inventory.gd" id="1_l6nak"]
 [ext_resource type="Texture2D" uid="uid://lqufgtfi3mkq" path="res://Art/UI/inventory_panel.png" id="1_ygi2g"]
+[ext_resource type="Texture2D" uid="uid://dro5jo7uydrlj" path="res://Art/UI/inventory_tab1.png" id="2_sqduq"]
 [ext_resource type="Texture2D" uid="uid://0dtxi0emrxql" path="res://Art/UI/hotbar_slot.png" id="2_unlhv"]
 [ext_resource type="Script" path="res://UI/Slot.gd" id="3_mo55t"]
+[ext_resource type="Texture2D" uid="uid://cci0vldnil8kk" path="res://Art/UI/inventory_tab2.png" id="3_msppk"]
+[ext_resource type="Texture2D" uid="uid://oy5ul0n4fprh" path="res://Art/UI/inventory_tab3.png" id="4_e3rbp"]
+[ext_resource type="Script" path="res://UI/inventory_tab_queue.gd" id="8_5853x"]
+
+[sub_resource type="Gradient" id="Gradient_ai6vq"]
+colors = PackedColorArray(0, 0, 0, 0.313726, 0, 0, 0, 0.313726)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u5jia"]
+gradient = SubResource("Gradient_ai6vq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb3m7"]
+size = Vector2(14.5, 15)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6w04j"]
 texture = ExtResource("2_unlhv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmgu2"]
-size = Vector2(78.6667, 70)
+size = Vector2(118, 74)
+
+[sub_resource type="Animation" id="Animation_g8xqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings Tab:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 30)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menu Tab:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 49)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Inventory Tab/InventoryArea/CollisionShape2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Settings Tab/SettingsArea/CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Menu Tab/MenuArea/CollisionShape2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0jr3a"]
+resource_name = "inv_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(118, 11), Vector2(114, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Inventory Tab/InventoryArea/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.98, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h5722"]
+resource_name = "inv_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 11)]
+}
+
+[sub_resource type="Animation" id="Animation_584sy"]
+resource_name = "inv_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Inventory Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(114, 11), Vector2(118, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Inventory Tab/InventoryArea/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.98, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_mb42o"]
+resource_name = "menu_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(118, 49), Vector2(114, 49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu Tab/MenuArea/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.8, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iym0o"]
+resource_name = "menu_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 49)]
+}
+
+[sub_resource type="Animation" id="Animation_evf4i"]
+resource_name = "menu_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(114, 49), Vector2(118, 49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu Tab/MenuArea/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.8, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_015bl"]
+resource_name = "settings_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(118, 30), Vector2(114, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings Tab/SettingsArea/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.8, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nqk6v"]
+resource_name = "settings_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 30)]
+}
+
+[sub_resource type="Animation" id="Animation_e653l"]
+resource_name = "settings_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings Tab:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(114, 30), Vector2(118, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings Tab/SettingsArea/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.8, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_25361"]
+_data = {
+"RESET": SubResource("Animation_g8xqx"),
+"inv_close": SubResource("Animation_0jr3a"),
+"inv_idle": SubResource("Animation_h5722"),
+"inv_open": SubResource("Animation_584sy"),
+"menu_close": SubResource("Animation_mb42o"),
+"menu_idle": SubResource("Animation_iym0o"),
+"menu_open": SubResource("Animation_evf4i"),
+"settings_close": SubResource("Animation_015bl"),
+"settings_idle": SubResource("Animation_nqk6v"),
+"settings_open": SubResource("Animation_e653l")
+}
 
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_l6nak")
+
+[node name="Screen Fade" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -309.0
+offset_right = -194.0
+offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_u5jia")
+
+[node name="Inventory Tab" type="TextureRect" parent="."]
+offset_left = 114.0
+offset_top = 11.0
+offset_right = 154.0
+offset_bottom = 51.0
+texture = ExtResource("2_sqduq")
+stretch_mode = 2
+
+[node name="InventoryArea" type="Area2D" parent="Inventory Tab"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory Tab/InventoryArea"]
+position = Vector2(9, 8)
+shape = SubResource("RectangleShape2D_cb3m7")
+
+[node name="Settings Tab" type="TextureRect" parent="."]
+offset_left = 114.0
+offset_top = 30.0
+offset_right = 154.0
+offset_bottom = 70.0
+texture = ExtResource("3_msppk")
+stretch_mode = 2
+
+[node name="SettingsArea" type="Area2D" parent="Settings Tab"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Settings Tab/SettingsArea"]
+position = Vector2(10, 8)
+shape = SubResource("RectangleShape2D_cb3m7")
+
+[node name="Menu Tab" type="TextureRect" parent="."]
+offset_left = 114.0
+offset_top = 49.0
+offset_right = 154.0
+offset_bottom = 89.0
+texture = ExtResource("4_e3rbp")
+stretch_mode = 2
+
+[node name="MenuArea" type="Area2D" parent="Menu Tab"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu Tab/MenuArea"]
+position = Vector2(10, 8)
+shape = SubResource("RectangleShape2D_cb3m7")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_top = -5.0
@@ -23,13 +392,13 @@ expand_mode = 3
 stretch_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
-offset_left = 16.0
-offset_top = 13.0
-offset_right = 76.0
-offset_bottom = 69.0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 99.0
+offset_bottom = 72.0
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 3
-columns = 3
+columns = 5
 
 [node name="Slot1" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(12, 12)
@@ -85,8 +454,65 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
+[node name="Slot10" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
+script = ExtResource("3_mo55t")
+
+[node name="Slot11" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
+script = ExtResource("3_mo55t")
+
+[node name="Slot12" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
+script = ExtResource("3_mo55t")
+
+[node name="Slot13" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
+script = ExtResource("3_mo55t")
+
+[node name="Slot14" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
+script = ExtResource("3_mo55t")
+
+[node name="Slot15" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
+script = ExtResource("3_mo55t")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(39.3333, 35)
+position = Vector2(59, 37)
 shape = SubResource("RectangleShape2D_qmgu2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_default_blend_time = 0.5
+speed_scale = 15.0
+libraries = {
+"": SubResource("AnimationLibrary_25361")
+}
+script = ExtResource("8_5853x")
+
+[node name="inventory_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="input_event" from="Inventory Tab/InventoryArea" to="." method="_on_inventory_area_input_event"]
+[connection signal="mouse_entered" from="Inventory Tab/InventoryArea" to="." method="_on_inventory_area_mouse_entered"]
+[connection signal="mouse_exited" from="Inventory Tab/InventoryArea" to="." method="_on_inventory_area_mouse_exited"]
+[connection signal="input_event" from="Settings Tab/SettingsArea" to="." method="_on_settings_area_input_event"]
+[connection signal="mouse_entered" from="Settings Tab/SettingsArea" to="." method="_on_settings_area_mouse_entered"]
+[connection signal="mouse_exited" from="Settings Tab/SettingsArea" to="." method="_on_settings_area_mouse_exited"]
+[connection signal="input_event" from="Menu Tab/MenuArea" to="." method="_on_menu_area_input_event"]
+[connection signal="mouse_entered" from="Menu Tab/MenuArea" to="." method="_on_menu_area_mouse_entered"]
+[connection signal="mouse_exited" from="Menu Tab/MenuArea" to="." method="_on_menu_area_mouse_exited"]

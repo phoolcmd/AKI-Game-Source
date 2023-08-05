@@ -10,7 +10,7 @@ class_name Inventory
 const SlotClass = preload("res://UI/Slot.gd")
 #@onready var player = get_node("res://Characters/player.tscn")
 @onready var inventory_slots = $GridContainer
-
+@onready var animation_player = $AnimationPlayer
 
 ## Called when the node enters the scene tree, used for initialization.
 ##
@@ -97,4 +97,52 @@ func left_click_not_holding(slot: SlotClass):
 	find_parent("UserInterface").holding_item = slot.item
 	slot.pickFromSlot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
+
+# All tab animations will now use this function to play their animations.
+func _on_inventory_area_mouse_entered():
+	play_animation("inv_open")
+	
+
+func _on_inventory_area_input_event(viewport, event, shape_idx):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		inventory_slots.visible = true
+
+func _on_inventory_area_mouse_exited():
+	play_animation("inv_close")
+	play_animation("inv_idle")
+
+func _on_settings_area_mouse_entered():
+	play_animation("settings_open")
+	
+		
+func _on_settings_area_input_event(viewport, event, shape_idx):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		inventory_slots.visible = false
+	
+func _on_settings_area_mouse_exited():
+	play_animation("settings_close")
+	play_animation("settings_idle")
+
+func _on_menu_area_mouse_entered():
+	play_animation("menu_open")
+
+func _on_menu_area_input_event(viewport, event, shape_idx):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		inventory_slots.visible = false
+		
+func _on_menu_area_mouse_exited():
+	play_animation("menu_close")
+	play_animation("menu_idle")
+
+var current_anim : String = ""
+
+func play_animation(anim_name):
+	# If no animation is playing or if the animation to play is not the same as the current one.
+	if not animation_player.is_playing() or current_anim != anim_name:
+		current_anim = anim_name
+		animation_player.play(anim_name)
+
+
+
+
 

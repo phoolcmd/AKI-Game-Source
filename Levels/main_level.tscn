@@ -1,14 +1,11 @@
-[gd_scene load_steps=53 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=50 format=3 uid="uid://hsfktv61dcg1"]
 
-[ext_resource type="PackedScene" uid="uid://cwvmd7266ai1m" path="res://Characters/player.tscn" id="1_56tw2"]
+[ext_resource type="PackedScene" uid="uid://gpj6jc1rcg2v" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
 [ext_resource type="Script" path="res://UI/UserInterface.gd" id="2_136i6"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
 [ext_resource type="Shader" path="res://Levels/vignette.gdshader" id="3_c4whj"]
 [ext_resource type="Script" path="res://Levels/ColorRect.gd" id="4_t314p"]
-[ext_resource type="PackedScene" uid="uid://chxb8sbr2qafr" path="res://UI/health_bar.tscn" id="4_xoyen"]
-[ext_resource type="PackedScene" uid="uid://bqs8vtp4n1bqu" path="res://UI/mana_bar.tscn" id="5_5h4in"]
-[ext_resource type="PackedScene" uid="uid://rb728f2u675c" path="res://UI/stamina_bar.tscn" id="6_e027x"]
 [ext_resource type="Texture2D" uid="uid://ryntavigrm7y" path="res://Art/Tilesets/ground tiles/tree.png" id="6_qjvk2"]
 [ext_resource type="Texture2D" uid="uid://n3fro2fnv2aq" path="res://Art/Tilesets/ground tiles/trees-spritesheet.png" id="7_eueap"]
 [ext_resource type="Texture2D" uid="uid://djq40u0e1sd0n" path="res://Art/Tilesets/ground tiles/grass_texture.png" id="7_l674v"]
@@ -40,11 +37,19 @@ shader_parameter/SOFTNESS = 1.0
 
 [sub_resource type="Environment" id="Environment_rlh73"]
 background_mode = 3
+ssil_radius = 10.17
+ssil_intensity = 1.7
 glow_enabled = true
 glow_normalized = true
-glow_blend_mode = 0
-glow_hdr_threshold = 0.57
-glow_hdr_scale = 4.0
+glow_strength = 0.9
+glow_bloom = 0.1
+volumetric_fog_density = 0.2621
+volumetric_fog_emission_energy = 260.51
+volumetric_fog_gi_inject = 1.28
+volumetric_fog_length = 304.94
+volumetric_fog_ambient_inject = 2.45
+adjustment_enabled = true
+adjustment_contrast = 1.12
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mygke"]
 texture = ExtResource("6_qjvk2")
@@ -976,33 +981,21 @@ scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 script = ExtResource("2_136i6")
 
+[node name="Inventory" parent="Level/UserInterface" instance=ExtResource("2_35184")]
+visible = false
+position = Vector2(143.333, 91.3333)
+
+[node name="Hotbar" parent="Level/UserInterface" instance=ExtResource("7_wat0t")]
+position = Vector2(145.333, 205.333)
+rotation = -0.000683077
+scale = Vector2(1, 1)
+
 [node name="DayNightCycleUI" parent="Level/UserInterface" instance=ExtResource("10_bsw5w")]
 offset_left = 8.0
 offset_top = 7.33333
 offset_right = 8.0
 offset_bottom = 7.33337
 metadata/_edit_use_anchors_ = true
-
-[node name="Health Bar" parent="Level/UserInterface" instance=ExtResource("4_xoyen")]
-position = Vector2(540, 285)
-scale = Vector2(1.5, 1.5)
-
-[node name="Mana Bar" parent="Level/UserInterface" instance=ExtResource("5_5h4in")]
-position = Vector2(566, 285)
-scale = Vector2(1.5, 1.5)
-
-[node name="Stamina Bar" parent="Level/UserInterface" instance=ExtResource("6_e027x")]
-position = Vector2(593, 266)
-scale = Vector2(1.5, 1.5)
-
-[node name="Inventory" parent="Level/UserInterface" instance=ExtResource("2_35184")]
-visible = false
-position = Vector2(24.6667, 91.3333)
-
-[node name="Hotbar" parent="Level/UserInterface" instance=ExtResource("7_wat0t")]
-position = Vector2(145.333, 205.333)
-rotation = -0.000683077
-scale = Vector2(1, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Level/UserInterface"]
 visible = false
@@ -1023,7 +1016,7 @@ color = Color(0.329412, 0.356863, 0.745098, 1)
 script = ExtResource("10_vhikg")
 gradient = ExtResource("12_fea1l")
 INGAME_SPEED = 5.0
-INITIAL_HOUR = 8
+INITIAL_HOUR = 12
 
 [node name="pickups" type="CanvasGroup" parent="Level"]
 y_sort_enabled = true
@@ -1202,12 +1195,9 @@ z_index = 1
 position = Vector2(-139, -241)
 
 [node name="Player_Shelby" parent="Level" instance=ExtResource("1_56tw2")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(294, 238)
+position = Vector2(304, 249)
 
 [node name="Camera2D" type="Camera2D" parent="Level/Player_Shelby"]
-position = Vector2(9, 1)
 ignore_rotation = false
 limit_left = -432
 limit_top = -129
@@ -1218,6 +1208,7 @@ position_smoothing_speed = 2.0
 editor_draw_limits = true
 
 [node name="water" type="StaticBody2D" parent="Level"]
+visible = false
 position = Vector2(337, 120.25)
 collision_layer = 2
 

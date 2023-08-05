@@ -18,11 +18,7 @@ shader = ExtResource("1_x3jdy")
 [node name="DayNightCycleUI" type="Control"]
 material = SubResource("ShaderMaterial_qhbnj")
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_altij")
 
 [node name="TextureRect" type="TextureRect" parent="."]
