@@ -1,5 +1,5 @@
 # About (name undecided)
-This game is a unique, relaxing 2D farming and animal relationship game currently under development. It merges elements of botany, animal husbandry, and creativity into an immersive sanctuary setting.
+This is a unique, relaxing 2D farming and animal relationship game currently under development. It merges elements of botany, animal husbandry, and creativity into an immersive sanctuary setting.
 
 The vision for this game sees players dedicating their time to growing an array of different plants, each with their unique requirements and growth cycles. As the sanctuary expands, the player's botanical skills will allow them to cultivate increasingly exotic and rare varieties, drawing in an array of beautiful and unique animals.
 
