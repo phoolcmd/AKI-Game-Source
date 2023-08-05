@@ -1,11 +1,10 @@
 # About (name undecided)
-AKI is a unique, relaxing 2D simulation game currently under development. It merges elements of botany, animal husbandry, and creativity into an immersive sanctuary setting.
+This game is a unique, relaxing 2D simulation game currently under development. It merges elements of botany, animal husbandry, and creativity into an immersive sanctuary setting.
 
 The vision for this game sees players dedicating their time to growing an array of different plants, each with their unique requirements and growth cycles. As the sanctuary expands, the player's botanical skills will allow them to cultivate increasingly exotic and rare varieties, drawing in an array of beautiful and unique animals.
 
-The goal of Verdant Sanctuary Island is to create a thriving, biodiverse haven. Players will build and decorate bespoke structures and homes, each designed to attract different animal species. As more creatures make the sanctuary their home, players will unlock further customisation options, allowing them to tailor the look and feel of their refuge to their personal style.
+The goal of my game will be to create a thriving, biodiverse haven. Players will build and decorate bespoke structures and homes, each designed to attract different animal species. As more creatures make the sanctuary their home, players will unlock further customisation options, allowing them to tailor the look and feel of their refuge to their personal style.
 
-The game will feature an expansive 2D world filled with different habitats, hidden paths, and secret gardens. Every corner turned will bring new botanical and zoological surprises, making each play session a peaceful adventure in nurturing and discovery. As the player's sanctuary grows, the satisfaction of cultivating a bustling, harmonious ecosystem will become the rewarding heart of the experience.
 
 ![image](https://github.com/phoolcmd/AKI-Game-Source/assets/121768237/e891d53a-7701-4713-b37a-38ec1b1d9328)
 
