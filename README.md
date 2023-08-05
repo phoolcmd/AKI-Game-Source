@@ -1,11 +1,11 @@
-# Astral Kitten Island (Work in Progress)
-Astral Kitten Island is an ambitious 2D adventure game project under development. It plans to weave together elements of mystery, magic, and felines in a captivating island setting.
+# About (name undecided)
+AKI is a unique, relaxing 2D simulation game currently under development. It merges elements of botany, animal husbandry, and creativity into an immersive sanctuary setting.
 
-In the vision for this game, players will engage in foraging for resources, vital for upgrading their arsenal of magical spells. As these spells become more potent, they will open the pathway to new areas of the island, inviting players to delve deeper into the game's enigmas.
+The vision for this game sees players dedicating their time to growing an array of different plants, each with their unique requirements and growth cycles. As the sanctuary expands, the player's botanical skills will allow them to cultivate increasingly exotic and rare varieties, drawing in an array of beautiful and unique animals.
 
-The heart of Astral Kitten Island lies in a noble mission: rescuing adorable astral kittens dispersed across the island. Each rescued kitten is anticipated to enrich the gameplay by providing unique bonuses and enhancements, contributing to the player's progression.
+The goal of Verdant Sanctuary Island is to create a thriving, biodiverse haven. Players will build and decorate bespoke structures and homes, each designed to attract different animal species. As more creatures make the sanctuary their home, players will unlock further customisation options, allowing them to tailor the look and feel of their refuge to their personal style.
 
-The game will feature a sprawling, open-world 2D environment filled with diverse biomes, secret routes, and concealed treasures. With the planned mechanics, exploration will be rewarded, curiosity piqued, and every discovery will bring players one step closer to unraveling the island's secrets.
+The game will feature an expansive 2D world filled with different habitats, hidden paths, and secret gardens. Every corner turned will bring new botanical and zoological surprises, making each play session a peaceful adventure in nurturing and discovery. As the player's sanctuary grows, the satisfaction of cultivating a bustling, harmonious ecosystem will become the rewarding heart of the experience.
 
 ![image](https://github.com/phoolcmd/AKI-Game-Source/assets/121768237/e891d53a-7701-4713-b37a-38ec1b1d9328)
 
