@@ -17,6 +17,8 @@ var inventory = {
 
 var hotbar = {
 0: ["wand blue", 1],
+1: ["wand purple", 1],
+2: ["carrot seed", 99],
 
 }
 
@@ -56,35 +58,35 @@ func update_slot_visual(slot_index, item_name, new_quantity):
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass, is_hotbar: bool = false):
 	if is_hotbar:
 		hotbar[slot.slot_index] = [item.item_name, item.item_quantity]
-		print("----------HOTBAR----------")
+		print("res://Characters/PlayerInventory.gd\n----------HOTBAR----------")
 		print("********Item Added to Empty Slot********")
 		print(hotbar)
 	else:
 		inventory[slot.slot_index] = [item.item_name, item.item_quantity]
-		print("----------INVENTORY----------")
+		print("res://Characters/PlayerInventory.gd\n----------INVENTORY----------")
 		print("********Item Added to Empty Slot********")
 		print(inventory)
 func remove_item(slot: SlotClass, is_hotbar: bool = false):
 	if is_hotbar:
 		hotbar.erase(slot.slot_index)
-		print("----------HOTBAR----------")
+		print("res://Characters/PlayerInventory.gd\n----------HOTBAR----------")
 		print("********Item REMOVED from Slot********")
 		print("is_hotbar = " + str(is_hotbar))
 		print(hotbar)
 	else:
 		inventory.erase(slot.slot_index)
-		print("----------INVENTORY----------")
+		print("res://Characters/PlayerInventory.gd\n----------INVENTORY----------")
 		print("********Item REMOVED from Slot********")
 		print("is_hotbar = " + str(is_hotbar))
 		print(inventory)
 func add_item_quantity(slot: SlotClass, quantity_to_add: int, is_hotbar: bool = false):
 	if is_hotbar:
 		hotbar[slot.slot_index][1] += quantity_to_add
-		print("----------HOTBAR----------")
+		print("res://Characters/PlayerInventory.gd\n----------HOTBAR----------")
 		print("********Item ADDED Quantity********")
 		print(hotbar)
 	else:
-		print("----------INVENTORY----------")
+		print("res://Characters/PlayerInventory.gd\n----------INVENTORY----------")
 		print("********Item ADDED Quantity********")
 		print(hotbar)
 		inventory[slot.slot_index][1] += quantity_to_add
@@ -113,7 +115,7 @@ func decrease_item_quantity(slot_index, quantity=1):
 			emit_signal("item_quantity_updated")
 			
 func _on_player_planting(item_name):
-	print("Planting: ", item_name)  # Print when the function is called
+	print("res://Characters/PlayerInventory.gd : Planting: ", item_name)  # Print when the function is called
 	if hotbar.has(active_item_slot) and hotbar[active_item_slot][0] == item_name:
 		decrease_item_quantity(active_item_slot, 1)
 		if hotbar.has(active_item_slot):

@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var rigid_body = get_parent()
+@onready var plant = get_parent()
 @onready var player = get_node("/root/Main/Level/Player_Shelby")
 @onready var player_pos = player.position
 @onready var player_global_pos = player.global_position
-@onready var sprite = rigid_body.get_node("Sprite2D")
+@onready var sprite = plant.get_node("Sprite2D")
 
 
 var in_range = false
@@ -18,17 +18,17 @@ var acceleration = 50
 func _ready():
 	var regex = RegEx.new()
 	regex.compile("\\d+")
-	item_name = regex.sub(rigid_body.name, "", false)
+	item_name = regex.sub(plant.name, "", false)
 	#print(item_name)
 
 func _on_area_2d_body_entered(body):
 	if body == player:
-		sprite.frame = 1
+		sprite.material.set_shader_parameter("line_scale", 1.0)
 		in_range = true
 
 func _on_area_2d_body_exited(body):
 	if body == player:
-		sprite.frame = 0
+		sprite.material.set_shader_parameter("line_scale", 0.0)
 		in_range = false
 
 func _process(_delta):
@@ -41,16 +41,14 @@ func _physics_process(delta):
 			$Delay.start()
 	
 	if picking_up and $Delay.is_stopped():
-		sprite.frame = 2
+		sprite.material.set_shader_parameter("line_scale", 0.0)
 		player_global_pos = player.global_position
-		direction = (player_global_pos - rigid_body.position).normalized()
+		direction = (player_global_pos - plant.position).normalized()
 		velocity = velocity.move_toward(direction * 80, acceleration * delta)
 		
-		rigid_body.move_and_collide(velocity)
+		plant.move_and_collide(velocity)
 		
-
-
 func _on_pickup_zone_body_entered(_body):
 	if picking_up:
 		PlayerInventory.add_item(item_name, 1) # Add item to inventory
-		rigid_body.queue_free()
+		plant.queue_free()

@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8i5ievdnvylp"]
+[gd_scene load_steps=3 format=3 uid="uid://dp8x6l34y83r5"]
 
-[ext_resource type="Script" path="res://Objects/Farming/plant.gd" id="1_l7tls"]
+[ext_resource type="Script" path="res://Objects/Farming/plant_logic.gd" id="1_l7tls"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_65b4p"]
 radius = 8.0

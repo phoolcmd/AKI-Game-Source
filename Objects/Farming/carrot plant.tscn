@@ -1,20 +1,87 @@
-[gd_scene load_steps=4 format=3 uid="uid://7t81ny13alos"]
+[gd_scene load_steps=10 format=3 uid="uid://bnjnkgpr2h2is"]
 
-[ext_resource type="Script" path="res://Objects/Farming/plant.gd" id="1_8l8e6"]
+[ext_resource type="Script" path="res://Objects/Farming/carrot plant.gd" id="1_mnnqo"]
+[ext_resource type="PackedScene" uid="uid://dvax3x6klqg01" path="res://Characters/grow_component.tscn" id="2_jw7f1"]
 [ext_resource type="Texture2D" uid="uid://cmbhps2sa4ugj" path="res://Art/Farming/carrot plant.png" id="2_mwsf3"]
+[ext_resource type="PackedScene" uid="uid://dgg0untbpusga" path="res://UI/water_meter.tscn" id="4_q18xr"]
+
+[sub_resource type="Shader" id="Shader_2o5qc"]
+code = "/* 
+Rainbow outline by @Farfalk and @ThePadDev, And Edit for @LURGX in 2022
+
+Apply to canvas items with transparent backgrounds.
+Check that there is sufficient transparent background space for the outline!
+
+CC0 License (but citation is welcome <3)
+All code is property of @Farfalk and @ThePadDev
+Thanks for shader and I'm a newbie with shaders 
+*/
+
+shader_type canvas_item;
+
+uniform bool rainbow  = false; //Activate the rainbow or select you color
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 0.0, 1.0); //color line
+uniform float line_scale : hint_range(0, 20) = 1.2;    // thickness of the line
+uniform float frequency : hint_range(0.0, 2.0) = 0.5;  // frequency of the rainbow
+uniform float light_offset : hint_range(0.00001, 1.0) = 0.5;   // this offsets all color channels;
+uniform float alpha : hint_range(0.0, 1.0) = 0.5;
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_scale;
+	
+	float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+	outline = min(outline, 1.0);
+	
+	vec4 animated_line_color = vec4(light_offset + sin(2.0*3.14*frequency*TIME),
+							   light_offset + sin(2.0*3.14*frequency*TIME + radians(120.0)),
+							   light_offset + sin(2.0*3.14*frequency*TIME + radians(240.0)),
+							   alpha);
+	
+	vec4 color = texture(TEXTURE, UV);
+	if (rainbow == true){//if rainbow is activated
+		COLOR = mix(color, animated_line_color, outline - color.a);
+	}
+	if (rainbow == false){//if rainbow not is activated and you pick a color
+		COLOR = mix(color, line_color , outline - color.a);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhw3m"]
+shader = SubResource("Shader_2o5qc")
+shader_parameter/rainbow = false
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_scale = 0.0
+shader_parameter/frequency = 0.5
+shader_parameter/light_offset = 0.5
+shader_parameter/alpha = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_65b4p"]
 radius = 7.0
 
-[node name="Carrot Plant" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhray"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_66yvv"]
+radius = 48.0416
+
+[node name="carrot_plant" type="RigidBody2D" groups=["plants"]]
 y_sort_enabled = true
-collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_8l8e6")
+script = ExtResource("1_mnnqo")
+
+[node name="GrowComponent" parent="." instance=ExtResource("2_jw7f1")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fhw3m")
 texture = ExtResource("2_mwsf3")
 hframes = 5
 
@@ -25,4 +92,32 @@ shape = SubResource("CircleShape2D_65b4p")
 [node name="GrowTimer" type="Timer" parent="."]
 wait_time = 4.0
 
-[connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]
+[node name="DyingTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="StatusTimer" type="Timer" parent="."]
+
+[node name="DrainTimer" type="Timer" parent="."]
+
+[node name="WaterAdditionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="WaterMeter" parent="." instance=ExtResource("4_q18xr")]
+z_index = 1
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("CircleShape2D_jhray")
+debug_color = Color(0.745098, 0.211765, 1, 0.419608)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_66yvv")
+
+[connection signal="mouse_shape_entered" from="MouseArea" to="GrowComponent" method="_on_mouse_area_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="MouseArea" to="GrowComponent" method="_on_mouse_area_mouse_shape_exited"]
+[connection signal="body_entered" from="DetectionArea" to="GrowComponent" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="GrowComponent" method="_on_detection_area_body_exited"]

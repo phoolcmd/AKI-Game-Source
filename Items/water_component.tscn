@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brrylic2yhjp6"]
+
+[ext_resource type="Script" path="res://Characters/watercan_logic.gd" id="1_2bsj3"]
+
+[node name="WaterComponent" type="Node2D"]
+script = ExtResource("1_2bsj3")

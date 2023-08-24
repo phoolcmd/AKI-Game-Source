@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvax3x6klqg01"]
+
+[ext_resource type="Script" path="res://Objects/Farming/plant_logic.gd" id="1_a6pqy"]
+
+[node name="GrowComponent" type="Node2D" groups=["plants"]]
+script = ExtResource("1_a6pqy")
+time_grow = 20.0
+time_drain = 2.0
+time_status = 2.0
+default_water_level = 5.0

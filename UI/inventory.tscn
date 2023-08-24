@@ -323,25 +323,35 @@ _data = {
 "settings_open": SubResource("Animation_e653l")
 }
 
-[node name="Inventory" type="Node2D"]
-script = ExtResource("1_l6nak")
-
-[node name="Screen Fade" type="TextureRect" parent="."]
+[node name="Inventory" type="Control"]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -258.0
-offset_top = -309.0
-offset_right = -194.0
-offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6nak")
+
+[node name="Screen Fade" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -591.0
+offset_top = -298.0
+offset_right = -463.0
+offset_bottom = -234.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_u5jia")
 
 [node name="Inventory Tab" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 11.0
 offset_right = 154.0
@@ -352,10 +362,11 @@ stretch_mode = 2
 [node name="InventoryArea" type="Area2D" parent="Inventory Tab"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory Tab/InventoryArea"]
-position = Vector2(9, 8)
+position = Vector2(10, 8)
 shape = SubResource("RectangleShape2D_cb3m7")
 
 [node name="Settings Tab" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 30.0
 offset_right = 154.0
@@ -370,6 +381,7 @@ position = Vector2(10, 8)
 shape = SubResource("RectangleShape2D_cb3m7")
 
 [node name="Menu Tab" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 49.0
 offset_right = 154.0
@@ -384,6 +396,7 @@ position = Vector2(10, 8)
 shape = SubResource("RectangleShape2D_cb3m7")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_top = -5.0
 offset_right = 78.0
 offset_bottom = 65.0
@@ -392,6 +405,7 @@ expand_mode = 3
 stretch_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
 offset_left = 19.0
 offset_top = 16.0
 offset_right = 99.0

@@ -7,9 +7,7 @@ func _input(event):
 		$Inventory.visible = !$Inventory.visible
 		$Inventory.initialize_inventory()
 	if event.is_action_pressed("scroll_up"):
-		print("scrolling up")
 		PlayerInventory.active_item_scroll_up()
 	elif event.is_action_pressed("scroll_down"):
-		print("scrolling down")
 		PlayerInventory.active_item_scroll_down()
 

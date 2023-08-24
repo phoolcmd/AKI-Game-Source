@@ -18,7 +18,12 @@
  	"wand blue": {
 		"ItemCategory": "Tool",
 		"StackSize": 1,
-		"Description": "A thin and pointy carrot seed"
+		"Description": "Places holes"
+  },
+	"wand purple": {
+		"ItemCategory": "Tool",
+		"StackSize": 1,
+		"Description": "Waters Plants"
   },
 
 }

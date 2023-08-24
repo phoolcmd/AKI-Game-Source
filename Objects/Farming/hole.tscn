@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://swp8frhkmxh1"]
+[gd_scene load_steps=7 format=3 uid="uid://cdfbvaquwt40d"]
 
 [ext_resource type="Texture2D" uid="uid://dcdd0p2gf38ty" path="res://Art/Objects/hole.png" id="1_6ovwd"]
 [ext_resource type="Script" path="res://Objects/Farming/hole.gd" id="1_c0p4r"]
-[ext_resource type="Shader" path="res://Objects/Farming/highlight_item.gdshader" id="2_h2jj1"]
+[ext_resource type="Shader" path="res://Shaders/highlight_item.gdshader" id="2_ln42m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qpxyk"]
-shader = ExtResource("2_h2jj1")
+shader = ExtResource("2_ln42m")
 shader_parameter/rainbow = false
 shader_parameter/line_color = Color(1, 1, 0.196078, 1)
 shader_parameter/line_scale = 1.0

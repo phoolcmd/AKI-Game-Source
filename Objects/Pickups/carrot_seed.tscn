@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dutu5nceoqfma"]
+[gd_scene load_steps=8 format=3 uid="uid://dutu5nceoqfma"]
 
+[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="1_lv16p"]
 [ext_resource type="Texture2D" uid="uid://bydco1fg38hyq" path="res://Art/Pickups/carrot seed.png" id="1_v2doc"]
 [ext_resource type="PackedScene" uid="uid://cxbwbpkef1ta5" path="res://Objects/Pickups/item_pickup.tscn" id="2_tnl03"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldm3p"]
+shader = ExtResource("1_lv16p")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fagke"]
 radius = 3.0
@@ -23,6 +27,8 @@ contact_monitor = true
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_ldm3p")
 texture = ExtResource("1_v2doc")
 hframes = 3
 

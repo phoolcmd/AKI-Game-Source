@@ -16,6 +16,7 @@ shader = ExtResource("1_x3jdy")
 shader = ExtResource("1_x3jdy")
 
 [node name="DayNightCycleUI" type="Control"]
+texture_filter = 2
 material = SubResource("ShaderMaterial_qhbnj")
 layout_mode = 3
 anchors_preset = 0

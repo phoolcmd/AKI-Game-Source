@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 class_name Hotbar
 
@@ -9,12 +9,11 @@ const SlotClass = preload("res://UI/Slot.gd")
 @onready var player : Player = get_tree().get_first_node_in_group("player")
 var active_item_category = ""
 func _ready():
-
 	PlayerInventory.active_item_updated.connect(Callable(self, "update_active_item_label"))
 	PlayerInventory.item_quantity_updated.connect(Callable(self, "update_hotbar_visual")) #Check if holding item quantity updated
 	for i in range(slots.size()):
 		PlayerInventory.active_item_updated.connect(Callable(slots[i], "refresh_style"))
-		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))
+		slots[i].gui_input.connect(slot_gui_input.bind(slots[i]))	
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.HOTBAR
 	initialize_inventory()
@@ -36,12 +35,12 @@ func update_active_item_label():
 		player.equipped_item_name = active_item_label.text
 		active_item_category = slots[PlayerInventory.active_item_slot].item.item_category
 		player.equipped_item_category = active_item_category
-		print(active_item_category)
+		print("res://UI/Hotbar.gd : ", active_item_category)
 	else:
 		active_item_label.text = ""
 		player.equipped_item_name = ""
 		active_item_category = ""
-		print(active_item_category)
+		print("res://UI/Hotbar.gd : No Active Item Held")
 		
 
 	

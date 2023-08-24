@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://chpiuotnaqf58"]
+[gd_scene load_steps=8 format=3 uid="uid://chpiuotnaqf58"]
 
+[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="1_bkhnn"]
 [ext_resource type="Texture2D" uid="uid://busg2bsh3pfq0" path="res://Art/Pickups/mushrooms.png" id="1_pal0k"]
 [ext_resource type="PackedScene" uid="uid://cxbwbpkef1ta5" path="res://Objects/Pickups/item_pickup.tscn" id="2_d223h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y0xve"]
+shader = ExtResource("1_bkhnn")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wea1l"]
 radius = 3.0
@@ -24,6 +28,8 @@ contact_monitor = true
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_y0xve")
 texture = ExtResource("1_pal0k")
 hframes = 3
 

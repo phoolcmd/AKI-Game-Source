@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Inventory
 
 ## Script responsible for handling the inventory system.
