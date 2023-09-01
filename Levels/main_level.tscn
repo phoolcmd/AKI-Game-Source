@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=26 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://gpj6jc1rcg2v" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
 [ext_resource type="Script" path="res://UI/UserInterface.gd" id="2_136i6"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
-[ext_resource type="Shader" path="res://Levels/vignette.gdshader" id="3_c4whj"]
-[ext_resource type="Script" path="res://Levels/ColorRect.gd" id="4_t314p"]
+[ext_resource type="Script" path="res://Levels/TileMap.gd" id="3_we14h"]
 [ext_resource type="PackedScene" uid="uid://cbjypyj0wnf3m" path="res://Characters/cat.tscn" id="7_m1bsj"]
 [ext_resource type="PackedScene" uid="uid://ds8rm3mrrtolh" path="res://UI/Hotbar.tscn" id="7_wat0t"]
 [ext_resource type="PackedScene" uid="uid://bvqd6dvhsh7sx" path="res://UI/daynightcycle_ui.tscn" id="10_bsw5w"]
@@ -14,36 +13,11 @@
 [ext_resource type="Script" path="res://Characters/farm.gd" id="11_un0qj"]
 [ext_resource type="PackedScene" uid="uid://clvrwcgns5hgv" path="res://Characters/enemy.tscn" id="12_1g7w5"]
 [ext_resource type="Texture2D" uid="uid://c02gyft61gr4l" path="res://Art/UI/daynight_gradient.tres" id="12_fea1l"]
-[ext_resource type="PackedScene" uid="uid://c0tnke2jv1edu" path="res://Objects/Pickups/rock.tscn" id="15_smkhw"]
-[ext_resource type="PackedScene" uid="uid://chpiuotnaqf58" path="res://Objects/Pickups/mushroom.tscn" id="15_y1rg4"]
+[ext_resource type="PackedScene" uid="uid://b8nmcmkphcitd" path="res://Items/carrot.tscn" id="16_wuall"]
 [ext_resource type="Texture2D" uid="uid://b168a1hhjnggw" path="res://Art/Tilesets/ground tiles/tile_sheet_legacy.png" id="17_u3a56"]
+[ext_resource type="PackedScene" uid="uid://bnjnkgpr2h2is" path="res://Objects/Farming/carrot plant.tscn" id="18_k8i2y"]
 [ext_resource type="PackedScene" uid="uid://cgby37y2f3x0i" path="res://Materials/water.tscn" id="23_8m8r7"]
 [ext_resource type="PackedScene" uid="uid://bbeb7lhq7f1pg" path="res://Buildings/house_hobbit_hole.tscn" id="28_urdct"]
-[ext_resource type="PackedScene" uid="uid://dutu5nceoqfma" path="res://Objects/Pickups/carrot_seed.tscn" id="29_y1nab"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylj82"]
-shader = ExtResource("3_c4whj")
-shader_parameter/camera_position = null
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/MULTIPLIER = 0.56
-shader_parameter/SCALE = 1.0
-shader_parameter/SOFTNESS = 1.0
-
-[sub_resource type="Environment" id="Environment_rlh73"]
-background_mode = 3
-ssil_radius = 10.17
-ssil_intensity = 1.7
-glow_enabled = true
-glow_normalized = true
-glow_strength = 0.9
-glow_bloom = 0.1
-volumetric_fog_density = 0.2621
-volumetric_fog_emission_energy = 260.51
-volumetric_fog_gi_inject = 1.28
-volumetric_fog_length = 304.94
-volumetric_fog_ambient_inject = 2.45
-adjustment_enabled = true
-adjustment_contrast = 1.12
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_768gl"]
 texture = ExtResource("17_u3a56")
@@ -326,9 +300,14 @@ texture = ExtResource("17_u3a56")
 14:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:2/0/physics_layer_0/angular_velocity = 0.0
 14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -8, 3, -8, 3, -2.5, 3, 6, 2.5, 8, -3, 8, -3, 6, -8, 6, -8, -2, -3, -2)
+0:3/next_alternative_id = 2
 0:3/0 = 0
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/1 = 1
+0:3/1/modulate = Color(0.65098, 1, 0.666667, 1)
+0:3/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/1/physics_layer_0/angular_velocity = 0.0
 7:3/0 = 0
 7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:3/0/physics_layer_0/angular_velocity = 0.0
@@ -541,6 +520,22 @@ terrain_set_0/terrain_1/name = "Stone"
 terrain_set_0/terrain_1/color = Color(0.470588, 0.760784, 0.929412, 1)
 sources/0 = SubResource("TileSetAtlasSource_768gl")
 
+[sub_resource type="Environment" id="Environment_rlh73"]
+background_mode = 3
+ssil_radius = 10.17
+ssil_intensity = 1.7
+glow_enabled = true
+glow_normalized = true
+glow_strength = 0.9
+glow_bloom = 0.1
+volumetric_fog_density = 0.2621
+volumetric_fog_emission_energy = 260.51
+volumetric_fog_gi_inject = 1.28
+volumetric_fog_length = 304.94
+volumetric_fog_ambient_inject = 2.45
+adjustment_enabled = true
+adjustment_contrast = 1.05
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqnnm"]
 size = Vector2(1297, 25.5)
 
@@ -554,7 +549,6 @@ size = Vector2(1345, 44.0642)
 size = Vector2(744.208, 49.032)
 
 [node name="Main" type="Node2D"]
-y_sort_enabled = true
 script = ExtResource("1_d8ffh")
 metadata/_edit_horizontal_guides_ = []
 
@@ -562,247 +556,9 @@ metadata/_edit_horizontal_guides_ = []
 z_index = 1
 
 [node name="Level" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="UserInterface" type="CanvasLayer" parent="Level"]
-script = ExtResource("2_136i6")
-
-[node name="Inventory" parent="Level/UserInterface" instance=ExtResource("2_35184")]
-visible = false
-offset_left = -61.0
-offset_top = -33.0
-offset_right = -61.0
-offset_bottom = -33.0
-mouse_filter = 1
-
-[node name="Hotbar" parent="Level/UserInterface" instance=ExtResource("7_wat0t")]
-offset_left = -58.0
-offset_top = -29.0
-offset_right = -58.0
-offset_bottom = -29.0
-scale = Vector2(1, 1)
-
-[node name="DayNightCycleUI" parent="Level/UserInterface" instance=ExtResource("10_bsw5w")]
-offset_left = 8.0
-offset_top = 7.33333
-offset_right = 8.0
-offset_bottom = 7.33337
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Level/UserInterface"]
-visible = false
-z_index = 4096
-z_as_relative = false
-material = SubResource("ShaderMaterial_ylj82")
-offset_left = -94.0
-offset_top = -4.0
-offset_right = 716.0
-offset_bottom = 488.0
-script = ExtResource("4_t314p")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
-environment = SubResource("Environment_rlh73")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="Level"]
-color = Color(0.329412, 0.356863, 0.745098, 1)
-script = ExtResource("10_vhikg")
-gradient = ExtResource("12_fea1l")
-INGAME_SPEED = 5.0
-INITIAL_HOUR = 12
-
-[node name="Farm" parent="Level" instance=ExtResource("10_y88px")]
-script = ExtResource("11_un0qj")
-
-[node name="pickups" type="CanvasGroup" parent="Level"]
-visible = false
-y_sort_enabled = true
-
-[node name="mushroom2" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(209, 176)
-
-[node name="mushroom4" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(-13, 169)
-
-[node name="mushroom5" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(-9, 182)
-
-[node name="mushroom6" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(-2, 173)
-
-[node name="mushroom7" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(88, 105)
-
-[node name="mushroom8" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(89, 94)
-
-[node name="mushroom9" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(28, 8)
-
-[node name="mushroom10" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(-122, 31)
-
-[node name="mushroom3" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(233, 188)
-
-[node name="mushroom11" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(276, 50)
-
-[node name="mushroom12" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(283, 56)
-
-[node name="mushroom13" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(273, 60)
-
-[node name="mushroom14" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(380, 55)
-
-[node name="mushroom15" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(377, 71)
-
-[node name="mushroom16" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(449, 108)
-
-[node name="mushroom17" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(470, 141)
-
-[node name="mushroom18" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(481, 143)
-
-[node name="mushroom19" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(492, 141)
-
-[node name="mushroom20" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(572, 92)
-
-[node name="mushroom21" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(555, 70)
-
-[node name="mushroom22" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(675, 60)
-
-[node name="mushroom23" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(686, 62)
-
-[node name="mushroom24" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(701, 62)
-
-[node name="mushroom25" parent="Level/pickups" instance=ExtResource("15_y1rg4")]
-position = Vector2(701, 62)
-
-[node name="rock" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(53, 185)
-
-[node name="rock2" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(-86, 204)
-
-[node name="rock3" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(-181, 256)
-
-[node name="rock4" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(430, 302)
-
-[node name="rock5" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(429, 174)
-
-[node name="rock6" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(337, 53)
-
-[node name="rock7" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(562, 37)
-
-[node name="rock8" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(626, 138)
-
-[node name="rock9" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(642, 34)
-
-[node name="rock10" parent="Level/pickups" instance=ExtResource("15_smkhw")]
-position = Vector2(740, 99)
-
-[node name="carrot seed" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(297, 205)
-
-[node name="carrot seed2" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(315, 212)
-
-[node name="carrot seed3" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(334, 208)
-
-[node name="carrot seed4" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(284, 186)
-
-[node name="carrot seed5" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(310, 185)
-
-[node name="carrot seed6" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(365, 194)
-
-[node name="carrot seed7" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(434, 242)
-
-[node name="carrot seed8" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(451, 198)
-
-[node name="carrot seed9" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(400, 224)
-
-[node name="carrot seed10" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(405, 257)
-
-[node name="carrot seed11" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(447, 283)
-
-[node name="carrot seed12" parent="Level/pickups" instance=ExtResource("29_y1nab")]
-position = Vector2(411, 283)
-
-[node name="cat" parent="Level" instance=ExtResource("7_m1bsj")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(56, 79)
-
-[node name="Enemy" parent="Level" instance=ExtResource("12_1g7w5")]
-z_index = 1
-position = Vector2(-139, -241)
-
-[node name="Player_Shelby" parent="Level" instance=ExtResource("1_56tw2")]
-position = Vector2(320, 180)
-
-[node name="Camera2D" type="Camera2D" parent="Level/Player_Shelby"]
-limit_left = -432
-limit_top = -129
-limit_right = 861
-limit_bottom = 592
-position_smoothing_enabled = true
-position_smoothing_speed = 1.0
-editor_draw_limits = true
-
-[node name="House" type="StaticBody2D" parent="Level"]
-position = Vector2(285, 76)
-collision_layer = 3
-collision_mask = 3
-
-[node name="HouseHobbitHole" parent="Level/House" instance=ExtResource("28_urdct")]
-z_index = 0
-position = Vector2(0, 0)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/House"]
-polygon = PackedVector2Array(41, 4, 65, 7, 88, 21, 107, 28, 110, 30, 105, 31, 99, 33, 90, 39, 87, 41, 57, 46, 20, 46, 14, 36, 12, 25, 8, 17, -2, 15, -12, 15, -21, 19, -18, 33, -22, 43, -25, 45, -32, 46, -44, 45, -59, 45, -68, 45, -74, 41, -76, 38, -80, 35, -84, 34, -88, 33, -88, 27, -83, 22, -72, 19, -66, 15, -59, 8, -54, 4, -38, 4, -27, 5, -21, 5, -16, 5, -1, 4, 22, 2, 36, 3)
-
-[node name="water" type="StaticBody2D" parent="Level"]
-position = Vector2(1304, 265)
-collision_layer = 2
-
-[node name="Water" parent="Level/water" instance=ExtResource("23_8m8r7")]
-process_priority = 1
-position = Vector2(53.9999, -72)
-scale = Vector2(1.10938, 0.757813)
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Level/water"]
-visible = false
-z_index = 1
-polygon = PackedVector2Array(13, -45.25, 30, -31.25, 59, -30.25, 67, -25.25, 68, 24.75, 47, 39.75, -16, 38.75, -28, 27.75, -46, 24.75, -65, 6.75, -68, -11.25, -49, -29.25, -22, -34.25, -16, -45.25)
 
 [node name="TileMap" type="TileMap" parent="Level"]
+y_sort_enabled = true
 position = Vector2(0, -1)
 tile_set = SubResource("TileSet_7fpjl")
 format = 2
@@ -829,6 +585,101 @@ layer_3/y_sort_enabled = true
 layer_3/y_sort_origin = 0
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array(262178, 589824, 8, 262176, 589824, 7, 589863, 458752, 8, 458789, 524288, 8, 196644, 458752, 6, 131107, 458752, 8, 65570, 589824, 8, 983084, 589824, 8, 983085, 458752, 8, 1310760, 589824, 5, 1376302, 589824, 8, 1179693, 524288, 8, 1179694, 589824, 8, 1376299, 589824, 8, 1179691, 524288, 6, 1245226, 458752, 8, 1507364, 524288, 8, 1441830, 655360, 7, 1572902, 458752, 8, 1769497, 458752, 8, 1900561, 589824, 8, 1769485, 458752, 8, 1703948, 524288, 8, 1769480, 655360, 7, 1769481, 524288, 8, 1769487, 589824, 8, 2097151, 524288, 8, 1835005, 458752, 8, 1966075, 589824, 8, 2162683, 524288, 8, 2228219, 524288, 8, 2228218, 524288, 8, 1572866, 589824, 8, 1507328, 589824, 8, 1507327, 655360, 7, 1638393, 458752, 8, 1114109, 458752, 8, 917503, 458752, 8, 786425, 589824, 8, 851962, 458752, 8, 786428, 458752, 8, 786429, 524288, 8, 655361, 589824, 8, 786432, 524288, 8, 851965, 458752, 6, 524276, 524288, 8, 262126, 458752, 8, 458735, 589824, 8, 655341, 589824, 8, 589806, 589824, 8, 524287, 655360, 7, -327667, 589824, 7, -196587, 589824, 8, -196582, 458752, 8, -262117, 589824, 8, 983081, 524288, 8, 1114153, 589824, 8, 1048616, 458752, 8, 1310769, 524288, 8, 917553, 458752, 8, 983083, 524288, 7, 1310757, 524288, 7, 1376292, 524288, 7, 852015, 524288, 7, 786475, 589824, 7, 720937, 524288, 7, 131104, 524288, 7, 196641, 589824, 7, 1114107, 524288, 7, 1245178, 589824, 7, 1310714, 589824, 7, 1572861, 524288, 7, 655354, 589824, 7, 524277, 524288, 7, 458740, 589824, 7, 851950, 589824, 7, 917487, 524288, 7, -393205, 524288, 7, -262131, 589824, 7, 1835011, 524288, 7, 1769469, 589824, 6, 1900543, 458752, 5, 1703935, 589824, 6, 1638398, 589824, 5, 1441788, 655360, 5, 1310717, 524288, 5, 1114108, 589824, 6, 917500, 458752, 6, 851964, 655360, 7, 851963, 589824, 6, 917497, 655360, 5, 1114106, 458752, 5, 917495, 655360, 5, 917496, 458752, 5, 458742, 589824, 5, 589805, 458752, 5, 589807, 458752, 6, 655340, 720896, 5, 458733, 458752, 5, 1310768, 524288, 6, 1245233, 589824, 5, 917548, 720896, 5, 983086, 589824, 5, 917546, 524288, 5, 786472, 720896, 5, 655399, 655360, 7, 589862, 524288, 5, 458791, 458752, 5, 393255, 589824, 6, 327718, 589824, 5, 196645, 458752, 5, 393253, 589824, 6, 458786, 655360, 5, 1769496, 458752, 5, 1769495, 458752, 5, 1769494, 524288, 6, 1966098, 524288, 6, 1769486, 589824, 6, 1900551, 458752, 5, 1966087, 720896, 5, 2031621, 655360, 5, 1966084, 720896, 5, 1703939, 524288, 6, 1900540, 458752, 5, 1966076, 589824, 6, 1703930, 524288, 6, 1703931, 589824, 6, 524303, 458752, 5, 524301, 589824, 5, 524307, 589824, 6, 196629, 720896, 5, 262160, 589824, 5, -65522, 524288, 6, -196593, 589824, 6, -262129, 524288, 6, -458742, 524288, 6, -458744, 458752, 6, -393207, 524288, 6, -131048, 589824, 5, 524291, 655360, 7, 1310718, 655360, 7, 1441791, 655360, 7, 1507329, 655360, 7, 1835007, 655360, 7, 1835006, 655360, 7, 1376251, 655360, 7, 1310715, 655360, 7, 1376250, 655360, 7, 1441786, 655360, 7, 1638394, 655360, 7, 1769466, 655360, 7, 1245224, 655360, 7, 327715, 655360, 7, 262179, 655360, 7, 524325, 655360, 7, 524302, 655360, 7, 327682, 655360, 7, 262146, 655360, 7, 655357, 655360, 7, 655356, 655360, 7, 393198, 655360, 7, 655342, 655360, 7, 524281, 655360, 7, 983039, 655360, 7, -262130, 655360, 7, -458741, 655360, 7, -131050, 655360, 7, -262119, 655360, 7, -262118, 655360, 7, -262116, 655360, 7)
+layer_4/name = "Cursor"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 2
+layer_4/tile_data = PackedInt32Array()
+script = ExtResource("3_we14h")
+
+[node name="UserInterface" type="CanvasLayer" parent="Level"]
+script = ExtResource("2_136i6")
+
+[node name="Inventory" parent="Level/UserInterface" instance=ExtResource("2_35184")]
+visible = false
+offset_left = -61.0
+offset_top = -33.0
+offset_right = -61.0
+offset_bottom = -33.0
+mouse_filter = 1
+
+[node name="Hotbar" parent="Level/UserInterface" instance=ExtResource("7_wat0t")]
+offset_left = -58.0
+offset_top = -29.0
+offset_right = -58.0
+offset_bottom = -29.0
+scale = Vector2(1, 1)
+
+[node name="DayNightCycleUI" parent="Level/UserInterface" instance=ExtResource("10_bsw5w")]
+offset_left = 8.0
+offset_top = 7.33333
+offset_right = 8.0
+offset_bottom = 7.33337
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_rlh73")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Level"]
+color = Color(0.329412, 0.356863, 0.745098, 1)
+script = ExtResource("10_vhikg")
+gradient = ExtResource("12_fea1l")
+INGAME_SPEED = 5.0
+INITIAL_HOUR = 12
+
+[node name="Farm" parent="Level" instance=ExtResource("10_y88px")]
+script = ExtResource("11_un0qj")
+
+[node name="cat" parent="Level" instance=ExtResource("7_m1bsj")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(281, 256)
+
+[node name="Enemy" parent="Level" instance=ExtResource("12_1g7w5")]
+z_index = 1
+position = Vector2(-139, -241)
+
+[node name="Player_Shelby" parent="Level" instance=ExtResource("1_56tw2")]
+position = Vector2(338, 191)
+
+[node name="Camera2D" type="Camera2D" parent="Level/Player_Shelby"]
+zoom = Vector2(1.2, 1.2)
+limit_left = -432
+limit_top = -129
+limit_right = 861
+limit_bottom = 592
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+editor_draw_limits = true
+
+[node name="House" type="StaticBody2D" parent="Level"]
+z_index = 1
+position = Vector2(285, 76)
+collision_layer = 67
+collision_mask = 3
+
+[node name="HouseHobbitHole" parent="Level/House" instance=ExtResource("28_urdct")]
+z_index = 0
+position = Vector2(0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/House"]
+polygon = PackedVector2Array(41, 4, 65, 7, 88, 21, 107, 28, 110, 30, 105, 31, 99, 33, 90, 39, 87, 41, 57, 46, 20, 46, 14, 36, 12, 25, 8, 17, -2, 15, -12, 15, -21, 19, -18, 33, -22, 43, -25, 45, -32, 46, -44, 45, -59, 45, -68, 45, -74, 41, -76, 38, -80, 35, -84, 34, -88, 33, -88, 27, -83, 22, -72, 19, -66, 15, -59, 8, -54, 4, -38, 4, -27, 5, -21, 5, -16, 5, -1, 4, 22, 2, 36, 3)
+
+[node name="water" type="StaticBody2D" parent="Level"]
+position = Vector2(1304, 265)
+collision_layer = 2
+
+[node name="Water" parent="Level/water" instance=ExtResource("23_8m8r7")]
+process_priority = 1
+position = Vector2(53.9999, -72)
+scale = Vector2(1.10938, 0.757813)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Level/water"]
+visible = false
+z_index = 1
+polygon = PackedVector2Array(13, -45.25, 30, -31.25, 59, -30.25, 67, -25.25, 68, 24.75, 47, 39.75, -16, 38.75, -28, 27.75, -46, 24.75, -65, 6.75, -68, -11.25, -49, -29.25, -22, -34.25, -16, -45.25)
 
 [node name="PlayArea" type="Camera2D" parent="Level"]
 position = Vector2(265, 239)
@@ -854,5 +705,17 @@ shape = SubResource("RectangleShape2D_fxupu")
 position = Vector2(884.517, 223.104)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_icgmi")
+
+[node name="cat" parent="." instance=ExtResource("7_m1bsj")]
+position = Vector2(382, 248)
+
+[node name="cat2" parent="." instance=ExtResource("7_m1bsj")]
+position = Vector2(248, 223)
+
+[node name="carrot" parent="." instance=ExtResource("16_wuall")]
+position = Vector2(299, 294)
+
+[node name="carrot_plant" parent="." instance=ExtResource("18_k8i2y")]
+position = Vector2(367, 296)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

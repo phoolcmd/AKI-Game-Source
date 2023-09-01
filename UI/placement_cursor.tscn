@@ -1,12 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://r23op5wfnjpa"]
+[gd_scene load_steps=4 format=3 uid="uid://r23op5wfnjpa"]
 
+[ext_resource type="Script" path="res://UI/placement_cursor.gd" id="1_pxdg7"]
 [ext_resource type="Texture2D" uid="uid://ch2ysxtsho73u" path="res://Art/UI/placement_cursor.png" id="1_wq3me"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf8ka"]
+
 [node name="PlacementCursor" type="Control"]
-z_index = 4096
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_pxdg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4096
 texture = ExtResource("1_wq3me")
 hframes = 2
+
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_gf8ka")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_exited" from="CollisionArea" to="." method="_on_collision_area_body_exited"]

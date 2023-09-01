@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://gpj6jc1rcg2v"]
+[gd_scene load_steps=53 format=3 uid="uid://gpj6jc1rcg2v"]
 
 [ext_resource type="Script" path="res://Characters/player_shelby.gd" id="1_s0nvd"]
 [ext_resource type="Texture2D" uid="uid://dwqoltdx651fc" path="res://Art/Characters/player_spritesheet.png" id="2_ag4lq"]
@@ -17,7 +17,7 @@ size = Vector2(34, 34)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t78u4"]
 radius = 5.0
-height = 12.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_h1l54"]
 length = 0.001
@@ -695,8 +695,6 @@ states/Walk/position = Vector2(543, 100)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nuo5y"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wgi6q"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_xvkoi"), "Collect", "Idle", SubResource("AnimationNodeStateMachineTransition_ykput"), "Idle", "Collect", SubResource("AnimationNodeStateMachineTransition_n5kfv"), "Collect", "Walk", SubResource("AnimationNodeStateMachineTransition_ospxf"), "Walk", "Collect", SubResource("AnimationNodeStateMachineTransition_tx1xm")]
 graph_offset = Vector2(-327, -121)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_gtxxg"]
-
 [sub_resource type="Gradient" id="Gradient_h2ydq"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.45288, 0.76178)
@@ -723,6 +721,7 @@ radius = 28.6356
 [node name="Player_Shelby" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 65
 collision_mask = 2
 safe_margin = 0.001
 script = ExtResource("1_s0nvd")
@@ -767,7 +766,7 @@ region_enabled = true
 region_rect = Rect2(10.9973, 32.2684, 11.0807, 4.45931)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_t78u4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -784,7 +783,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_yxasv")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_gtxxg")
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/conditions/swing = false

@@ -18,7 +18,7 @@ extends Node2D
 @export var wet_multiplier : float = 0.5 #Multiplier for when the plant water level is high
 @export var dry_multiplier : float = 1.5 #Multiplier for when the plant water level is low
 @export var default_water_level : float = 10.0
-
+@export var item_drop : String
 @onready var player = get_node("/root/Main/Level/Player_Shelby")
 @onready var plant = get_parent()
 var water_level = null
@@ -56,10 +56,8 @@ func _process(delta):
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not finished_growing:
 			water_level += 3.0
 			water_meter_update()
-			addition_timer.start()
-		elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			plant.queue_free() # this is where you add the item to the player inventory
-			# You may want to add a delay or some kind of cooldown logic to prevent rapid water_level increment.
+			addition_timer.start()		
+
 		
 func _on_grow_timer_timeout():
 	sprite.frame += 1 # Move to the next frame
@@ -79,17 +77,21 @@ func water_level_process():
 	if water_level >= 0.2 * water_capacity and water_level < 0.5 * water_capacity and not multiplier_applied:
 		growth_timer.start()#Restart plant growth
 		dying_timer.stop()#Stop dying timer
-		print("Dying state Stopped")
+		print("Dying state INACTIVE")
 		time_grow *= dry_multiplier #Apply dry multipler to time
 		growth_timer.wait_time = time_grow
 		multiplier_applied = true
 		print("Time to Grow (Dry): " , time_grow)
 	elif water_level >= 0.5 * water_capacity and water_level < 0.7 * water_capacity and multiplier_applied:
+		dying_timer.stop()#Stop dying timer
+		print("Dying state INACTIVE")
 		time_grow = original_time_to_grow
 		growth_timer.wait_time = time_grow
 		multiplier_applied = false
 		print("Time to Grow (Normal): " , time_grow)
 	elif water_level >= 0.7 * water_capacity and not multiplier_applied:
+		dying_timer.stop()#Stop dying timer
+		print("Dying state INACTIVE")
 		time_grow *= wet_multiplier
 		growth_timer.wait_time = time_grow
 		multiplier_applied = true
@@ -132,7 +134,7 @@ func _on_drain_timer_timeout():
 
 
 func _on_mouse_area_mouse_shape_entered(shape_idx):	
-	if player.equipped_item_name == "wand purple" and can_water:
+	if player.equipped_item_name == "wand purple":
 		water_meter_update()
 		water_meter.visible = not finished_growing
 		mouse_over_meter = true

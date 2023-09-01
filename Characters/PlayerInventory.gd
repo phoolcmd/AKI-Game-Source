@@ -10,6 +10,7 @@ const NUM_INVENTORY_SLOTS = 15
 const NUM_HOTBAR_SLOTS = 6
 
 @onready var player_node : Player = get_tree().get_first_node_in_group("player")
+@onready var farm_component : Node2D = player_node.get_node("FarmingComponent")
 var inventory = {
 	0: ["mushroom", 97],
 	1: ["rock", 11]
@@ -25,9 +26,9 @@ var hotbar = {
 var active_item_slot = 0
 func _ready():
 	print(inventory)
-	player_node = get_tree().get_first_node_in_group("player")
-	player_node.player_planting.connect(Callable(self,"_on_player_planting"))
-	
+#	player_node = get_tree().get_first_node_in_group("player")
+#	player_node.player_planting.connect(Callable(self,"_on_player_planting"))
+	farm_component.player_planting.connect(Callable(self,"_on_player_planting"))
 func add_item(item_name, item_quantity):
 	for item in hotbar:
 		if hotbar[item][0] == item_name:
@@ -113,7 +114,7 @@ func decrease_item_quantity(slot_index, quantity=1):
 		else:
 			hotbar[slot_index] = item  # Update the item in the hotbar
 			emit_signal("item_quantity_updated")
-			
+##Adds items to the players inventory when this signal is caught from the farming component in player			
 func _on_player_planting(item_name):
 	print("res://Characters/PlayerInventory.gd : Planting: ", item_name)  # Print when the function is called
 	if hotbar.has(active_item_slot) and hotbar[active_item_slot][0] == item_name:

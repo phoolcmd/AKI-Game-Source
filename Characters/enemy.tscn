@@ -1,12 +1,19 @@
 [gd_scene load_steps=19 format=3 uid="uid://clvrwcgns5hgv"]
 
 [ext_resource type="Script" path="res://Characters/enemy.gd" id="1_7puu4"]
-[ext_resource type="Shader" path="res://Characters/enemy.gdshader" id="1_scirc"]
 [ext_resource type="Texture2D" uid="uid://mpgjnpx72yob" path="res://Art/Characters/ghost_sprite.png" id="2_75kvw"]
 [ext_resource type="Texture2D" uid="uid://d208duvnux6rl" path="res://Art/Characters/shadow.png" id="4_p7nj6"]
 
+[sub_resource type="Shader" id="Shader_7o4w8"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	// Place fragment code here.
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2dsl"]
-shader = ExtResource("1_scirc")
+shader = SubResource("Shader_7o4w8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j3v3"]
 size = Vector2(12, 24)

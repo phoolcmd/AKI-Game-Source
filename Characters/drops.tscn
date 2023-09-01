@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://p34w1mad5x1s"]
+
+[node name="Drops" type="CanvasGroup"]

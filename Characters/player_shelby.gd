@@ -5,7 +5,7 @@ class_name Player
 # Signals
 signal item_equipped(item_name)
 signal item_held(item_category)
-signal player_planting(item_name)
+
 
 # Exported Variables
 @export var move_speed: float = 3000.0
@@ -24,6 +24,7 @@ signal player_planting(item_name)
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var ui = get_node("/root/Main/Level/UserInterface")
+@onready var grid_system = get_tree().get_root().get_node("Main/Level/TileMap")
 
 # Variables
 var canDash = true
@@ -50,14 +51,15 @@ func _process(_delta):
 func handle_item_actions(delta):
 	# Hole Digging
 	if equipped_item_name == "wand blue":
-		farming_component.cursor_instance.visible = true
 		farming_component.dig_process(delta)
+		grid_system.grid_placement_process()
 	else:
-		farming_component.cursor_instance.visible = false
-
+		grid_system.hide_cursor()
 	# Planting Seed
 	if equipped_item_category == "Seed":
 		farming_component.plant_process(delta, equipped_item_name)
+	else:
+		pass
 		
 	# Watering Plant
 	if equipped_item_name == "wand purple":
@@ -76,5 +78,3 @@ func unequip_item():
 	equipped_item_category = ""
 	# Any other necessary cleanup...
 
-func _exit_tree():
-	farming_component.cursor_instance.queue_free()

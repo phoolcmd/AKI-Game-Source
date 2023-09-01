@@ -12,8 +12,13 @@
   },
  	"carrot seed": {
 		"ItemCategory": "Seed",
-		"StackSize": 10,
+		"StackSize": 99,
 		"Description": "A thin and pointy carrot seed"
+  },
+	"carrot": {
+		"ItemCategory": "Consumable",
+		"StackSize": 12,
+		"Description": "A crispy carrot"
   },
  	"wand blue": {
 		"ItemCategory": "Tool",
