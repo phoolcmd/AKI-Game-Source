@@ -407,11 +407,11 @@ stretch_mode = 2
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
 offset_left = 19.0
-offset_top = 16.0
+offset_top = 13.0
 offset_right = 99.0
-offset_bottom = 72.0
+offset_bottom = 69.0
 theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 3
+theme_override_constants/v_separation = 6
 columns = 5
 
 [node name="Slot1" type="Panel" parent="GridContainer"]

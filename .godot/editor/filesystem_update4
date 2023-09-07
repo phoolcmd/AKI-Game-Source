@@ -4,12 +4,22 @@ res://Characters/enemy.gd
 res://Shaders/highlight_item.gdshader
 res://Objects/Pickups/item_pickup.gd
 res://UI/UserInterface.gd
+res://Shaders/pixelperfect.gdshader
 res://Art/UI/daynight_gradient.tres
+res://Levels/clouds.gdshader
+res://Levels/water.gdshader
 res://Shaders/water_noise.tres
-res://Items/carrot.tscn
-res://Objects/Farming/carrot plant.tscn
-res://UI/placement_cursor.tscn
+res://Shaders/wind_shader.gdshader
+res://Levels/wind_shader.gdshader
+res://Objects/Farming/tree_pink.tscn
 res://Characters/player.tscn
-res://Characters/cat.tscn
 res://Objects/Farming/hole.tscn
-res://Items/collect_component.gd
+res://UI/placement_cursor.tscn
+res://Characters/farming_component.tscn
+res://Characters/farming_component.gd
+res://Characters/player_shelby.gd
+res://Objects/Farming/carrot plant.tscn
+res://Objects/Farming/plant_logic.gd
+res://Items/carrot.tscn
+res://Characters/PlayerInventory.gd
+res://UI/inventory.tscn

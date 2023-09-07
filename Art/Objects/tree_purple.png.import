@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b168a1hhjnggw"
-path="res://.godot/imported/tile_sheet_legacy.png-47b355a6c57d3fda7317f8cd5977af4d.ctex"
+uid="uid://g8oo0cn48bdf"
+path="res://.godot/imported/tree_purple.png-f851efccbe01fcc7292bf755b8dafb86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Tilesets/ground tiles/tile_sheet_legacy.png"
-dest_files=["res://.godot/imported/tile_sheet_legacy.png-47b355a6c57d3fda7317f8cd5977af4d.ctex"]
+source_file="res://Art/Objects/tree_purple.png"
+dest_files=["res://.godot/imported/tree_purple.png-f851efccbe01fcc7292bf755b8dafb86.ctex"]
 
 [params]
 

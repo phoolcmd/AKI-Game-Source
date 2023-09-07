@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://r23op5wfnjpa"]
+[gd_scene load_steps=6 format=3 uid="uid://r23op5wfnjpa"]
 
+[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="1_62dc0"]
 [ext_resource type="Script" path="res://UI/placement_cursor.gd" id="1_pxdg7"]
 [ext_resource type="Texture2D" uid="uid://ch2ysxtsho73u" path="res://Art/UI/placement_cursor.png" id="1_wq3me"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bosqj"]
+shader = ExtResource("1_62dc0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf8ka"]
 
@@ -12,6 +16,8 @@ script = ExtResource("1_pxdg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 4096
+texture_filter = 2
+material = SubResource("ShaderMaterial_bosqj")
 texture = ExtResource("1_wq3me")
 hframes = 2
 

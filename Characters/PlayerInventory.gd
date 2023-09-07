@@ -17,9 +17,9 @@ var inventory = {
 }
 
 var hotbar = {
-0: ["wand blue", 1],
-1: ["wand purple", 1],
-2: ["carrot seed", 99],
+1: ["shovel", 1],
+2: ["watering can", 1],
+3: ["carrot seed", 99],
 
 }
 

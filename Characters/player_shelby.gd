@@ -19,6 +19,7 @@ signal item_held(item_category)
 @onready var equipped_item_tex = $Equip
 @onready var movement_component = $MovementComponent
 @onready var farming_component = $FarmingComponent
+@onready var terrain_component = $TerrainComponent
 
 # Other Node References
 @onready var animation_tree = $AnimationTree
@@ -50,9 +51,11 @@ func _process(_delta):
 
 func handle_item_actions(delta):
 	# Hole Digging
-	if equipped_item_name == "wand blue":
+	if equipped_item_name == "shovel":
 		farming_component.dig_process(delta)
 		grid_system.grid_placement_process()
+		terrain_component.grass_placement_process()
+		
 	else:
 		grid_system.hide_cursor()
 	# Planting Seed
@@ -62,9 +65,9 @@ func handle_item_actions(delta):
 		pass
 		
 	# Watering Plant
-	if equipped_item_name == "wand purple":
+	if equipped_item_name == "watering can": #FUNCTIONALITY FOR PLANT WATERING IS CONTROLLED INSIDE PLANT_LOGIC SCRIPT
 #		farming_component.water_process(delta)
-		pass
+		terrain_component.dirt_placement_process()
 func handle_item_equip():
 	# Check equipment and emit the appropriate signal
 	if equipped_item_category == "Tool":

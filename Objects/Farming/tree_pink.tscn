@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1drbkqxee0fy"]
+
+[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="1_3docx"]
+[ext_resource type="Texture2D" uid="uid://b7gcubbdx1koy" path="res://Art/Objects/tree_pink.png" id="1_54871"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wefi"]
+shader = ExtResource("1_3docx")
+
+[node name="TreePink" type="StaticBody2D"]
+collision_layer = 65
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_4wefi")
+position = Vector2(-4, -15)
+texture = ExtResource("1_54871")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.0313726)
+texture_filter = 2
+position = Vector2(-7.62939e-06, 32)
+rotation = -3.13336
+scale = Vector2(0.750578, 0.329294)
+texture = ExtResource("1_54871")
+region_enabled = true
+region_rect = Rect2(0, 0, 64.241, 74.9954)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1, 21)
+polygon = PackedVector2Array(-5, 2, -7, 5, -9, 8, -9, 12, 10, 12, 10, 9, 5, 2)

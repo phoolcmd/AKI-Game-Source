@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cva8ftruxcbsy"]
+
+[ext_resource type="Texture2D" uid="uid://g8oo0cn48bdf" path="res://Art/Objects/tree_purple.png" id="1_vxegg"]
+[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="1_x68em"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tlxgo"]
+shader = ExtResource("1_x68em")
+
+[node name="tree_purple" type="StaticBody2D"]
+position = Vector2(3, -16)
+collision_layer = 65
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_tlxgo")
+texture = ExtResource("1_vxegg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.0313726)
+position = Vector2(1, 52)
+rotation = 3.15849
+scale = Vector2(0.724338, 0.712046)
+texture = ExtResource("1_vxegg")
+region_enabled = true
+region_rect = Rect2(0.494102, -0.69453, 99.2758, 62.9362)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-3, 15)
+polygon = PackedVector2Array(9, 19, 18, 29, 21, 32, 20, 36, 19, 39, 13, 38, 0, 38, -9, 40, -15, 40, -23, 36, -14, 29, -9, 19)

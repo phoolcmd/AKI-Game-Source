@@ -71,8 +71,6 @@ radius = 3.16228
 radius = 32.0156
 
 [node name="carrot_plant" type="RigidBody2D" groups=["plants"]]
-z_index = 1
-y_sort_enabled = true
 collision_layer = 65
 collision_mask = 0
 gravity_scale = 0.0
@@ -110,6 +108,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="WaterMeter" parent="." instance=ExtResource("4_q18xr")]
+z_index = 1
 
 [node name="MouseArea" type="Area2D" parent="."]
 

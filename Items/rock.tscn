@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0d7ubn63kgw5"]
+
+[ext_resource type="PackedScene" uid="uid://dtuyuseh82neg" path="res://Items/collect_component.tscn" id="1_fhwqd"]
+[ext_resource type="PackedScene" uid="uid://cxm2pd6xn3hod" path="res://Items/cursor_component.tscn" id="2_hfngs"]
+[ext_resource type="Texture2D" uid="uid://csbybu2hv62of" path="res://Art/Items/item_rock.png" id="3_bq8u8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1v85d"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifye"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3omse"]
+radius = 27.0
+
+[node name="rock" type="RigidBody2D"]
+collision_layer = 65
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="CollectComponent" parent="." instance=ExtResource("1_fhwqd")]
+
+[node name="CursorComponent" parent="." instance=ExtResource("2_hfngs")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_bq8u8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.0313726)
+position = Vector2(0, 1)
+texture = ExtResource("3_bq8u8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1v85d")
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("RectangleShape2D_iifye")
+debug_color = Color(0.623529, 0.529412, 0.203922, 0.419608)
+
+[node name="CollectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_3omse")
+debug_color = Color(0.854902, 0.286275, 0.6, 0.419608)
+
+[connection signal="mouse_entered" from="MouseArea" to="CursorComponent" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea" to="CursorComponent" method="_on_mouse_area_mouse_exited"]
+[connection signal="body_entered" from="CollectArea" to="CursorComponent" method="_on_collect_area_body_entered"]
+[connection signal="body_entered" from="CollectArea" to="CollectComponent" method="_on_collect_area_body_entered"]
+[connection signal="body_exited" from="CollectArea" to="CursorComponent" method="_on_collect_area_body_exited"]
+[connection signal="input_event" from="CollectArea" to="CollectComponent" method="_on_collect_area_input_event"]

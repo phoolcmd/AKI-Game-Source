@@ -134,7 +134,7 @@ func _on_drain_timer_timeout():
 
 
 func _on_mouse_area_mouse_shape_entered(shape_idx):	
-	if player.equipped_item_name == "wand purple":
+	if player.equipped_item_name == "watering can":
 		water_meter_update()
 		water_meter.visible = not finished_growing
 		mouse_over_meter = true

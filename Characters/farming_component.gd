@@ -12,17 +12,18 @@ signal player_planting(item_name)
 @onready var movement_component = $'../MovementComponent'
 @onready var canvas_layer = get_tree().get_root().get_node("Main/Level/Farm")
 @onready var grid_system = get_tree().get_root().get_node("Main/Level/TileMap")
-
+@onready var animation_player = $'../AnimationPlayer'
 var target_pos = Vector2.ZERO
 var hole_to_remove = null
 var hole_radius = 10
 var placeable = true
 
 var plants_inside = []
+func _ready():
+	pass
 
 	
 func dig_process(delta):
-	
 	var player_pos = player.position
 	var dig_pos = null
 	if grid_system and grid_system.cursor_spawn_pos:
@@ -34,23 +35,16 @@ func dig_process(delta):
 	var mouse_distance = dig_pos.distance_to(player_pos)
 	var holes = get_tree().get_nodes_in_group("holes")
 	
-	# Determine target position before looping through holes
+	# Determine target position for left-click
 	if mouse_distance < dig_radius and dig_timer.is_stopped() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var can_place_hole = true
-		#Calculate mouse distance to nearest hole
 		for hole in holes:
-			#If distance is less than 10 you cannot place a hole
 			if dig_pos.distance_to(hole.global_position) < 10:
 				can_place_hole = false
 				break
-		#Calculate mouse distance to nearest node in group named "items"
-		for group in get_groups():
-			if group == "items":
-				var node = get_node("")
 		if grid_system.cursor_instance.collision_detected == false:
 			target_pos = dig_pos
-			
-	move_to_target(delta)
+
 	# Find the closest hole
 	var closest_hole = null
 	var closest_distance = INF
@@ -64,10 +58,14 @@ func dig_process(delta):
 		else:
 			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 0.0)
 	
-	#Remove hole if player right clicks on a hole and is within dig radius	
+	# Determine target position for right-click
 	if closest_hole != null and mouse_distance < dig_radius and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and dig_timer.is_stopped():
 		hole_to_remove = closest_hole
 		target_pos = closest_hole.global_position
+	
+	# Call move_to_target after determining target_pos
+	move_to_target(delta)
+
 func plant_process(delta, item_name):	
 	
 	var player_pos = player.position
@@ -104,6 +102,59 @@ func plant_process(delta, item_name):
 		hole_to_remove.queue_free()
 		#Instantiate plant
 func move_to_target(delta):
+	# Exit early if no target set or if digging is in progress
+	if target_pos == Vector2.ZERO or not dig_timer.is_stopped():
+		return
+
+	# If any movement keys are pressed, reset target position and exit
+	if is_movement_key_pressed():
+		target_pos = Vector2.ZERO
+		return
+
+	# Move player towards target
+	move_player_towards_target(delta)
+
+	# If close enough to target, dig or remove hole
+	if is_close_to_target():
+		process_dig_or_remove_hole(delta)
+		target_pos = Vector2.ZERO
+
+# Check if any movement keys are pressed
+func is_movement_key_pressed():
+	return Input.is_action_pressed("up") or \
+		   Input.is_action_pressed("down") or \
+		   Input.is_action_pressed("left") or \
+		   Input.is_action_pressed("right")
+
+# Move the player in the direction of the target
+func move_player_towards_target(delta):
+	var dir_to_target = (target_pos - global_position).normalized()
+	player.velocity = dir_to_target * player.move_speed * delta
+	movement_component.update_animation_parameters(dir_to_target)
+	player.move_and_slide()
+
+# Check if player is close enough to the target
+func is_close_to_target():
+	return (global_position + Vector2(0, 16)).distance_to(target_pos) < 18
+
+# Either instantiate a new hole or remove an existing one
+func process_dig_or_remove_hole(delta):
+	if is_instance_valid(hole_to_remove):
+		hole_to_remove.queue_free()
+		hole_to_remove = null
+	else:
+		instantiate_hole_at_target(delta)
+
+# Instantiate a new hole at the target position
+func instantiate_hole_at_target(delta):
+	var hole_instance = hole.instantiate()
+	hole_instance.position = target_pos
+	# Duplicate material to prevent shared state
+	hole_instance.get_node("Sprite2D").material = hole_instance.get_node("Sprite2D").material.duplicate()
+	canvas_layer.add_child(hole_instance)
+	hole_instance.get_node("CPUParticles2D").emitting = true
+	dig_timer.start()
+
 	# If a target position has been set
 	if target_pos != Vector2.ZERO and dig_timer.is_stopped():
 		# Check if any movement keys are pressed
@@ -119,13 +170,16 @@ func move_to_target(delta):
 			player.move_and_slide()
 			# If player is close enough to target
 			if (global_position + Vector2(0, 16)).distance_to(target_pos) < 18:
+					
 				if hole_to_remove != null:
 					#Remove the hole
+#					await get_tree().create_timer(1).timeout
 					hole_to_remove.queue_free()
 					hole_to_remove = null
 				else:
 					# Instantiate hole
-					var hole_instance = hole.instantiate()
+#					await get_tree().create_timer(1).timeout
+					hole_instance = hole.instantiate()
 					hole_instance.position = target_pos
 					hole_instance.get_node("Sprite2D").material = hole_instance.get_node("Sprite2D").material.duplicate()
 #					get_tree().get_root().add_child(hole_instance)
@@ -133,7 +187,8 @@ func move_to_target(delta):
 					hole_instance.get_node("CPUParticles2D").emitting = true
 				dig_timer.start()
 				# Reset target position
-				target_pos = Vector2.ZERO		
+				target_pos = Vector2.ZERO	
+
 func water_process(delta):
 	var player_pos = player.position
 	var plant_pos = get_global_mouse_position()
@@ -164,3 +219,6 @@ func _on_scan_zone_body_exited(body):
 
 func _on_player_shelby_player_planting(item_name):
 	pass # Replace with function body.
+
+
+
