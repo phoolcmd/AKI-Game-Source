@@ -1,9 +1,12 @@
-res://Levels/main_level.tscn
+res://Animals/bunny.tscn
 res://addons/panku_console/res/panku_console_theme.tres
+res://addons/beehave/nodes/leaves/action.gd
+res://Animals/Idle.gd
 res://Characters/enemy.gd
-res://Shaders/highlight_item.gdshader
+res://Objects/Farming/plant_logic.gd
 res://Objects/Pickups/item_pickup.gd
 res://UI/UserInterface.gd
+res://Shaders/highlight_item.gdshader
 res://Shaders/pixelperfect.gdshader
 res://Art/UI/daynight_gradient.tres
 res://Levels/clouds.gdshader
@@ -11,15 +14,9 @@ res://Levels/water.gdshader
 res://Shaders/water_noise.tres
 res://Shaders/wind_shader.gdshader
 res://Levels/wind_shader.gdshader
-res://Objects/Farming/tree_pink.tscn
-res://Characters/player.tscn
-res://Objects/Farming/hole.tscn
-res://UI/placement_cursor.tscn
-res://Characters/farming_component.tscn
-res://Characters/farming_component.gd
-res://Characters/player_shelby.gd
-res://Objects/Farming/carrot plant.tscn
-res://Objects/Farming/plant_logic.gd
+res://Levels/main_level.tscn
 res://Items/carrot.tscn
-res://Characters/PlayerInventory.gd
-res://UI/inventory.tscn
+res://Characters/player.tscn
+res://Animals/Eat.gd
+res://Objects/Farming/plant.tscn
+res://Animals/bunny_animal.gd

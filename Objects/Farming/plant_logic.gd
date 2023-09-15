@@ -21,6 +21,7 @@ extends Node2D
 @export var item_drop : String
 @onready var player = get_node("/root/Main/Level/Player_Shelby")
 @onready var plant = get_parent()
+
 var water_level = null
 var original_time_to_grow = time_grow # Storing the original value to reset later if needed
 var multiplier_applied = false
@@ -28,6 +29,7 @@ var plant_harvestable = false
 var mouse_over_meter: bool = false
 var can_water : bool = false
 var finished_growing : bool = false
+
 
 func _ready():
 	water_level = default_water_level
@@ -70,32 +72,32 @@ func water_level_process():
 	if water_level < 0.2 * water_capacity and water_level > 0 and dying_timer.is_stopped():
 		dying_timer.start() #Start the dying timer - queue freed
 		growth_timer.stop() #Stop plant growth
-		print("Dying state ACTIVE")
+#		print("Dying state ACTIVE")
 #	elif dying_timer.is_running():
 #		dying_timer.stop()
 #		print("Dying state Stopped")
 	if water_level >= 0.2 * water_capacity and water_level < 0.5 * water_capacity and not multiplier_applied:
 		growth_timer.start()#Restart plant growth
 		dying_timer.stop()#Stop dying timer
-		print("Dying state INACTIVE")
+#		print("Dying state INACTIVE")
 		time_grow *= dry_multiplier #Apply dry multipler to time
 		growth_timer.wait_time = time_grow
 		multiplier_applied = true
-		print("Time to Grow (Dry): " , time_grow)
+#		print("Time to Grow (Dry): " , time_grow)
 	elif water_level >= 0.5 * water_capacity and water_level < 0.7 * water_capacity and multiplier_applied:
 		dying_timer.stop()#Stop dying timer
-		print("Dying state INACTIVE")
+#		print("Dying state INACTIVE")
 		time_grow = original_time_to_grow
 		growth_timer.wait_time = time_grow
 		multiplier_applied = false
-		print("Time to Grow (Normal): " , time_grow)
+#		print("Time to Grow (Normal): " , time_grow)
 	elif water_level >= 0.7 * water_capacity and not multiplier_applied:
 		dying_timer.stop()#Stop dying timer
-		print("Dying state INACTIVE")
+#		print("Dying state INACTIVE")
 		time_grow *= wet_multiplier
 		growth_timer.wait_time = time_grow
 		multiplier_applied = true
-		print("Time to Grow (Wet): " , time_grow)
+#		print("Time to Grow (Wet): " , time_grow)
 
 	# Update the water level after processing (for example, reducing it over time or due to some other mechanic)
 	# water_level -= some_value

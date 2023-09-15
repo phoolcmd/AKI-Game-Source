@@ -12,6 +12,7 @@ var item_instance = null
 var mouse_over = false
 
 func _process(delta):
+	
 	#Collect item and add to inventory		
 	if grow_component.finished_growing and mouse_over: # Replace with your own growth condition
 		# Check if the player is already inside the plant's detection area
@@ -21,6 +22,8 @@ func _process(delta):
 				sprite.material.set_shader_parameter("line_scale", 1.0) # Assuming the plant script has a public 'sprite' variable
 				if Input.is_action_just_pressed("left_click") and grow_component.finished_growing:
 					#Instantiate item drop
+					print(grow_component.item_drop)
+					
 					var item_drop = load("res://Items/" + grow_component.item_drop + ".tscn")
 					item_instance = item_drop.instantiate()
 					canvas_layer.add_child(item_instance)
@@ -32,11 +35,6 @@ func _process(delta):
 					plant.queue_free()
 
 					
-func _on_detection_area_body_entered(body):
-	if grow_component.finished_growing:
-		sprite.material.set_shader_parameter("line_scale", 1.0)
-##Change this script entirely. Get rid of the detection area and use mouse input and mouse over instead
-
 
 func _on_mouse_area_mouse_entered():
 	mouse_over = true

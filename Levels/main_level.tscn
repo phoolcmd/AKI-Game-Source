@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=37 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://gpj6jc1rcg2v" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://b1drbkqxee0fy" path="res://Objects/Farming/tree_pink.tscn" id="16_xc5ig"]
 [ext_resource type="Shader" path="res://Levels/clouds.gdshader" id="17_5qjhl"]
 [ext_resource type="Texture2D" uid="uid://cubixwhr7km58" path="res://icon.svg" id="18_ss0ph"]
+[ext_resource type="PackedScene" uid="uid://dv2k1b58tyqlm" path="res://Animals/bunny.tscn" id="21_jrkh5"]
+[ext_resource type="PackedScene" uid="uid://b8nmcmkphcitd" path="res://Items/carrot.tscn" id="22_7xiro"]
 [ext_resource type="PackedScene" uid="uid://cgby37y2f3x0i" path="res://Materials/water.tscn" id="23_8m8r7"]
 [ext_resource type="PackedScene" uid="uid://bbeb7lhq7f1pg" path="res://Buildings/house_hobbit_hole.tscn" id="28_urdct"]
 
@@ -976,6 +978,11 @@ volumetric_fog_ambient_inject = 2.45
 adjustment_enabled = true
 adjustment_contrast = 1.05
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fch02"]
+vertices = PackedVector2Array(0, 0, 576, 0, 576, 448, 0, 448)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 576, 0, 576, 448, 0, 448)])
+
 [sub_resource type="Gradient" id="Gradient_8sujx"]
 offsets = PackedFloat32Array(0.557895, 0.997368)
 
@@ -1052,11 +1059,14 @@ layer_0/tile_data = PackedInt32Array(2883657, 3, 6, 2818121, 3, 6, 2752585, 3, 6
 script = ExtResource("3_we14h")
 
 [node name="Trees" type="CanvasGroup" parent="Level"]
+light_mask = 1025
+visibility_layer = 1025
 y_sort_enabled = true
 position = Vector2(32, 32)
 
 [node name="tree_purple" parent="Level/Trees" instance=ExtResource("16_p1bw6")]
 position = Vector2(804, 252)
+collision_mask = 1
 
 [node name="tree_purple4" parent="Level/Trees" instance=ExtResource("16_p1bw6")]
 position = Vector2(500, 28)
@@ -1209,17 +1219,35 @@ polygon = PackedVector2Array(13, -45.25, 30, -31.25, 59, -30.25, 67, -25.25, 68,
 position = Vector2(265, 239)
 position_smoothing_speed = 6.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Level"]
+navigation_polygon = SubResource("NavigationPolygon_fch02")
+
+[node name="Clouds" type="StaticBody2D" parent="Level"]
 z_index = 1
 position = Vector2(-442, -182)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Clouds"]
 material = SubResource("ShaderMaterial_an4y8")
 position = Vector2(881, 441)
 scale = Vector2(12.7422, 9.85156)
 texture = ExtResource("18_ss0ph")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Clouds"]
 shape = SubResource("RectangleShape2D_5boa1")
+
+[node name="bunny" parent="." instance=ExtResource("21_jrkh5")]
+position = Vector2(112, 320)
+
+[node name="carrot" parent="." instance=ExtResource("22_7xiro")]
+position = Vector2(256, 272)
+
+[node name="carrot2" parent="." instance=ExtResource("22_7xiro")]
+position = Vector2(192, 464)
+
+[node name="carrot3" parent="." instance=ExtResource("22_7xiro")]
+position = Vector2(16, 192)
+
+[node name="carrot4" parent="." instance=ExtResource("22_7xiro")]
+position = Vector2(-32, 448)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

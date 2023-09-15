@@ -130,5 +130,4 @@ shape = SubResource("CircleShape2D_66yvv")
 [connection signal="mouse_shape_entered" from="MouseArea" to="GrowComponent" method="_on_mouse_area_mouse_shape_entered"]
 [connection signal="mouse_shape_exited" from="MouseArea" to="GrowComponent" method="_on_mouse_area_mouse_shape_exited"]
 [connection signal="body_entered" from="DetectionArea" to="GrowComponent" method="_on_detection_area_body_entered"]
-[connection signal="body_entered" from="DetectionArea" to="PickupComponent" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="GrowComponent" method="_on_detection_area_body_exited"]

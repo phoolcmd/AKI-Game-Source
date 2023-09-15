@@ -20,6 +20,7 @@ var hotbar = {
 1: ["shovel", 1],
 2: ["watering can", 1],
 3: ["carrot seed", 99],
+4: ["lettuce seed", 99],
 
 }
 
@@ -115,6 +116,7 @@ func decrease_item_quantity(slot_index, quantity=1):
 			hotbar[slot_index] = item  # Update the item in the hotbar
 			emit_signal("item_quantity_updated")
 ##Adds items to the players inventory when this signal is caught from the farming component in player			
+
 func _on_player_planting(item_name):
 	print("res://Characters/PlayerInventory.gd : Planting: ", item_name)  # Print when the function is called
 	if hotbar.has(active_item_slot) and hotbar[active_item_slot][0] == item_name:

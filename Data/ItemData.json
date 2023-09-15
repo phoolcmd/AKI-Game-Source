@@ -20,6 +20,16 @@
 		"StackSize": 12,
 		"Description": "A crispy carrot"
   },
+	"lettuce seed": {
+		"ItemCategory": "Seed",
+		"StackSize": 99,
+		"Description": "A round green and heavy cabbage seed"
+  },
+	"lettuce": {
+		"ItemCategory": "Consumable",
+		"StackSize": 12,
+		"Description": "A lush head of lettuce"
+  },
  	"wand blue": {
 		"ItemCategory": "Tool",
 		"StackSize": 1,
