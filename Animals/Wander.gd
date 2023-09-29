@@ -15,7 +15,7 @@ func randomize_wander():
 	wander_timer = randf_range(1,wander_duration) #Set a random wander duration
 	
 func Enter():
-	print("Wander Mode")
+#	print("Wander Mode")
 	randomize()
 	food = get_tree().get_first_node_in_group("food") #retrieve food from nodes in group. CHANGE THIS WHEN SANCTUARY SYSTEM IS ADDED
 	randomize_wander()
@@ -27,7 +27,7 @@ func Update(delta: float):
 			randomize_wander()
 
 func Physics_Update(delta : float):
-	print("Physics Update")
+#	print("Physics Update")
 	if wander_timer > 1: # Only move when wandering
 		animal.velocity = move_direction * animal.move_speed
 	else:
@@ -36,7 +36,7 @@ func Physics_Update(delta : float):
 
 func _on_food_detection_body_entered(body):
 	if body == food:
-		print("food detected")
-		print(food)
-		print("position: ", food.position)
+#		print("food detected")
+#		print(food)
+#		print("position: ", food.position)
 		Transitioned.emit(self,"Eat")

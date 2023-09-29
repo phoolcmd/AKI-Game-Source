@@ -12,21 +12,20 @@ const NUM_HOTBAR_SLOTS = 6
 @onready var player_node : Player = get_tree().get_first_node_in_group("player")
 @onready var farm_component : Node2D = player_node.get_node("FarmingComponent")
 var inventory = {
-	0: ["mushroom", 97],
-	1: ["rock", 11]
 }
 
 var hotbar = {
-1: ["shovel", 1],
-2: ["watering can", 1],
-3: ["carrot seed", 99],
-4: ["lettuce seed", 99],
-
+0: ["shovel", 1],
+1: ["watering can", 1],
+2: ["hand" , 1],
 }
 
 var active_item_slot = 0
+var holding_state = false
+var holding_item_name : String = ""
 func _ready():
 	print(inventory)
+	set_process_input(true)
 #	player_node = get_tree().get_first_node_in_group("player")
 #	player_node.player_planting.connect(Callable(self,"_on_player_planting"))
 	farm_component.player_planting.connect(Callable(self,"_on_player_planting"))
@@ -104,6 +103,7 @@ func active_item_scroll_up():
 func active_item_scroll_down():
 	active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOTS
 	emit_signal("active_item_updated")
+	
 func decrease_item_quantity(slot_index, quantity=1):
 	if hotbar.has(slot_index):
 		var item = hotbar[slot_index]
@@ -124,10 +124,20 @@ func _on_player_planting(item_name):
 		if hotbar.has(active_item_slot):
 			update_slot_visual(active_item_slot, hotbar[active_item_slot][0], hotbar[active_item_slot][1])
 
+func _unhandled_input(event):
+	if event is InputEventKey and event.pressed:
+		for i in range(1, NUM_HOTBAR_SLOTS + 1):
+			if Input.is_key_pressed(KEY_1 + i - 1):
+				set_active_item_slot(i - 1)
+				return
 
+func set_active_item_slot(new_slot):
+	active_item_slot = new_slot
+	emit_signal("active_item_updated")
 
-
-
-	
-
+func set_active_holding_item_status(state, name):
+	holding_item_name = name
+	holding_state = state
 		
+func get_active_holding_item_name():
+	return holding_item_name

@@ -59,10 +59,10 @@ func handle_item_actions(delta):
 	else:
 		grid_system.hide_cursor()
 	# Planting Seed
-	if equipped_item_category == "Seed":
-		farming_component.plant_process(delta, equipped_item_name)
-	else:
-		pass
+#	if equipped_item_category == "Seed":
+#		farming_component.plant_process(delta, equipped_item_name)
+#	else:
+#		pass
 		
 	# Watering Plant
 	if equipped_item_name == "watering can": #FUNCTIONALITY FOR PLANT WATERING IS CONTROLLED INSIDE PLANT_LOGIC SCRIPT

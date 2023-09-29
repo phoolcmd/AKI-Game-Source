@@ -27,3 +27,12 @@ res://Objects/Farming/carrot plant.tscn
 res://Characters/grow_component.tscn
 res://Buildings/house_hobbit_hole.tscn
 res://Animals/bunny_animal.gd
+res://Characters/PlayerInventory.gd
+res://Characters/player_shelby.gd
+res://Items/item.tscn
+res://Items/cursor_component.gd
+res://Items/carrot_seed.tscn
+res://Objects/Farming/lettuce plant.tscn
+res://Objects/Farming/PickupComponent.gd
+res://Items/collect_component.gd
+res://Data/ItemData.json

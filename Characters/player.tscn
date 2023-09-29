@@ -409,7 +409,7 @@ modulate = Color(1, 1, 1, 0.784314)
 texture = ExtResource("2_ag4lq")
 hframes = 5
 vframes = 4
-frame = 8
+frame = 15
 region_rect = Rect2(-0.0825081, 3.86351, 128.009, 144.433)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

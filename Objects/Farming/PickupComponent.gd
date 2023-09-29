@@ -1,5 +1,5 @@
 extends Node2D
-
+#RENAME THIS TO DROPCOMPONENT INSTEAD OF PICKUP	
 @onready var grow_component : Node = $'../GrowComponent'
 
 @onready var sprite : Sprite2D = $'../Sprite2D'

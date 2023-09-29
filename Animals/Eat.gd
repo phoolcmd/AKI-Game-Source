@@ -12,7 +12,8 @@ var closest_food
 @onready var sprite : AnimatedSprite2D = $"../../AnimatedSprite2D"
 
 func Enter():
-	print("Rabbit in eat mode")
+#	print("Rabbit in eat mode")
+	pass
 	
 func Exit():
 	is_eating = false
@@ -33,8 +34,8 @@ func find_closest_food():
 			closest_distance = distance
 			closest_food = food
 
-	if closest_food:
-		print("position: ", closest_food.global_position)
+#	if closest_food:
+##		print("position: ", closest_food.global_position)
 	return closest_food
 
 func Physics_Update(delta: float):

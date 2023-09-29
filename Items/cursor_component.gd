@@ -3,11 +3,10 @@ extends Node2D
 # Initialize onready and member variables
 @onready var item : RigidBody2D = get_parent()
 @onready var player = get_node("/root/Main/Level/Player_Shelby")
-
+@onready var sprite = $"../Sprite2D"
 var cursor_grab = load("res://Art/Items/item_carrot.png")  # Load cursor image for grabbing
 var collectable = false  # Flag to indicate if the item is collectable
 var mouse_over = false  # Flag to indicate if the mouse is over the item
-
 # Called when a body enters the collection area
 func _on_collect_area_body_entered(body):
 	if body.is_in_group("player"):  # Check if the entering body is the player
@@ -15,6 +14,7 @@ func _on_collect_area_body_entered(body):
 		if mouse_over:  # If the mouse is over the item
 			# Change the cursor to a pointing hand
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+			sprite.material.set_shader_parameter("line_scale", 1.0)
 
 # Called when a body exits the collection area
 func _on_collect_area_body_exited(body):
@@ -23,6 +23,7 @@ func _on_collect_area_body_exited(body):
 		if mouse_over:  # If the mouse is still over the item
 			# Change the cursor back to an arrow
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+			sprite.material.set_shader_parameter("line_scale", 0.0)
 
 # Called when the mouse enters the item's mouse area
 func _on_mouse_area_mouse_entered():
@@ -31,12 +32,15 @@ func _on_mouse_area_mouse_entered():
 	if collectable:
 		# Change the cursor to a pointing hand
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		sprite.material.set_shader_parameter("line_scale", 1.0)
 	else:
 		# If not collectable, change cursor back to an arrow
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		sprite.material.set_shader_parameter("line_scale", 0.0)
 
 # Called when the mouse exits the item's mouse area
 func _on_mouse_area_mouse_exited():
 	mouse_over = false  # Reset the mouse_over flag
 	# Change the cursor back to an arrow
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	sprite.material.set_shader_parameter("line_scale", 0.0)

@@ -1,5 +1,7 @@
-CPUParticles2D
 Sprite2D
+CollisionShape2D
+RigidBody2D
+CPUParticles2D
 Node
 ActionLeaf
 BeehaveTree
@@ -7,12 +9,10 @@ ConditionLeaf
 Leaf
 BeehaveNode
 Area2D
-CollisionShape2D
 CharacterBody2D
 Timer
 VisibleOnScreenNotifier2D
 AnimatedSprite2D
-RigidBody2D
 Node2D
 NavigationRegion2D
 NavigationAgent2D

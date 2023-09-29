@@ -49,7 +49,7 @@ func _physics_process(delta):
 
 
 func _on_Eating():
-	print("eating signal caught")
+#	print("eating signal caught")
 	is_eating = true
 	$AnimatedSprite2D.play("eat")
 

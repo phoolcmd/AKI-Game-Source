@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=38 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://gpj6jc1rcg2v" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dv2k1b58tyqlm" path="res://Animals/bunny.tscn" id="21_jrkh5"]
 [ext_resource type="PackedScene" uid="uid://b8nmcmkphcitd" path="res://Items/carrot.tscn" id="22_7xiro"]
 [ext_resource type="PackedScene" uid="uid://cgby37y2f3x0i" path="res://Materials/water.tscn" id="23_8m8r7"]
+[ext_resource type="PackedScene" uid="uid://ledr51065fdg" path="res://Items/carrot_seed.tscn" id="23_cogrs"]
 [ext_resource type="PackedScene" uid="uid://bbeb7lhq7f1pg" path="res://Buildings/house_hobbit_hole.tscn" id="28_urdct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqnnm"]
@@ -1270,5 +1271,8 @@ texture = ExtResource("18_ss0ph")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Clouds"]
 shape = SubResource("RectangleShape2D_5boa1")
+
+[node name="carrot seed" parent="." instance=ExtResource("23_cogrs")]
+position = Vector2(270, 223)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

@@ -1,8 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8nmcmkphcitd"]
+[gd_scene load_steps=9 format=3 uid="uid://b8nmcmkphcitd"]
 
 [ext_resource type="Texture2D" uid="uid://qvyduis11xnu" path="res://Art/Items/item_carrot.png" id="1_7o4je"]
+[ext_resource type="Shader" path="res://Shaders/highlight_item.gdshader" id="1_kor5e"]
 [ext_resource type="PackedScene" uid="uid://cxm2pd6xn3hod" path="res://Items/cursor_component.tscn" id="2_ts3wa"]
 [ext_resource type="PackedScene" uid="uid://dtuyuseh82neg" path="res://Items/collect_component.tscn" id="3_hm4kp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqmv7"]
+shader = ExtResource("1_kor5e")
+shader_parameter/rainbow = false
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_scale = 0.0
+shader_parameter/frequency = 0.5
+shader_parameter/light_offset = 0.5
+shader_parameter/alpha = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_82rc4"]
 
@@ -18,6 +28,7 @@ gravity_scale = 0.0
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_oqmv7")
 texture = ExtResource("1_7o4je")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

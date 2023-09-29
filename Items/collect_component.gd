@@ -33,11 +33,14 @@ func _physics_process(delta):
 		# Check if the item is close enough to the player
 		if item.global_position.distance_to(player_pos) < 10:
 			# Try to add the item to the inventory
-			PlayerInventory.add_item(item_name, 1) #There is an issue with this code. if the player is in the area of two items and it attempts to add, the game crashes!
-			print(PlayerInventory.hotbar)
-			print(item_name,": Added to Inventory")
+#			PlayerInventory.add_item(item_name, 1) #There is an issue with this code. if the player is in the area of two items and it attempts to add, the game crashes!
+#			print(PlayerInventory.hotbar)
+#			print(item_name,": Added to Inventory")
 			# Remove the item from the scene
 			item.queue_free()
+			PlayerInventory.set_active_item_slot(2)
+			PlayerInventory.set_active_holding_item_status(true, item_name)
+			print(PlayerInventory.get_active_holding_item_name())
 
 # Called when the collect area receives an input event
 func _on_collect_area_input_event(viewport, event, shape_idx):

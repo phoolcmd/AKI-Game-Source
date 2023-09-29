@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cek1bpc7yb4at"]
+
+[ext_resource type="Script" path="res://Objects/Farming/PickupComponent.gd" id="1_0v3vw"]
+
+[node name="PickupComponent" type="Node2D"]
+script = ExtResource("1_0v3vw")

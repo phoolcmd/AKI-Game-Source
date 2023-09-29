@@ -14,7 +14,7 @@ func Exit():
 	pass
 
 func Enter():
-	print("Idle Mode")
+#	print("Idle Mode")
 	randomize() # random seed initialization
 	idle_timer = randf_range(1, idle_duration) # Set a random wander duration
 	animal.velocity = Vector2.ZERO
@@ -37,11 +37,11 @@ func play_emote(emote_number: int):
 	match emote_number:
 		1:
 			# code to play emote 1
-			print("Playing Emote 1")
+#			print("Playing Emote 1")
 			pass
 		2:
 			# code to play emote 2
-			print("Playing Emote 2")
+#			print("Playing Emote 2")
 			pass
 		_:
 			# default case, in case more emotes are added in the future

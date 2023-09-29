@@ -50,5 +50,10 @@
 		"StackSize": 1,
 		"Description": "Waters Plants"
   },
+	"hand": {
+		"ItemCategory": "Tool",
+		"StackSize": 1,
+		"Description": "Pickup items and interact with animals"
+  },
 
 }
