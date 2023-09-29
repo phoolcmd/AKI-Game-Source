@@ -1165,7 +1165,7 @@ color = Color(0.329412, 0.356863, 0.745098, 1)
 script = ExtResource("10_vhikg")
 gradient = ExtResource("12_fea1l")
 INGAME_SPEED = 5.0
-INITIAL_HOUR = 12
+INITIAL_HOUR = 7
 
 [node name="Farm" parent="Level" instance=ExtResource("10_y88px")]
 script = ExtResource("11_un0qj")
@@ -1222,6 +1222,42 @@ position_smoothing_speed = 6.0
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Level"]
 navigation_polygon = SubResource("NavigationPolygon_fch02")
 
+[node name="bunny" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(188, 276)
+
+[node name="bunny2" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(144, 154)
+
+[node name="bunny3" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(367, 260)
+
+[node name="bunny4" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(409, 175)
+
+[node name="bunny5" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(19, 198)
+
+[node name="bunny6" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(83, 383)
+
+[node name="bunny7" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(547, 147)
+
+[node name="bunny8" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(619, 273)
+
+[node name="bunny9" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(646, 482)
+
+[node name="bunny10" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(-113, 420)
+
+[node name="bunny11" parent="Level" instance=ExtResource("21_jrkh5")]
+position = Vector2(-100, 119)
+
+[node name="carrot" parent="Level" instance=ExtResource("22_7xiro")]
+position = Vector2(229, 286)
+
 [node name="Clouds" type="StaticBody2D" parent="Level"]
 z_index = 1
 position = Vector2(-442, -182)
@@ -1234,20 +1270,5 @@ texture = ExtResource("18_ss0ph")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Clouds"]
 shape = SubResource("RectangleShape2D_5boa1")
-
-[node name="bunny" parent="." instance=ExtResource("21_jrkh5")]
-position = Vector2(112, 320)
-
-[node name="carrot" parent="." instance=ExtResource("22_7xiro")]
-position = Vector2(256, 272)
-
-[node name="carrot2" parent="." instance=ExtResource("22_7xiro")]
-position = Vector2(192, 464)
-
-[node name="carrot3" parent="." instance=ExtResource("22_7xiro")]
-position = Vector2(16, 192)
-
-[node name="carrot4" parent="." instance=ExtResource("22_7xiro")]
-position = Vector2(-32, 448)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

@@ -48,7 +48,8 @@ func Physics_Update(delta: float):
 		animal.velocity = direction_to_food * move_speed
 		if animal.global_position.distance_to(closest_food.global_position) < 20.0:
 			animal.velocity = Vector2.ZERO
-			Eating.emit()
+			Eating.emit() #used to trigger animation in animal script
 			if closest_food:
 				closest_food.queue_free()
+				Transitioned.emit(self, "Idle")
 

@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Characters/player_shelby.gd" id="1_s0nvd"]
 [ext_resource type="Texture2D" uid="uid://dwqoltdx651fc" path="res://Art/Characters/player_spritesheet.png" id="2_ag4lq"]
 [ext_resource type="Texture2D" uid="uid://ct0uj2tafj8j5" path="res://Art/Items/item_shovel.png" id="2_dcmu6"]
-[ext_resource type="Texture2D" uid="uid://d208duvnux6rl" path="res://Art/Characters/shadow.png" id="3_vf5ov"]
 [ext_resource type="PackedScene" uid="uid://djvnb1jshw1gm" path="res://Dash.tscn" id="4_1w7e7"]
 [ext_resource type="Script" path="res://Characters/Hold.gd" id="4_71ub0"]
+[ext_resource type="Texture2D" uid="uid://bn18cbvegmgia" path="res://Art/Characters/shadow_5.png" id="5_qx4io"]
 [ext_resource type="Script" path="res://Characters/Equip.gd" id="6_5oowe"]
 [ext_resource type="PackedScene" uid="uid://b3lpnj4ywbh60" path="res://Characters/shoot_component.tscn" id="7_0bk51"]
 [ext_resource type="PackedScene" uid="uid://cijx32lybq5ij" path="res://Characters/movement_component.tscn" id="8_lqcsu"]
@@ -399,6 +399,11 @@ z_index = 1
 position = Vector2(0, 18)
 script = ExtResource("4_71ub0")
 
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0392157)
+position = Vector2(-1, 23)
+texture = ExtResource("5_qx4io")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.784314)
 texture = ExtResource("2_ag4lq")
@@ -406,15 +411,6 @@ hframes = 5
 vframes = 4
 frame = 8
 region_rect = Rect2(-0.0825081, 3.86351, 128.009, 144.433)
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
-modulate = Color(1, 1, 1, 0.443137)
-z_index = -1
-position = Vector2(-3.8743e-07, 22.4844)
-scale = Vector2(1.27273, 1.80469)
-texture = ExtResource("3_vf5ov")
-region_enabled = true
-region_rect = Rect2(10.9973, 32.2684, 11.0807, 4.45931)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)

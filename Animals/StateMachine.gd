@@ -4,6 +4,7 @@ extends Node
 
 var current_state : State
 var states : Dictionary = {}
+@export var chance_idle = randf_range(1,5)
 
 func _ready():
 	for child in get_children():

@@ -3,44 +3,46 @@ class_name Idle
 
 @export var animal: CharacterBody2D
 @export var move_speed : float = 30.0
-
-@export var favorite_food_scene: PackedScene = null
+@export var idle_duration : int = 5 #the random duration that the animal will idle
+@onready var move_direction = $"../Wander".move_direction
 var food_instances: Array = []
 var food : RigidBody2D
-var move_direction : Vector2
-var wander_duration : float
-var idle_duration : float
 
-func randomize_wander():
-	move_direction = Vector2(randf_range(-1,1), randf_range(-1,1)).normalized()
-	wander_duration = randf_range(1,4)
-	idle_duration = randf_range(1,8) # Idle for a random duration between 1 to 3 seconds
-	
+var idle_timer : float
+
+func Exit():
+	pass
+
 func Enter():
-	food = get_tree().get_first_node_in_group("food")
-	randomize_wander()
+	print("Idle Mode")
+	randomize() # random seed initialization
+	idle_timer = randf_range(1, idle_duration) # Set a random wander duration
+	animal.velocity = Vector2.ZERO
 	
-func Update(delta: float):
-	if wander_duration > 0:
-		wander_duration -= delta
-		if wander_duration <= 0: # Start the idle timer when wander time finishes
-			idle_duration = randf_range(1,8)
-	else:
-		idle_duration -= delta
-		if idle_duration <= 0: # Start wandering again when idle time finishes
-			randomize_wander()
+	if randf() > 0.7: # 70% chance no emote, 30% chance an emote will play
+		if randf() < 0.2: # 20% chance emote 1 will play
+			play_emote(1)
+		else: # 80% chance emote 2 will play
+			play_emote(2)
+	
+func Update(delta : float):
+	if idle_timer > 0:
+		idle_timer -= delta
 
-func Physics_Update(delta : float): # if food item is present then walk towards it
-	if animal:
-		if wander_duration > 0: # Only move when wandering
-			animal.velocity = move_direction * move_speed
-		else:
-			animal.velocity = Vector2(0, 0) # Stop when idling
-
-
-func _on_food_detection_body_entered(body):
-	if body == food:
-		print("food detected")
-		print(food)
-		print("position: ", food.position)
-		Transitioned.emit(self,"Eat")
+func Physics_Update(_delta : float):
+	if idle_timer < 1:
+		Transitioned.emit(self, "Wander")
+		
+func play_emote(emote_number: int):
+	match emote_number:
+		1:
+			# code to play emote 1
+			print("Playing Emote 1")
+			pass
+		2:
+			# code to play emote 2
+			print("Playing Emote 2")
+			pass
+		_:
+			# default case, in case more emotes are added in the future
+			pass

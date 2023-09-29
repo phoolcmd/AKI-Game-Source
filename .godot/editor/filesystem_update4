@@ -1,6 +1,5 @@
 res://Animals/bunny.tscn
 res://addons/panku_console/res/panku_console_theme.tres
-res://addons/beehave/nodes/leaves/action.gd
 res://Animals/Idle.gd
 res://Characters/enemy.gd
 res://Objects/Farming/plant_logic.gd
@@ -14,9 +13,17 @@ res://Levels/water.gdshader
 res://Shaders/water_noise.tres
 res://Shaders/wind_shader.gdshader
 res://Levels/wind_shader.gdshader
+res://Animals/Eat.gd
+res://Animals/Wander.gd
+res://Animals/StateMachine.gd
 res://Levels/main_level.tscn
 res://Items/carrot.tscn
 res://Characters/player.tscn
-res://Animals/Eat.gd
 res://Objects/Farming/plant.tscn
+res://Characters/movement_component.tscn
+res://UI/inventory.tscn
+res://UI/Hotbar.tscn
+res://Objects/Farming/carrot plant.tscn
+res://Characters/grow_component.tscn
+res://Buildings/house_hobbit_hole.tscn
 res://Animals/bunny_animal.gd

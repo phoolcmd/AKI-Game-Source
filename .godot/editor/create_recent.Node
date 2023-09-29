@@ -1,3 +1,6 @@
+CPUParticles2D
+Sprite2D
+Node
 ActionLeaf
 BeehaveTree
 ConditionLeaf
@@ -5,7 +8,6 @@ Leaf
 BeehaveNode
 Area2D
 CollisionShape2D
-Node
 CharacterBody2D
 Timer
 VisibleOnScreenNotifier2D
@@ -14,7 +16,6 @@ RigidBody2D
 Node2D
 NavigationRegion2D
 NavigationAgent2D
-Sprite2D
 AnimationPlayer
 AnimationTree
 CanvasGroup
@@ -24,10 +25,8 @@ TextureRect
 DampedSpringJoint2D
 TileMap
 Control
-CPUParticles2D
 Label
 PointLight2D
 CenterContainer
 CanvasModulate
 Panel
-GridContainer
