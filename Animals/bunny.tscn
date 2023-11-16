@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dv2k1b58tyqlm"]
+[gd_scene load_steps=51 format=3 uid="uid://dv2k1b58tyqlm"]
 
 [ext_resource type="Script" path="res://Animals/bunny_animal.gd" id="1_0eipr"]
 [ext_resource type="Texture2D" uid="uid://bc1s3ttotvya7" path="res://Art/Characters/bunny_spritesheet.png" id="2_bmxa0"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Animals/Wander.gd" id="4_elqrw"]
 [ext_resource type="Script" path="res://Animals/Eat.gd" id="5_woyk2"]
 [ext_resource type="PackedScene" uid="uid://b8nmcmkphcitd" path="res://Items/carrot.tscn" id="6_a5rfm"]
+[ext_resource type="Script" path="res://Animals/InspectComponent.gd" id="9_nks0h"]
+[ext_resource type="Script" path="res://Animals/InformationComponent.gd" id="10_nft0t"]
+[ext_resource type="PackedScene" uid="uid://d15mtjry83vr1" path="res://Items/lettuce.tscn" id="11_fud8m"]
 
 [sub_resource type="Animation" id="Animation_3dk28"]
 resource_name = "Eat_Left"
@@ -274,6 +277,11 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0f3fu"]
+radius = 49.0102
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ealp0"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_swtil"]
 radius = 87.0
 
@@ -314,6 +322,18 @@ sprite_frames = SubResource("SpriteFrames_chryk")
 animation = &"eat"
 frame = 5
 frame_progress = 1.0
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_0f3fu")
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_ealp0")
 
 [node name="FoodDetection" type="Area2D" parent="."]
 
@@ -357,5 +377,18 @@ scale_amount_max = 2.0
 color = Color(1, 0.74902, 0.545098, 1)
 color_ramp = SubResource("Gradient_yjydx")
 
+[node name="InspectComponent" type="Node2D" parent="."]
+script = ExtResource("9_nks0h")
+
+[node name="InformationComponent" type="Node2D" parent="."]
+script = ExtResource("10_nft0t")
+description = "A cute bunny rabbit that has a knack for carrots and grass"
+requirement_item_1 = ExtResource("6_a5rfm")
+requirement_item_2 = ExtResource("11_fud8m")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="InteractArea" to="InspectComponent" method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="InspectComponent" method="_on_interact_area_body_exited"]
+[connection signal="mouse_entered" from="MouseArea" to="InspectComponent" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea" to="InspectComponent" method="_on_mouse_area_mouse_exited"]
 [connection signal="body_entered" from="FoodDetection" to="StateMachine/Wander" method="_on_food_detection_body_entered"]

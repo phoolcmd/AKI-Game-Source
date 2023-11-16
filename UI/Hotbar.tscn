@@ -40,46 +40,46 @@ stretch_mode = 2
 
 [node name="HotbarSlots" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 4.66667
-offset_right = 108.0
-offset_bottom = 16.6667
-theme_override_constants/h_separation = 5
+offset_left = 6.0
+offset_top = 2.66667
+offset_right = 107.0
+offset_bottom = 18.6667
+theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 0
 columns = 6
 
 [node name="HotbarSlot1" type="Panel" parent="HotbarSlots"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
 
 [node name="HotbarSlot2" type="Panel" parent="HotbarSlots"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
 
 [node name="HotbarSlot3" type="Panel" parent="HotbarSlots"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
 
 [node name="HotbarSlot4" type="Panel" parent="HotbarSlots"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
 
 [node name="HotbarSlot5" type="Panel" parent="HotbarSlots"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
 
 [node name="HotbarSlot6" type="Panel" parent="HotbarSlots"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_5a6gt")
 script = ExtResource("3_8fq0n")
@@ -98,4 +98,100 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = SubResource("FontVariation_f52g8")
 theme_override_font_sizes/font_size = 8
 text = "Sample Text"
+horizontal_alignment = 2
+
+[node name="1" type="Label" parent="."]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 14.6667
+offset_right = 86.0
+offset_bottom = 40.6666
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(0.875, 0.785156, 0.984375, 1)
+theme_override_colors/font_shadow_color = Color(0.611765, 0.431373, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "1"
+horizontal_alignment = 2
+
+[node name="2" type="Label" parent="."]
+layout_mode = 0
+offset_left = -42.6667
+offset_top = 15.3333
+offset_right = 103.333
+offset_bottom = 41.3333
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(0.875, 0.785156, 0.984375, 1)
+theme_override_colors/font_shadow_color = Color(0.611765, 0.431373, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "2"
+horizontal_alignment = 2
+
+[node name="3" type="Label" parent="."]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 14.6667
+offset_right = 120.0
+offset_bottom = 40.6666
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(0.875, 0.785156, 0.984375, 1)
+theme_override_colors/font_shadow_color = Color(0.611765, 0.431373, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "3"
+horizontal_alignment = 2
+
+[node name="4" type="Label" parent="."]
+layout_mode = 0
+offset_left = -8.66667
+offset_top = 14.6667
+offset_right = 137.333
+offset_bottom = 40.6666
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(0.875, 0.785156, 0.984375, 1)
+theme_override_colors/font_shadow_color = Color(0.611765, 0.431373, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "4"
+horizontal_alignment = 2
+
+[node name="5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.66666
+offset_top = 14.6667
+offset_right = 154.667
+offset_bottom = 40.6666
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(0.875, 0.785156, 0.984375, 1)
+theme_override_colors/font_shadow_color = Color(0.611765, 0.431373, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "5"
+horizontal_alignment = 2
+
+[node name="6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 15.3333
+offset_right = 172.0
+offset_bottom = 41.3333
+scale = Vector2(0.557174, 0.557174)
+theme_override_colors/font_color = Color(0.875, 0.785156, 0.984375, 1)
+theme_override_colors/font_shadow_color = Color(0.611765, 0.431373, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_f52g8")
+theme_override_font_sizes/font_size = 8
+text = "6"
 horizontal_alignment = 2

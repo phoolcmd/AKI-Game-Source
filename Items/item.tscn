@@ -6,6 +6,7 @@
 
 [node name="Item" type="Node2D"]
 z_index = 1
+position = Vector2(2, 2)
 script = ExtResource("1_o2ah2")
 
 [node name="TextureRect" type="TextureRect" parent="."]

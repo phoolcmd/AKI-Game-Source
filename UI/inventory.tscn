@@ -410,96 +410,96 @@ offset_left = 19.0
 offset_top = 13.0
 offset_right = 99.0
 offset_bottom = 69.0
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 6
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 1
 columns = 5
 
 [node name="Slot1" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot2" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot3" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot4" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot5" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot6" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot7" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot8" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot9" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot10" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot11" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot12" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot13" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot14" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")
 
 [node name="Slot15" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(12, 12)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6w04j")
 script = ExtResource("3_mo55t")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://0q1kvq8fstw0"]
+
+[ext_resource type="Script" path="res://UI/Store.gd" id="1_48v6f"]
+[ext_resource type="FontFile" uid="uid://dtekaf2mlaovp" path="res://Fonts/dogicapixel.ttf" id="2_aqlva"]
+[ext_resource type="Texture2D" uid="uid://qvyduis11xnu" path="res://Art/Items/item_carrot.png" id="2_e3vxf"]
+[ext_resource type="Texture2D" uid="uid://dr7r0bfw5jx54" path="res://Art/Items/item_carrot seed.png" id="3_o2du5"]
+[ext_resource type="Texture2D" uid="uid://bvg4ed6j32sc3" path="res://Art/Items/item_lettuce.png" id="4_qbpbs"]
+[ext_resource type="Texture2D" uid="uid://dhyyaxuhqthvp" path="res://Art/Pickups/lettuce seed.png" id="5_in7eb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ooar0"]
+
+[node name="Store" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.32221, 0.32221)
+script = ExtResource("1_48v6f")
+store_inventory = [&"carrot", &"lettuce"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.7249
+offset_top = 12.4143
+offset_right = 123.725
+offset_bottom = 38.4143
+text = "STORE MENU"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.317647)
+layout_mode = 0
+offset_right = 444.0
+offset_bottom = 300.0
+texture = SubResource("CanvasTexture_ooar0")
+
+[node name="ItemList" type="ItemList" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 15.5178
+offset_top = 46.5535
+offset_right = 426.518
+offset_bottom = 283.553
+theme_override_fonts/font = ExtResource("2_aqlva")
+text_overrun_behavior = 1
+item_count = 4
+same_column_width = true
+icon_scale = 2.0
+item_0/text = "Carrot"
+item_0/icon = ExtResource("2_e3vxf")
+item_1/text = "Carrot Seed"
+item_1/icon = ExtResource("3_o2du5")
+item_2/text = "Lettuce"
+item_2/icon = ExtResource("4_qbpbs")
+item_3/text = "Lettuce Seed"
+item_3/icon = ExtResource("5_in7eb")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 43.0
+offset_right = 434.0
+offset_bottom = 289.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50

@@ -6,9 +6,9 @@ extends Node2D
 # Player's Equipment
 @onready var equipped_item_name : String = ""
 @onready var equipped_item_category : String = ""
-@onready var equipped_item = $'../Equip/Area2D/CollisionShape2D'
-@onready var equipped_item_pos = equipped_item.global_position
-@onready var equipped_item_tex = $'../Equip'
+#@onready var equipped_item = $'../Equip/Area2D/CollisionShape2D'
+#@onready var equipped_item_pos = equipped_item.global_position
+#@onready var equipped_item_tex = $'../Equip'
 
 
 
@@ -17,9 +17,9 @@ var particle_instance = null
 
 func fire():
 	if Input.is_action_just_pressed("follow"):
-		particle_instance = particle.instantiate()
-		particle_instance.position = equipped_item_pos
-		light.add_child(particle_instance)
+#		particle_instance = particle.instantiate()
+#		particle_instance.position = equipped_item_pos
+#		light.add_child(particle_instance)
 		#get_tree().get_root().add_child(particle_instance)
 		emit_signal("player_firing_signal")
 

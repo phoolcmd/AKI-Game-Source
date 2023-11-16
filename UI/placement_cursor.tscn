@@ -1,33 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://r23op5wfnjpa"]
+[gd_scene load_steps=8 format=3 uid="uid://r23op5wfnjpa"]
 
-[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="1_62dc0"]
 [ext_resource type="Script" path="res://UI/placement_cursor.gd" id="1_pxdg7"]
 [ext_resource type="Texture2D" uid="uid://ch2ysxtsho73u" path="res://Art/UI/placement_cursor.png" id="1_wq3me"]
+[ext_resource type="Shader" path="res://pixelperfect_modulate.gdshader" id="2_jfv46"]
+[ext_resource type="Script" path="res://UI/PlaceableCursor.gd" id="3_uk8hn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bosqj"]
-shader = ExtResource("1_62dc0")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kvik"]
+shader = ExtResource("2_jfv46")
+shader_parameter/modulate_color = Color(1, 1.2, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdbx7"]
+shader = ExtResource("2_jfv46")
+shader_parameter/modulate_color = Color(1, 1.2, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf8ka"]
+size = Vector2(15.5556, 15.5556)
 
 [node name="PlacementCursor" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_pxdg7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DefaultCursor" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 4096
 texture_filter = 2
-material = SubResource("ShaderMaterial_bosqj")
+material = SubResource("ShaderMaterial_8kvik")
 texture = ExtResource("1_wq3me")
 hframes = 2
+
+[node name="PlaceableCursor" type="Sprite2D" parent="."]
+modulate = Color(0.490196, 1, 0.498039, 1)
+z_index = 1
+texture_filter = 2
+material = SubResource("ShaderMaterial_fdbx7")
+script = ExtResource("3_uk8hn")
 
 [node name="CollisionArea" type="Area2D" parent="."]
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(0.9, 0.9)
 shape = SubResource("RectangleShape2D_gf8ka")
 debug_color = Color(0.701961, 0, 0, 0.419608)
 
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_entered" from="CollisionArea" to="PlaceableCursor" method="_on_collision_area_body_entered"]
 [connection signal="body_exited" from="CollisionArea" to="." method="_on_collision_area_body_exited"]
+[connection signal="body_exited" from="CollisionArea" to="PlaceableCursor" method="_on_collision_area_body_exited"]

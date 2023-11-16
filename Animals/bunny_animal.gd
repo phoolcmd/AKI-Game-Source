@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Animal
 
+#TODO:
+#CREATE A SIGNAL WHEN THE ANIMALS EATS THAT PASSES THE NAME OF THE ITEM 
+#- HANDLE THIS IN THE INFORMATIONCOMPONENT.GD TO CHECK IF THE REQUIREMENTS FOR MATING ARE MET
+
 var last_direction: Vector2 = Vector2(0, -1)  # Defaulting to 'up'
 var is_eating: bool = false
 @onready var eat_class : Eat = $StateMachine/Eat

@@ -6,10 +6,9 @@ const MINUTES_PER_HOUR = 60
 const INGAME_TO_REAL_MINUTE_DURATION = (2 * PI) / MINUTES_PER_DAY
 
 @export var gradient : GradientTexture2D = load("res://Art/UI/daynight_gradient.tres")
-@export var INGAME_SPEED = 1.0
+@export var INGAME_SPEED = 5.0
 @export var INITIAL_HOUR = 5:
 	set(h):
-		INITIAL_HOUR = h
 		time = INGAME_TO_REAL_MINUTE_DURATION * INITIAL_HOUR * MINUTES_PER_HOUR
 
 signal time_tick(day : int, hour: int, minute : int)

@@ -23,6 +23,7 @@ func update_food_instances():
 
 	if food_instances.size() == 0:
 		print("Warning: No food instances found in the scene!")
+		Transitioned.emit(self, "Wander")
 
 func find_closest_food():
 	var closest_food = null
@@ -34,8 +35,9 @@ func find_closest_food():
 			closest_distance = distance
 			closest_food = food
 
-#	if closest_food:
-##		print("position: ", closest_food.global_position)
+	if closest_food:
+#		print("position: ", closest_food.global_position)
+		pass
 	return closest_food
 
 func Physics_Update(delta: float):

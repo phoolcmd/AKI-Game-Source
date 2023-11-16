@@ -65,7 +65,7 @@ func putIntoSlot(new_item):
 
 	# Assign new_item to item and set its position to (0, 0)
 	item = new_item
-	item.position = Vector2(0 , 0)
+	item.position = Vector2(2 , 2)
 
 	# Add item as a child to the Panel node itself
 	add_child(item)

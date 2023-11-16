@@ -37,6 +37,6 @@ func Physics_Update(delta : float):
 func _on_food_detection_body_entered(body):
 	if body == food:
 #		print("food detected")
-#		print(food)
+		print(food)
 #		print("position: ", food.position)
 		Transitioned.emit(self,"Eat")

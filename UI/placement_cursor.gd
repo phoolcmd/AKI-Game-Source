@@ -1,8 +1,11 @@
 extends Control
+signal item_placeable(active_item_name, active_item_category) #Handles when an item is placeable
 
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : Sprite2D = $DefaultCursor
 var collision_count = 0  # Counter for the number of bodies in collision
 var collision_detected = false
+var texture
+
 func _on_collision_area_body_entered(body):
 	if body:
 		collision_count += 1  # Increment count when a body enters

@@ -1,59 +1,73 @@
 {
- 	"mushroom": {
+	"mushroom": {
 		"ItemCategory": "Consumable",
 		"StackSize": 99,
 		"AddHealth": 5,
-		"Description": "A mushroom for a quick snack and crafting"
-  },
- 	"rock": {
+		"Description": "A mushroom for a quick snack and crafting",
+		"Cost": 10,
+		"Sell": 10
+	},
+	"rock": {
 		"ItemCategory": "Resource",
 		"StackSize": 99,
-		"Description": "A sturdy rock for crafting tools"
-  },
- 	"carrot seed": {
+		"Description": "A sturdy rock for crafting tools",
+		"Cost": 10,
+		"Sell": 10
+	},
+	"carrot seed": {
 		"ItemCategory": "Seed",
-		"StackSize": 99,
-		"Description": "A thin and pointy carrot seed"
-  },
+		"StackSize": 1,
+		"Description": "A thin and pointy carrot seed",
+		"Cost": 10,
+		"Sell": 10
+	},
 	"carrot": {
 		"ItemCategory": "Consumable",
-		"StackSize": 12,
-		"Description": "A crispy carrot"
-  },
+		"StackSize": 1,
+		"Description": "A crispy carrot",
+		"Cost": 20,
+		"Sell": 10
+	},
 	"lettuce seed": {
 		"ItemCategory": "Seed",
-		"StackSize": 99,
-		"Description": "A round green and heavy cabbage seed"
-  },
+		"StackSize": 1,
+		"Description": "A round green and heavy cabbage seed",
+		"Cost": 10,
+		"Sell": 10
+	},
 	"lettuce": {
 		"ItemCategory": "Consumable",
-		"StackSize": 12,
-		"Description": "A lush head of lettuce"
-  },
- 	"wand blue": {
+		"StackSize": 1,
+		"Description": "A lush head of lettuce",
+		"Cost": 10,
+		"Sell": 10
+	},
+	"wand blue": {
 		"ItemCategory": "Tool",
 		"StackSize": 1,
-		"Description": "Places holes"
-  },
+		"Description": "Places holes",
+		"Cost": 10,
+		"Sell": 10
+	},
 	"wand purple": {
 		"ItemCategory": "Tool",
 		"StackSize": 1,
-		"Description": "Waters Plants"
-  },
+		"Description": "Waters Plants",
+		"Cost": 10,
+		"Sell": 10
+	},
 	"shovel": {
 		"ItemCategory": "Tool",
 		"StackSize": 1,
-		"Description": "Digs holes and removes dirt"
-  },
+		"Description": "Digs holes and removes dirt",
+		"Cost": 10,
+		"Sell": 10
+	},
 	"watering can": {
 		"ItemCategory": "Tool",
 		"StackSize": 1,
-		"Description": "Waters Plants"
-  },
-	"hand": {
-		"ItemCategory": "Tool",
-		"StackSize": 1,
-		"Description": "Pickup items and interact with animals"
-  },
-
+		"Description": "Waters Plants",
+		"Cost": 10,
+		"Sell": 10
+	}
 }

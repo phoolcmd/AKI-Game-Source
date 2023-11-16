@@ -1,16 +1,17 @@
-[gd_scene load_steps=38 format=3 uid="uid://hsfktv61dcg1"]
+[gd_scene load_steps=42 format=3 uid="uid://hsfktv61dcg1"]
 
 [ext_resource type="PackedScene" uid="uid://gpj6jc1rcg2v" path="res://Characters/player.tscn" id="1_56tw2"]
 [ext_resource type="Script" path="res://Levels/main_level.gd" id="1_d8ffh"]
-[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="2_1lnf0"]
 [ext_resource type="Script" path="res://UI/UserInterface.gd" id="2_136i6"]
 [ext_resource type="PackedScene" uid="uid://blk2aqso183ml" path="res://UI/inventory.tscn" id="2_35184"]
+[ext_resource type="Shader" path="res://Shaders/pixelperfect.gdshader" id="2_crtcp"]
 [ext_resource type="Texture2D" uid="uid://cql6so06bp7si" path="res://Art/Tilesets/ground tiles/tile_floor.png" id="2_juw6s"]
 [ext_resource type="Script" path="res://Levels/TileMap.gd" id="3_we14h"]
 [ext_resource type="PackedScene" uid="uid://ds8rm3mrrtolh" path="res://UI/Hotbar.tscn" id="7_wat0t"]
 [ext_resource type="PackedScene" uid="uid://bvqd6dvhsh7sx" path="res://UI/daynightcycle_ui.tscn" id="10_bsw5w"]
 [ext_resource type="Script" path="res://Levels/daynightcycle.gd" id="10_vhikg"]
 [ext_resource type="PackedScene" uid="uid://e4snm60wps35" path="res://Characters/farm.tscn" id="10_y88px"]
+[ext_resource type="PackedScene" uid="uid://0q1kvq8fstw0" path="res://UI/store.tscn" id="11_rb4il"]
 [ext_resource type="Script" path="res://Characters/farm.gd" id="11_un0qj"]
 [ext_resource type="PackedScene" uid="uid://clvrwcgns5hgv" path="res://Characters/enemy.tscn" id="12_1g7w5"]
 [ext_resource type="Texture2D" uid="uid://c02gyft61gr4l" path="res://Art/UI/daynight_gradient.tres" id="12_fea1l"]
@@ -21,7 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://dv2k1b58tyqlm" path="res://Animals/bunny.tscn" id="21_jrkh5"]
 [ext_resource type="PackedScene" uid="uid://b8nmcmkphcitd" path="res://Items/carrot.tscn" id="22_7xiro"]
 [ext_resource type="PackedScene" uid="uid://cgby37y2f3x0i" path="res://Materials/water.tscn" id="23_8m8r7"]
-[ext_resource type="PackedScene" uid="uid://ledr51065fdg" path="res://Items/carrot_seed.tscn" id="23_cogrs"]
+[ext_resource type="PackedScene" uid="uid://ledr51065fdg" path="res://Items/carrot seed.tscn" id="23_iuokn"]
+[ext_resource type="PackedScene" uid="uid://dikl0rwn4lows" path="res://Objects/Farming/lettuce plant.tscn" id="23_o1ak7"]
+[ext_resource type="PackedScene" uid="uid://chn0vr8bpg2em" path="res://Characters/firefly.tscn" id="24_gtlbq"]
+[ext_resource type="PackedScene" uid="uid://bnjnkgpr2h2is" path="res://Objects/Farming/carrot plant.tscn" id="24_rljaj"]
 [ext_resource type="PackedScene" uid="uid://bbeb7lhq7f1pg" path="res://Buildings/house_hobbit_hole.tscn" id="28_urdct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqnnm"]
@@ -36,8 +40,8 @@ size = Vector2(1345, 44.0642)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icgmi"]
 size = Vector2(744.208, 49.032)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k37ml"]
-shader = ExtResource("2_1lnf0")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsk1m"]
+shader = ExtResource("2_crtcp")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tko5a"]
 texture = ExtResource("2_juw6s")
@@ -1051,7 +1055,7 @@ shape = SubResource("RectangleShape2D_icgmi")
 
 [node name="TileMap" type="TileMap" parent="Level"]
 texture_filter = 2
-material = SubResource("ShaderMaterial_k37ml")
+material = SubResource("ShaderMaterial_qsk1m")
 position = Vector2(0, -1)
 tile_set = SubResource("TileSet_7fpjl")
 format = 2
@@ -1158,6 +1162,12 @@ offset_right = 8.0
 offset_bottom = 7.33337
 metadata/_edit_use_anchors_ = true
 
+[node name="Store" parent="Level/UserInterface" instance=ExtResource("11_rb4il")]
+offset_left = 491.0
+offset_top = 148.0
+offset_right = 491.0
+offset_bottom = 148.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
 environment = SubResource("Environment_rlh73")
 
@@ -1165,8 +1175,7 @@ environment = SubResource("Environment_rlh73")
 color = Color(0.329412, 0.356863, 0.745098, 1)
 script = ExtResource("10_vhikg")
 gradient = ExtResource("12_fea1l")
-INGAME_SPEED = 5.0
-INITIAL_HOUR = 7
+INITIAL_HOUR = 6
 
 [node name="Farm" parent="Level" instance=ExtResource("10_y88px")]
 script = ExtResource("11_un0qj")
@@ -1259,6 +1268,57 @@ position = Vector2(-100, 119)
 [node name="carrot" parent="Level" instance=ExtResource("22_7xiro")]
 position = Vector2(229, 286)
 
+[node name="carrot2" parent="Level" instance=ExtResource("22_7xiro")]
+position = Vector2(280, 200)
+
+[node name="carrot seed" parent="Level" instance=ExtResource("23_iuokn")]
+position = Vector2(312, 280)
+
+[node name="lettuce_plant" parent="Level" instance=ExtResource("23_o1ak7")]
+position = Vector2(248, 248)
+
+[node name="lettuce_plant2" parent="Level" instance=ExtResource("23_o1ak7")]
+position = Vector2(280, 248)
+
+[node name="lettuce_plant3" parent="Level" instance=ExtResource("23_o1ak7")]
+position = Vector2(312, 248)
+
+[node name="carrot_plant" parent="Level" instance=ExtResource("24_rljaj")]
+position = Vector2(248, 280)
+
+[node name="carrot_plant2" parent="Level" instance=ExtResource("24_rljaj")]
+position = Vector2(280, 280)
+
+[node name="carrot_plant3" parent="Level" instance=ExtResource("24_rljaj")]
+position = Vector2(280, 312)
+
+[node name="carrot_plant4" parent="Level" instance=ExtResource("24_rljaj")]
+position = Vector2(312, 312)
+
+[node name="carrot_plant5" parent="Level" instance=ExtResource("24_rljaj")]
+position = Vector2(248, 312)
+
+[node name="Firefly" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(216, 176)
+
+[node name="Firefly2" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(121, 276)
+
+[node name="Firefly3" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(442, 278)
+
+[node name="Firefly4" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(332, 190)
+
+[node name="Firefly5" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(223, 292)
+
+[node name="Firefly6" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(222, 246)
+
+[node name="Firefly7" parent="Level" instance=ExtResource("24_gtlbq")]
+position = Vector2(129, 190)
+
 [node name="Clouds" type="StaticBody2D" parent="Level"]
 z_index = 1
 position = Vector2(-442, -182)
@@ -1271,8 +1331,5 @@ texture = ExtResource("18_ss0ph")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Clouds"]
 shape = SubResource("RectangleShape2D_5boa1")
-
-[node name="carrot seed" parent="." instance=ExtResource("23_cogrs")]
-position = Vector2(270, 223)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

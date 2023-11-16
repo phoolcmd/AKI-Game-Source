@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bso8i45odlqnq"]
+
+[ext_resource type="Shader" path="res://Shaders/highlight_item.gdshader" id="1_cv2mg"]
+[ext_resource type="Texture2D" uid="uid://dhyyaxuhqthvp" path="res://Art/Pickups/lettuce seed.png" id="2_taous"]
+[ext_resource type="PackedScene" uid="uid://cxm2pd6xn3hod" path="res://Items/cursor_component.tscn" id="3_27qa7"]
+[ext_resource type="PackedScene" uid="uid://dtuyuseh82neg" path="res://Items/collect_component.tscn" id="4_fmbm2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq5kk"]
+shader = ExtResource("1_cv2mg")
+shader_parameter/rainbow = false
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_scale = 0.0
+shader_parameter/frequency = 0.5
+shader_parameter/light_offset = 0.5
+shader_parameter/alpha = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8j1q"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w7kd1"]
+radius = 27.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ius5p"]
+size = Vector2(16, 16)
+
+[node name="lettuce seed" type="RigidBody2D"]
+collision_layer = 65
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.0392157)
+position = Vector2(0, 3)
+texture = ExtResource("2_taous")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lq5kk")
+texture = ExtResource("2_taous")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_u8j1q")
+
+[node name="CollectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_w7kd1")
+debug_color = Color(0.854902, 0.286275, 0.6, 0.419608)
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_ius5p")
+debug_color = Color(0.623529, 0.529412, 0.203922, 0.419608)
+
+[node name="CursorComponent" parent="." instance=ExtResource("3_27qa7")]
+
+[node name="CollectComponent" parent="." instance=ExtResource("4_fmbm2")]
+item_name = "lettuce seed"
+
+[connection signal="body_entered" from="CollectArea" to="CursorComponent" method="_on_collect_area_body_entered"]
+[connection signal="body_entered" from="CollectArea" to="CollectComponent" method="_on_collect_area_body_entered"]
+[connection signal="body_exited" from="CollectArea" to="CursorComponent" method="_on_collect_area_body_exited"]
+[connection signal="input_event" from="CollectArea" to="CollectComponent" method="_on_collect_area_input_event"]
+[connection signal="mouse_entered" from="MouseArea" to="CursorComponent" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea" to="CursorComponent" method="_on_mouse_area_mouse_exited"]

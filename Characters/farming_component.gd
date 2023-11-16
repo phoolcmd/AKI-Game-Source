@@ -1,5 +1,5 @@
 extends Node2D
-signal player_planting(item_name)
+signal player_placing(item_name)
 
 # Preloaded Assets
 @export var hole = preload("res://Objects/Farming/hole.tscn")
@@ -85,12 +85,14 @@ func plant_process(delta, item_name):
 			closest_distance = distance_to_hole
 			# Apply outline shader to nearest hole
 			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 1.0)
+			#Emit a signal here that the player is is over a hole so that the placement system does not run
+			
 		else:
 			hole.get_node("Sprite2D").material.set_shader_parameter("line_scale", 0.0)
 	if closest_hole != null and mouse_distance < plant_radius and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and dig_timer.is_stopped():
 		hole_to_remove = closest_hole
 		plant_target_pos = closest_hole.global_position
-		emit_signal("player_planting", player.equipped_item_name)
+		emit_signal("player_placing", player.equipped_item_name)
 		var plant_name = item_name.split(" ")[0]
 		var plant_name_path = "res://Objects/Farming/" + plant_name + " plant.tscn"
 		plant_instance = load(plant_name_path)
@@ -217,7 +219,7 @@ func _on_scan_zone_body_exited(body):
 		plants_inside.erase(body)
 
 
-func _on_player_shelby_player_planting(item_name):
+func _on_player_shelby_player_placing(item_name):
 	pass # Replace with function body.
 
 

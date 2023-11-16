@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://xn8wn3spr2kp"]
+
+[ext_resource type="Script" path="res://UI/store_item_panel.gd" id="1_m7wc1"]
+[ext_resource type="Texture2D" uid="uid://bvg4ed6j32sc3" path="res://Art/Items/item_lettuce.png" id="1_o4g8r"]
+[ext_resource type="Texture2D" uid="uid://cubixwhr7km58" path="res://icon.svg" id="2_dfafn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_advdi"]
+
+[node name="ItemPanel" type="Panel"]
+script = ExtResource("1_m7wc1")
+
+[node name="Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.435294)
+layout_mode = 0
+offset_right = 447.0
+offset_bottom = 40.0
+texture = SubResource("CanvasTexture_advdi")
+
+[node name="ItemImage" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_o4g8r")
+
+[node name="ItemName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 49.9677
+offset_top = 6.65701
+offset_right = 136.968
+offset_bottom = 32.657
+text = "Item Name"
+
+[node name="ItemCost" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 369.635
+offset_top = 6.65701
+offset_right = 409.635
+offset_bottom = 32.657
+text = "10
+"
+
+[node name="GoldCoin" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 338.599
+offset_top = 6.65701
+offset_right = 466.599
+offset_bottom = 134.657
+scale = Vector2(0.222892, 0.222892)
+texture = ExtResource("2_dfafn")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

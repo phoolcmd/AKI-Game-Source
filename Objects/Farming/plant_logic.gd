@@ -117,11 +117,11 @@ func _on_dying_timer_timeout():
 
 func _on_status_timer_timeout():
 	water_level_process()
-	print("_on_status_timer_timeout() : Checking water Level")
+#	print("_on_status_timer_timeout() : Checking water Level")
 	status_timer.start()
 	
 	if sprite.frame >= 3:
-		print("Plant finished growing - all timers stopped")
+#		print("Plant finished growing - all timers stopped")
 		plant_harvestable = true
 		drain_timer.stop()
 		status_timer.stop()
@@ -131,7 +131,7 @@ func _on_status_timer_timeout():
 func _on_drain_timer_timeout():
 	water_level-=1
 	if water_level < 0 : water_level = 0
-	print("water: " , water_level)
+#	print("water: " , water_level)
 	drain_timer.start()
 
 

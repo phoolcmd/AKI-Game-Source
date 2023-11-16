@@ -1,21 +1,17 @@
-[gd_scene load_steps=55 format=3 uid="uid://gpj6jc1rcg2v"]
+[gd_scene load_steps=53 format=3 uid="uid://gpj6jc1rcg2v"]
 
 [ext_resource type="Script" path="res://Characters/player_shelby.gd" id="1_s0nvd"]
 [ext_resource type="Texture2D" uid="uid://dwqoltdx651fc" path="res://Art/Characters/player_spritesheet.png" id="2_ag4lq"]
-[ext_resource type="Texture2D" uid="uid://ct0uj2tafj8j5" path="res://Art/Items/item_shovel.png" id="2_dcmu6"]
 [ext_resource type="PackedScene" uid="uid://djvnb1jshw1gm" path="res://Dash.tscn" id="4_1w7e7"]
 [ext_resource type="Script" path="res://Characters/Hold.gd" id="4_71ub0"]
 [ext_resource type="Texture2D" uid="uid://bn18cbvegmgia" path="res://Art/Characters/shadow_5.png" id="5_qx4io"]
-[ext_resource type="Script" path="res://Characters/Equip.gd" id="6_5oowe"]
 [ext_resource type="PackedScene" uid="uid://b3lpnj4ywbh60" path="res://Characters/shoot_component.tscn" id="7_0bk51"]
 [ext_resource type="PackedScene" uid="uid://cijx32lybq5ij" path="res://Characters/movement_component.tscn" id="8_lqcsu"]
 [ext_resource type="Script" path="res://Characters/movement_component.gd" id="9_tah45"]
 [ext_resource type="PackedScene" uid="uid://b0pj7itqarioa" path="res://Characters/farming_component.tscn" id="10_i8w8p"]
 [ext_resource type="Script" path="res://Characters/farming_component.gd" id="11_sphf4"]
-[ext_resource type="Script" path="res://Characters/TerrainComponent.gd" id="12_pyghj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbt2i"]
-size = Vector2(34, 34)
+[ext_resource type="PackedScene" uid="uid://cg0a6olwaj2ww" path="res://Characters/terrain_component.tscn" id="13_fvwni"]
+[ext_resource type="PackedScene" uid="uid://b8fvffts7xb72" path="res://Characters/place_component.tscn" id="14_jrmqg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t78u4"]
 radius = 5.0
@@ -46,30 +42,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("2_ag4lq")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Equip:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Equip:z_index")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-1]
 }
 
 [sub_resource type="Animation" id="Animation_1cu0l"]
@@ -372,31 +344,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 radius = 28.6356
 
 [node name="Player_Shelby" type="CharacterBody2D" groups=["player"]]
-collision_layer = 65
+collision_layer = 129
 collision_mask = 2
 safe_margin = 0.001
 script = ExtResource("1_s0nvd")
 
-[node name="Equip" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(15, 8)
-rotation = -5.15073
-scale = Vector2(-1, 1)
-texture = ExtResource("2_dcmu6")
-script = ExtResource("6_5oowe")
-
-[node name="Area2D" type="Area2D" parent="Equip" groups=["player"]]
-visible = false
-position = Vector2(1.125, -1.375)
-scale = Vector2(0.125, 0.125)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Equip/Area2D"]
-position = Vector2(24, -22)
-shape = SubResource("RectangleShape2D_sbt2i")
-
 [node name="Hold" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(0, 18)
+position = Vector2(-11, 10)
 script = ExtResource("4_71ub0")
 
 [node name="shadow" type="Sprite2D" parent="."]
@@ -409,7 +363,7 @@ modulate = Color(1, 1, 1, 0.784314)
 texture = ExtResource("2_ag4lq")
 hframes = 5
 vframes = 4
-frame = 15
+frame = 8
 region_rect = Rect2(-0.0825081, 3.86351, 128.009, 144.433)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -497,14 +451,13 @@ script = ExtResource("9_tah45")
 
 [node name="FarmingComponent" parent="." instance=ExtResource("10_i8w8p")]
 script = ExtResource("11_sphf4")
+plant_radius = 25.0
 
-[node name="TerrainComponent" type="Node2D" parent="."]
-visible = false
-script = ExtResource("12_pyghj")
+[node name="TerrainComponent" parent="." instance=ExtResource("13_fvwni")]
+visible = true
 
-[connection signal="item_equipped" from="." to="Equip" method="_on_player_shelby_item_equipped"]
-[connection signal="item_equipped" from="." to="Hold" method="_on_player_shelby_item_equipped"]
-[connection signal="item_held" from="." to="Equip" method="_on_player_shelby_item_held"]
+[node name="PlaceComponent" parent="." instance=ExtResource("14_jrmqg")]
+
 [connection signal="item_held" from="." to="Hold" method="_on_player_shelby_item_held"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FarmingComponent" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="ScanZone" to="FarmingComponent" method="_on_scan_zone_body_entered"]

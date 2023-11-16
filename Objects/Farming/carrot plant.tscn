@@ -77,8 +77,10 @@ gravity_scale = 0.0
 lock_rotation = true
 
 [node name="GrowComponent" parent="." instance=ExtResource("2_jw7f1")]
-time_grow = 5.0
-default_water_level = 20.0
+time_die = 60.0
+time_drain = 10.0
+time_status = 10.0
+default_water_level = 8.0
 item_drop = "carrot"
 
 [node name="PickupComponent" type="Node2D" parent="."]

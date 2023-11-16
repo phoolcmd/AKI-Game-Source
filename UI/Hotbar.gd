@@ -9,7 +9,7 @@ const SlotClass = preload("res://UI/Slot.gd")
 @onready var player : Player = get_tree().get_first_node_in_group("player")
 var active_item_category = ""
 func _ready():
-	PlayerInventory.active_item_updated.connect(Callable(self, "update_active_item_label"))
+	PlayerInventory.active_item_updated.connect(Callable(self, "update_active_item_label")) #Update the active item slot
 	PlayerInventory.item_quantity_updated.connect(Callable(self, "update_hotbar_visual")) #Check if holding item quantity updated
 	for i in range(slots.size()):
 		PlayerInventory.active_item_updated.connect(Callable(slots[i], "refresh_style"))
@@ -18,7 +18,8 @@ func _ready():
 		slots[i].slot_type = SlotClass.SlotType.HOTBAR
 	initialize_inventory()
 	update_active_item_label()
-	
+	update_hotbar_visual()
+
 func update_hotbar_visual():
 	for i in range(slots.size()):
 		if PlayerInventory.hotbar.has(i):

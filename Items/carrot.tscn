@@ -1,22 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8nmcmkphcitd"]
+[gd_scene load_steps=8 format=3 uid="uid://b8nmcmkphcitd"]
 
+[ext_resource type="Texture2D" uid="uid://d208duvnux6rl" path="res://Art/Characters/shadow.png" id="1_4uue5"]
 [ext_resource type="Texture2D" uid="uid://qvyduis11xnu" path="res://Art/Items/item_carrot.png" id="1_7o4je"]
-[ext_resource type="Shader" path="res://Shaders/highlight_item.gdshader" id="1_kor5e"]
 [ext_resource type="PackedScene" uid="uid://cxm2pd6xn3hod" path="res://Items/cursor_component.tscn" id="2_ts3wa"]
 [ext_resource type="PackedScene" uid="uid://dtuyuseh82neg" path="res://Items/collect_component.tscn" id="3_hm4kp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqmv7"]
-shader = ExtResource("1_kor5e")
-shader_parameter/rainbow = false
-shader_parameter/line_color = Color(1, 1, 0, 1)
-shader_parameter/line_scale = 0.0
-shader_parameter/frequency = 0.5
-shader_parameter/light_offset = 0.5
-shader_parameter/alpha = 0.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_82rc4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq5y7"]
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4aqqe"]
+size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f4pp4"]
 radius = 27.0
@@ -27,16 +20,22 @@ collision_mask = 0
 gravity_scale = 0.0
 lock_rotation = true
 
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0392157)
+position = Vector2(0, 5)
+texture = ExtResource("1_4uue5")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_oqmv7")
 texture = ExtResource("1_7o4je")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_82rc4")
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_bq5y7")
 
 [node name="MouseArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_4aqqe")
 debug_color = Color(0.623529, 0.529412, 0.203922, 0.419608)
 
@@ -49,6 +48,7 @@ debug_color = Color(0.854902, 0.286275, 0.6, 0.419608)
 [node name="CursorComponent" parent="." instance=ExtResource("2_ts3wa")]
 
 [node name="CollectComponent" parent="." instance=ExtResource("3_hm4kp")]
+item_name = "carrot"
 
 [connection signal="mouse_entered" from="MouseArea" to="CursorComponent" method="_on_mouse_area_mouse_entered"]
 [connection signal="mouse_exited" from="MouseArea" to="CursorComponent" method="_on_mouse_area_mouse_exited"]

@@ -10,7 +10,7 @@ var can_place_dirt_custom_data = "can_place_dirt"
 var excluded_atlas_coords = [Vector2i(10, 1), Vector2i(11, 2)]  # Add the tiles you want to exclude here
 
 func grass_placement_process():
-	if Input.is_action_just_pressed("middle_mouse"):
+	if Input.is_action_just_pressed("left_click"):
 		print("Placing grass tile")
 		
 		var mouse_pos : Vector2 = get_global_mouse_position()
@@ -23,7 +23,7 @@ func grass_placement_process():
 			player.grid_system.set_cells_terrain_connect(ground_layer, [tile_mouse_pos], 0, 0)
 
 func dirt_placement_process():
-	if Input.is_action_just_pressed("middle_mouse"):
+	if Input.is_action_just_pressed("right_click"):
 		print("Placing dirt tile")
 		
 		var mouse_pos : Vector2 = get_global_mouse_position()
